@@ -23,3 +23,8 @@ Thumbs.db
 # Local secrets
 .env
 .env.*
+
+# Generated parity outputs
+parity/actual/*
+!parity/actual/.gitkeep
+parity/reports/*.txt

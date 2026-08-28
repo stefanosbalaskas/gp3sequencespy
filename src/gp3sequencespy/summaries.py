@@ -195,7 +195,32 @@ def summarise_sequence_transitions(
         for a,b in pairs:
             mask=(rawdf.from_state==a)&(rawdf.to_state==b); count=int(mask.sum()); origin=int((rawdf.from_state==a).sum()); contrib=rawdf.loc[mask,"sequence_id"].nunique()
             overall.append({"from_state":a,"to_state":b,"n_sequences":int(contrib),"sequence_proportion":contrib/total_seq,"n_transitions":count,"transition_proportion":count/total,"origin_transition_proportion":count/origin})
-    return TransitionSummaryResult(pd.DataFrame(by_rows),pd.DataFrame(overall),inp["audit"],inp["status"],inp["mapping"],include_self)
+    by_columns = [
+        "sequence_id",
+        *metadata,
+        "from_state",
+        "to_state",
+        "n_transitions",
+        "sequence_transition_proportion",
+        "origin_transition_proportion",
+    ]
+    overall_columns = [
+        "from_state",
+        "to_state",
+        "n_sequences",
+        "sequence_proportion",
+        "n_transitions",
+        "transition_proportion",
+        "origin_transition_proportion",
+    ]
+    return TransitionSummaryResult(
+        pd.DataFrame(by_rows, columns=by_columns),
+        pd.DataFrame(overall, columns=overall_columns),
+        inp["audit"],
+        inp["status"],
+        inp["mapping"],
+        include_self,
+    )
 
 
 def format_sequence_paths(

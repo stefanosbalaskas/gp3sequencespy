@@ -74,14 +74,25 @@ def _missing_mask(series: pd.Series) -> pd.Series:
 def _value_text(values: Any) -> str | None:
     if isinstance(values, pd.Series):
         seq = values.tolist()
-    elif isinstance(values, (list, tuple, np.ndarray, pd.Index)):
+    elif isinstance(values, (list, tuple, np.ndarray, pd.Index, pd.api.extensions.ExtensionArray)):
         seq = list(values)
     else:
         seq = [values]
     if not seq:
         return None
-    text = ["<NA>" if pd.isna(v) else str(v) for v in seq[:5]]
-    return " | ".join(text)
+
+    def _format_value(value: Any) -> str:
+        if value is None or value is pd.NA:
+            return "<NA>"
+        try:
+            missing = pd.isna(value)
+        except (TypeError, ValueError):
+            missing = False
+        if isinstance(missing, (bool, np.bool_)) and bool(missing):
+            return "<NA>"
+        return str(value)
+
+    return " | ".join(_format_value(value) for value in seq[:5])
 
 
 def _issue(
@@ -114,7 +125,8 @@ def _audit_frame(issues: list[dict[str, Any]]) -> pd.DataFrame:
     rank = {"error": 0, "review": 1, "info": 2}
     df["__sev"] = df["severity"].map(rank)
     df["__seq"] = df["sequence_id"].fillna(chr(0x10FFFF))
-    df["__row"] = df["row"].fillna(np.iinfo(np.int32).max)
+    row_sentinel = np.iinfo(np.int32).max
+    df["__row"] = [row_sentinel if pd.isna(value) else int(value) for value in df["row"]]
     df = df.sort_values(["__sev", "__seq", "__row", "issue_code"], kind="stable").drop(columns=["__sev", "__seq", "__row"])
     df = df.reset_index(drop=True)
     df["row"] = pd.array(df["row"], dtype="Int64")

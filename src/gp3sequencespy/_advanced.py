@@ -17,7 +17,11 @@ def scalar_character(x: Any, argument: str, allow_none: bool = False) -> None:
 
 def scalar_number(x: Any, argument: str, lower: float=-np.inf, upper: float=np.inf, integer: bool=False) -> None:
     valid=isinstance(x,(int,float,np.integer,np.floating)) and not isinstance(x,(bool,np.bool_)) and np.isfinite(x)
-    if not valid or x<lower or x>upper or (integer and int(x)!=x): raise ValidationError(f"`{argument}` has an invalid numeric value.")
+    invalid_integer = integer and valid and (
+        int(x) != x or x < -np.iinfo(np.int32).max or x > np.iinfo(np.int32).max
+    )
+    if not valid or x<lower or x>upper or invalid_integer:
+        raise ValidationError(f"`{argument}` has an invalid numeric value.")
 
 
 def scalar_logical(x: Any, argument: str) -> None:

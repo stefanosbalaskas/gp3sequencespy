@@ -1,0 +1,912 @@
+[
+  {
+    "r_test_file": "test-adversarial-inputs.R",
+    "r_block_index": 1,
+    "r_block": "torture corpus exposes expected validation failures",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_adversarial_failures_are_explicit",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-adversarial-inputs.R",
+    "r_block_index": 2,
+    "r_block": "torture corpus exposes review rather than silent destruction",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_adversarial_review_cases_not_silently_destroyed",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-analysis-audit.R",
+    "r_block_index": 1,
+    "r_block": "analysis audit recognises a native distance object",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_analysis_audit_native_distance",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-analysis-audit.R",
+    "r_block_index": 2,
+    "r_block": "analysis audit catches malformed distances",
+    "python_test": "tests/test_r_block_completion.py::test_r_analysis_audit_catches_malformed_distances",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-analysis-audit.R",
+    "r_block_index": 3,
+    "r_block": "analysis-result comparison separates structure from values",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_analysis_result_comparison_structure_vs_values",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-capabilities.R",
+    "r_block_index": 1,
+    "r_block": "sequence_capabilities is deterministic and dependency-safe",
+    "python_test": "tests/test_r_block_completion.py::test_r_capabilities_deterministic_dependency_safe_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-capabilities.R",
+    "r_block_index": 2,
+    "r_block": "sequence_capabilities can report native capabilities only",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_capabilities_roles_and_native_filter",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-capabilities.R",
+    "r_block_index": 3,
+    "r_block": "sequence_capabilities does not load optional backend namespaces",
+    "python_test": "tests/test_r_block_completion.py::test_r_capabilities_do_not_import_optional_backends_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-contract-invariants.R",
+    "r_block_index": 1,
+    "r_block": "distance contract enforces core mathematical invariants",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_distance_core_mathematical_invariants",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-contract-invariants.R",
+    "r_block_index": 2,
+    "r_block": "probability simplex and matrix validators work",
+    "python_test": "tests/test_r_block_completion.py::test_r_probability_simplex_and_matrix_validator_semantics",
+    "status": "internal_semantic_translation"
+  },
+  {
+    "r_test_file": "test-contract-invariants.R",
+    "r_block_index": 3,
+    "r_block": "partition labels canonicalise without changing membership",
+    "python_test": "tests/test_r_block_completion.py::test_r_partition_label_canonicalisation_membership_semantics",
+    "status": "internal_semantic_translation"
+  },
+  {
+    "r_test_file": "test-metamorphic-invariants.R",
+    "r_block_index": 1,
+    "r_block": "distance is invariant to input row order with explicit order",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_metamorphic_distance_invariant_to_row_order",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-metamorphic-invariants.R",
+    "r_block_index": 2,
+    "r_block": "irrelevant metadata does not change sequence distance",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_metamorphic_irrelevant_metadata_no_distance_change",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-metamorphic-invariants.R",
+    "r_block_index": 3,
+    "r_block": "state relabelling preserves Levenshtein geometry",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_metamorphic_state_relabelling_preserves_levenshtein_geometry",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-package.R",
+    "r_block_index": 1,
+    "r_block": "package namespace is available",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_package_namespace_available",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 1,
+    "r_block": "GrpString adapter creates deterministic strings and key",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_adapters_deterministic_semantic_translations",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 2,
+    "r_block": "gp3tools compatibility helper maps common columns",
+    "python_test": "tests/test_r_block_completion.py::test_r_gp3tools_common_column_mapping_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 3,
+    "r_block": "TraMineR and seqHMM adapters are guarded",
+    "python_test": "tests/test_r_block_completion.py::test_r_traminer_and_seqhmm_semantic_adapter_block",
+    "status": "backend_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 4,
+    "r_block": "arules adapter is guarded or returns sequential metadata",
+    "python_test": "tests/test_r_block_completion.py::test_r_arules_sequential_metadata_block",
+    "status": "backend_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 5,
+    "r_block": "igraph adapter refuses unresolved grouped networks",
+    "python_test": "tests/test_r_block_completion.py::test_r_igraph_grouped_network_guard_block",
+    "status": "backend_translation"
+  },
+  {
+    "r_test_file": "test-sequence-adapters.R",
+    "r_block_index": 6,
+    "r_block": "gp3tools compatibility helper refuses ambiguous inferred mappings",
+    "python_test": "tests/test_r_block_completion.py::test_r_gp3tools_ambiguous_mapping_guard_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 1,
+    "r_block": "consensus creation is deterministic and reports support",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_consensus_creation_deterministic_support",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 2,
+    "r_block": "consensus tie policies and missing-state policies are explicit",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_consensus_tie_and_missing_state_policies",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 3,
+    "r_block": "consensus summaries, formatting and plotting work",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_consensus_summaries_formatting_and_plotting",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 4,
+    "r_block": "descriptive group comparisons return expected components",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_group_comparison_expected_components",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 5,
+    "r_block": "group comparison plotting returns plotted data",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_group_comparison_plotting_data",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 6,
+    "r_block": "grouped consensus requires explicit plot selection",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_grouped_consensus_requires_selection",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 7,
+    "r_block": "group comparison rejects incomplete grouping metadata",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_group_comparison_rejects_incomplete_metadata",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 8,
+    "r_block": "advanced metadata mappings cannot duplicate core sequence columns",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_advanced_metadata_cannot_duplicate_core_columns",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 9,
+    "r_block": "zero-weight rows do not inflate consensus support",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_zero_weight_does_not_inflate_support",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 10,
+    "r_block": "group comparison transition labels require an unambiguous separator",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_group_transition_separator_guard",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 11,
+    "r_block": "reference-group contrasts use the reference as denominator",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_reference_group_is_denominator",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 12,
+    "r_block": "state plotting represents an unresolved consensus tie explicitly",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_state_plot_preserves_unresolved_tie",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-consensus-groups.R",
+    "r_block_index": 13,
+    "r_block": "empty transition comparisons fail clearly when plotted",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_empty_transition_comparison_plot_fails_clearly",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-covariate-hmm.R",
+    "r_block_index": 1,
+    "r_block": "covariate HMM fits with explicit design matrices",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_covariate_hmm_explicit_design_contract",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 1,
+    "r_block": "audit output has a stable empty contract",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_audit_empty_contract",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 2,
+    "r_block": "validation reports normal and empty inputs",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_validation_normal_and_empty",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 3,
+    "r_block": "missing columns and states are explicit errors",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_missing_columns_and_states",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 4,
+    "r_block": "ordering, gaps, and duplicated positions are audited",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_order_gaps_and_duplicate_positions_audited",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 5,
+    "r_block": "duration and metadata errors are detected",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_duration_and_metadata_errors",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 6,
+    "r_block": "preparation sorts deterministically and preserves identifiers",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_preparation_sort_and_identifiers",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 7,
+    "r_block": "explicit policies drop missing and unknown states",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_explicit_drop_policies",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 8,
+    "r_block": "duplicate and repeated-state policies are deterministic",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_duplicate_and_repeat_policies",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 9,
+    "r_block": "unresolved policy errors suppress prepared data",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_unresolved_errors_suppress_output",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-data.R",
+    "r_block_index": 10,
+    "r_block": "single-state and unused levels remain reviewable",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_data_single_state_and_unused_levels_reviewable",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 1,
+    "r_block": "all core sequence distances are symmetric and deterministic",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_all_core_distances_symmetric_deterministic",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 2,
+    "r_block": "distance normalisation and substitution matrices are explicit",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_distance_normalisation_and_substitution_matrix_guard",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 3,
+    "r_block": "distance summaries include overall and per-sequence results",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_distance_summary_overall_and_per_sequence",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 4,
+    "r_block": "hierarchical clustering and validation are auditable",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_hierarchical_cluster_validation_and_representatives",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 5,
+    "r_block": "PAM is guarded by the optional cluster package",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_pam_native_backend_available",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 6,
+    "r_block": "bootstrap stability is reproducible",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_bootstrap_cluster_stability_reproducible",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 7,
+    "r_block": "cluster ensembles use transparent co-association",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_cluster_ensemble_coassociation_contract",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 8,
+    "r_block": "distance and substitution matrices enforce metric structure",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_distance_and_substitution_metric_guards",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 9,
+    "r_block": "CLARA is guarded and preserves sequence identifiers",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_clara_preserves_sequence_identifiers",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 10,
+    "r_block": "stochastic helpers restore the caller random-number state",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_stochastic_cluster_helpers_do_not_mutate_global_numpy_rng",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 11,
+    "r_block": "character cluster assignments are supported",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_character_cluster_assignments_supported",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 12,
+    "r_block": "unused factor levels do not become observed distance states",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_unused_categorical_levels_not_observed_distance_states",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 13,
+    "r_block": "ensemble linkage and stability summaries are validated",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_ensemble_linkage_and_stability_validation",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 14,
+    "r_block": "optional CLARA clustering restores the caller RNG and is repeatable",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_clara_repeatable_and_global_rng_safe",
+    "status": "semantic_contract; R_clustering_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 15,
+    "r_block": "integer controls reject values outside the R integer range",
+    "python_test": "tests/test_r_block_completion.py::test_r_integer_controls_reject_values_outside_r_integer_range_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 16,
+    "r_block": "seed validation and bootstrap offsets are safe",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_integer_seed_controls_reject_invalid_values_and_boundary_safe",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-distances-clustering.R",
+    "r_block_index": 17,
+    "r_block": "additional clustering arguments must be named",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_additional_clustering_positional_arguments_rejected_by_python_signature",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 1,
+    "r_block": "state encoding is deterministic across row order",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_encoding_deterministic_across_row_order",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 2,
+    "r_block": "custom encoding levels and labels are respected",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_encoding_custom_levels_and_labels",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 3,
+    "r_block": "factor levels define the default encoding order",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_encoding_categorical_levels_define_order",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 4,
+    "r_block": "state summaries return exact counts and proportions",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_state_summary_exact_counts_and_proportions",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 5,
+    "r_block": "state summaries are deterministic across input order",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_state_summary_deterministic_across_input_order",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 6,
+    "r_block": "transition summaries return exact adjacent counts",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_transition_summary_exact_adjacent_counts",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 7,
+    "r_block": "self-transition filtering is explicit",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_transition_self_filtering_explicit",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 8,
+    "r_block": "single-state sequences produce stable empty transitions",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_transition_single_state_empty_schema",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 9,
+    "r_block": "formatted paths are ordered and retain metadata",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_paths_ordered_and_metadata_retained",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 10,
+    "r_block": "path formatting can collapse consecutive repeats",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_paths_collapse_consecutive_repeats",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-encoding-summaries.R",
+    "r_block_index": 11,
+    "r_block": "summary functions reject unresolved validation errors",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_summary_functions_reject_unresolved_validation_errors",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-inference.R",
+    "r_block_index": 1,
+    "r_block": "sequence inference records the design and resamples independent units",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_sequence_inference_design_resampling_contract",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 1,
+    "r_block": "single HMM fitting is deterministic and normalised",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_single_hmm_deterministic_normalised",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 2,
+    "r_block": "HMM decoding returns one latent state per observation",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_decoding_one_state_per_observation",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 3,
+    "r_block": "HMM summaries and model comparisons are structured",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_summary_and_comparison_structured",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 4,
+    "r_block": "mixture HMM responsibilities are normalised and deterministic",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_mixture_responsibilities_normalised_deterministic",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 5,
+    "r_block": "HMM inputs reject unsupported symbols and invalid probabilities",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_invalid_symbols_and_probabilities_rejected",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 6,
+    "r_block": "HMM initialisation rejects non-finite probabilities",
+    "python_test": "tests/test_r_block_completion.py::test_r_hmm_initialisation_rejects_nonfinite_probabilities_block",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 7,
+    "r_block": "HMM fitting restores the caller random-number state",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_global_rng_unchanged",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 8,
+    "r_block": "HMM fit criteria require a common observation basis",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_comparison_common_observation_basis_required",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 9,
+    "r_block": "HMM symbol levels are unique and exclude unused factor levels",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_symbol_levels_unique_unused_excluded",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 10,
+    "r_block": "HMM comparison requires identical sequence identifiers",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_comparison_sequence_ids_identical",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 11,
+    "r_block": "mixture seed offsets remain valid at the integer boundary",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_hmm_seed_boundary_and_state_count_validation",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-latent-models.R",
+    "r_block_index": 12,
+    "r_block": "mixture hidden-state counts reject values outside R integer range",
+    "python_test": "tests/test_r_block_completion.py::test_r_hmm_hidden_state_counts_reject_out_of_range_block",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 1,
+    "r_block": "absolute motif positions are summarised exactly",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_positions_absolute_exact",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 2,
+    "r_block": "relative positions are bounded and use the requested basis",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_positions_relative_bounded_basis",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 3,
+    "r_block": "metadata grouping produces separate deterministic summaries",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_positions_grouped_deterministic",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 4,
+    "r_block": "position summaries retain stable empty schemas",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_positions_empty_schema",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 5,
+    "r_block": "position formatting changes display only",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_position_formatting_display_only",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 6,
+    "r_block": "absolute positions remain indices during formatting",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_absolute_formatting_stays_index_units",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 7,
+    "r_block": "motif plot data applies deterministic top-n ties",
+    "python_test": "tests/test_r_block_completion.py::test_r_motif_plot_top_n_ties_are_deterministic_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 8,
+    "r_block": "motif bar plots return the exact plotted table",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_bar_and_empty_plot_contracts",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 9,
+    "r_block": "motif plots handle empty filtered inputs",
+    "python_test": "tests/test_r_block_completion.py::test_r_motif_empty_filtered_plot_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 10,
+    "r_block": "strip position plots are deterministic and bounded",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_position_plots_filters_and_bounds",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 11,
+    "r_block": "position plots accept motif identifiers labels and summaries",
+    "python_test": "tests/test_r_block_completion.py::test_r_motif_position_plot_accepts_ids_labels_and_summary_block",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motif-visualisation.R",
+    "r_block_index": 12,
+    "r_block": "invalid positional and plotting settings are rejected",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_motif_visualisation_invalid_settings",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 1,
+    "r_block": "contiguous n-grams are enumerated with stable positions",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motifs_contiguous_stable_positions",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 2,
+    "r_block": "overlap policy is explicit and deterministic",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motifs_overlap_policy_deterministic",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 3,
+    "r_block": "row order is corrected while review diagnostics are retained",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motifs_row_order_corrected_with_review",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 4,
+    "r_block": "motif identity remains stable when labels contain separators",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motifs_separator_labels_keep_identity",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 5,
+    "r_block": "motif summaries return exact counts and prevalence",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_summary_exact_counts_prevalence",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 6,
+    "r_block": "prevalence denominator includes sequences without eligible windows",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_prevalence_denominator_includes_short_sequences",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 7,
+    "r_block": "filters apply count prevalence and length thresholds",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_filter_thresholds",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 8,
+    "r_block": "top-n ties are included or resolved deterministically",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_top_n_ties",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 9,
+    "r_block": "formatted motif tables use explicit units and rank ties",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_format_units_and_rank_ties",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 10,
+    "r_block": "empty motif outputs retain stable schemas",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_empty_outputs_stable_schemas",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 11,
+    "r_block": "factor levels define deterministic motif codes",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_categorical_levels_define_codes",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-motifs.R",
+    "r_block_index": 12,
+    "r_block": "invalid settings and unresolved input errors are rejected",
+    "python_test": "tests/test_r_deterministic_contracts.py::test_r_motif_invalid_settings_rejected",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-multichannel-hmm.R",
+    "r_block_index": 1,
+    "r_block": "multichannel HMM fits, decodes, and summarises",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_multichannel_hmm_fit_decode_summary_plot",
+    "status": "semantic_contract; numerical_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 1,
+    "r_block": "first-order transition networks contain auditable edge measures",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_first_order_network_edge_measures",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 2,
+    "r_block": "higher-order networks and models use explicit contexts",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_higher_order_network_and_model_contexts",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 3,
+    "r_block": "centrality and communities are deterministic",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_network_centrality_and_communities_deterministic",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 4,
+    "r_block": "network bootstrap is reproducible and bounded",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_network_bootstrap_reproducible_bounded",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 5,
+    "r_block": "igraph conversion is optional",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_networkx_adapter_contract",
+    "status": "backend_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 6,
+    "r_block": "graph summaries require one selected group",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_grouped_graph_summaries_require_selection",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 7,
+    "r_block": "unseen higher-order contexts return a stable probability schema",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_unseen_context_probability_schema",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 8,
+    "r_block": "network bootstrap restores the caller random-number state",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_network_bootstrap_global_rng_safe",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 9,
+    "r_block": "next-state history rejects blank states",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_next_state_blank_history_rejected",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-networks.R",
+    "r_block_index": 10,
+    "r_block": "network context labels require an unambiguous separator",
+    "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_network_context_separator_guard",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-panel.R",
+    "r_block_index": 1,
+    "r_block": "sequence panels are prepared and summarised",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_panel_prepare_and_summary_contract",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-panel.R",
+    "r_block_index": 2,
+    "r_block": "panel changes are deterministic",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_panel_changes_deterministic_and_plot",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-panel.R",
+    "r_block_index": 3,
+    "r_block": "duplicated panel occasions fail explicitly",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_panel_duplicate_occasion_fails",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-subsequences.R",
+    "r_block_index": 1,
+    "r_block": "bounded non-contiguous subsequences are extracted",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_subsequence_bounded_extraction",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-subsequences.R",
+    "r_block_index": 2,
+    "r_block": "subsequence summaries and filtering are stable",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_subsequence_summary_filter_plot",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-subsequences.R",
+    "r_block_index": 3,
+    "r_block": "group comparisons adjust multiple tests",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_subsequence_group_comparison_adjusts_multiple_tests",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-subsequences.R",
+    "r_block_index": 4,
+    "r_block": "search-space safety limit is enforced",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_subsequence_search_space_limit",
+    "status": "exact_semantic_translation"
+  },
+  {
+    "r_test_file": "test-sequence-time-models.R",
+    "r_block_index": 1,
+    "r_block": "time-varying models are dependency guarded and auditable",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_time_model_auditable_python_translation",
+    "status": "functional_translation; mgcv_oracle_pending"
+  },
+  {
+    "r_test_file": "test-sequence-visualisations-extended.R",
+    "r_block_index": 1,
+    "r_block": "extended visualisations accept core package objects",
+    "python_test": "tests/test_r_remaining_contracts.py::test_r_extended_visualisations_accept_core_objects",
+    "status": "exact_semantic_translation"
+  }
+]

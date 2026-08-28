@@ -113,8 +113,18 @@ def _loglik(encoded:list[np.ndarray],p:dict[str,np.ndarray])->np.ndarray:return 
 
 
 def fit_sequence_hmm_mixture(data:Any,n_components:int,n_states:int|Sequence[int],sequence_id_col:str="sequence_id",order_col:str="sequence_order",state_col:str="state",symbol_levels:Sequence[str]|None=None,max_iter:int=200,inner_initial_iter:int=20,tolerance:float=1e-6,pseudocount:float=1e-6,seed:int=1)->SequenceHMMMixture:
-    scalar_number(n_components,"n_components",2,integer=True); states=[int(n_states)]*int(n_components) if np.isscalar(n_states) else [int(x) for x in n_states]
-    if len(states)!=n_components or any(x<1 for x in states):raise ValidationError("`n_states` must be a positive integer scalar or one value per component.")
+    scalar_number(n_components,"n_components",2,integer=True)
+    raw_states = [n_states] * int(n_components) if np.isscalar(n_states) else list(n_states)
+    if len(raw_states) != int(n_components):
+        raise ValidationError("`n_states` must be a positive integer scalar or one value per component.")
+    try:
+        for value in raw_states:
+            scalar_number(value, "n_states", 1, integer=True)
+    except ValidationError as exc:
+        raise ValidationError(
+            "`n_states` must be a positive integer scalar or one value per component."
+        ) from exc
+    states = [int(value) for value in raw_states]
     scalar_number(max_iter,"max_iter",1,integer=True); scalar_number(inner_initial_iter,"inner_initial_iter",1,integer=True); scalar_number(tolerance,"tolerance",0); scalar_number(pseudocount,"pseudocount",0); scalar_number(seed,"seed",0,integer=True)
     x,symbols,emap=_hmm_input(data,sequence_id_col,order_col,state_col,symbol_levels); encoded=[emap[sid] for sid in x["sequence_ids"]]; nseq=len(encoded)
     if n_components>nseq:raise ValidationError("More components than sequences were requested.")

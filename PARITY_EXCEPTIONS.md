@@ -18,3 +18,11 @@ These are deliberate semantic translations. Their data contracts are tested; obj
 - Time-varying sequence models: the R reference uses `mgcv::gam()` with smooths and participant random effects; the current Python alpha uses a statsmodels binomial GLM with group-specific Patsy B-spline bases and optional participant fixed effects. This is a functional approximation, not numerical mgcv parity.
 
 No stable release should claim exact cross-language numerical parity for these items until the R oracle suite is executable in CI or a validated parity environment.
+
+## Frozen-test translation status
+
+All **130 / 130** frozen R `test_that()` blocks now have one dedicated Python translation test. The mapping is machine-readable in `reference/test_parity_matrix.json` and human-readable in `PARITY_TEST_MATRIX.md`. These tests validate behavioral contracts in Python; they do not convert the explicitly listed numerical or backend-object exceptions into exact parity claims.
+
+## Cross-language oracle harness
+
+The `parity/` harness pins the authoritative R 0.3.0 tarball SHA-256 and provides deterministic R/Python output generation plus canonical CSV comparison for state summaries, transition summaries, formatted paths, motif summaries, consensus sequences, and Levenshtein distances. The current development container has no R executable, so the R side of that harness has **not** been executed here. Exact oracle results must therefore be reported only after an R-enabled validation run.

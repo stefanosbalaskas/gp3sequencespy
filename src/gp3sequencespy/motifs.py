@@ -135,7 +135,13 @@ def filter_sequence_motifs(
 ) -> MotifFilterResult:
     min_occurrences=_whole(min_occurrences,"min_occurrences",0) or 0; min_sequences=_whole(min_sequences,"min_sequences",0) or 0; min_prevalence=_prop(min_prevalence,"min_prevalence"); top_n=_whole(top_n,"top_n",1,True)
     if motif_lengths is not None:
-        motif_lengths=[_whole(v,"motif_lengths",1) for v in motif_lengths]; motif_lengths=sorted(set(int(v) for v in motif_lengths if v is not None))
+        try:
+            motif_lengths = [_whole(v, "motif_lengths", 1) for v in motif_lengths]
+        except ValidationError as exc:
+            raise ValidationError(
+                "`motif_lengths` must contain positive whole numbers or be `NULL`."
+            ) from exc
+        motif_lengths = sorted(set(int(v) for v in motif_lengths if v is not None))
     rank_by=_choice(rank_by,["sequence_prevalence","n_occurrences","n_sequences"],"rank_by"); ties=_choice(ties,["include","first"],"ties")
     sm=_as_summary(x); available=sm.overall; selected=available.loc[(available.n_occurrences>=min_occurrences)&(available.n_sequences>=min_sequences)&(available.sequence_prevalence>=min_prevalence)].copy()
     if motif_lengths is not None: selected=selected.loc[selected.motif_length.isin(motif_lengths)]

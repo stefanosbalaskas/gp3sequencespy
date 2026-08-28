@@ -152,6 +152,21 @@ def plot_sequence_motif_positions(x,motifs:Sequence[str]|str|None=None,position:
         for b,k in zip(base,keys,strict=True):seen[k]=seen.get(k,0)+1;ys.append(float(b+(seen[k]-(counts[k]+1)/2)*.06))
         d["plot_y"]=ys;ax.scatter(d.position_value,d.plot_y);ax.set_yticks(range(1,len(mt)+1),list(reversed(mt.motif.tolist())))
     else:
-        vals=[d.loc[d.motif_id==mid,"position_value"].to_numpy() for mid in reversed(mt.motif_id.tolist())];ax.boxplot(vals,vert=False,labels=list(reversed(mt.motif.tolist())));d["plot_y"]=len(mt)-d.plot_rank+1
+        vals = [
+            d.loc[d.motif_id == mid, "position_value"].to_numpy()
+            for mid in reversed(mt.motif_id.tolist())
+        ]
+        labels = list(reversed(mt.motif.tolist()))
+        from importlib.metadata import version as package_version
+        mpl_version = tuple(
+            int(part) for part in package_version("matplotlib").split(".")[:2]
+        )
+        if mpl_version >= (3, 10):
+            ax.boxplot(vals, tick_labels=labels, orientation="horizontal")
+        elif mpl_version >= (3, 9):
+            ax.boxplot(vals, tick_labels=labels, vert=False)
+        else:
+            ax.boxplot(vals, labels=labels, vert=False)
+        d["plot_y"] = len(mt) - d.plot_rank + 1
     if scale=="relative":ax.set_xlim(0,1)
     ax.set_title("Sequence motif positions");ax.gp3_data=d;ax.gp3_motif_table=mt;return ax

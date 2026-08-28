@@ -1,0 +1,17 @@
+sequence_id,sequence_order,state,duration,group
+s1,1,A,1,g1
+s1,2,B,2,g1
+s1,3,C,1,g1
+s1,4,D,3,g1
+s2,1,A,1,g1
+s2,2,B,2,g1
+s2,3,C,1,g1
+s2,4,C,3,g1
+s3,1,D,1,g2
+s3,2,C,2,g2
+s3,3,B,1,g2
+s3,4,A,3,g2
+s4,1,D,1,g2
+s4,2,C,2,g2
+s4,3,A,1,g2
+s4,4,A,3,g2
