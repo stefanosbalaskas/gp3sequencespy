@@ -1,11 +1,39 @@
 """gp3sequencespy: transparent ordered categorical sequence analysis."""
 
 from ._exceptions import GP3SequencesError, ModelFitError, ParityError, ValidationError
+from .adapters import (
+    ArulesSequenceAdapter,
+    GrpStringInput,
+    WideSequenceAdapter,
+    as_arules_sequences,
+    as_grpstring_data,
+    as_igraph_transition_network,
+    as_seqhmm_sequences,
+    as_traminer_sequences,
+    prepare_gp3tools_sequences,
+)
+from .analysis_audit import (
+    SequenceAnalysisAudit,
+    SequenceAnalysisComparison,
+    audit_sequence_analysis,
+    compare_sequence_analysis_results,
+)
+from .capabilities import sequence_capabilities
 from .consensus import (
     compare_sequence_groups,
     create_consensus_sequence,
     format_consensus_sequence,
     summarise_consensus_agreement,
+)
+from .visualisations import (
+    plot_consensus_sequence,
+    plot_sequence_cluster_silhouette,
+    plot_sequence_distance_heatmap,
+    plot_sequence_entropy,
+    plot_sequence_group_comparison,
+    plot_sequence_index,
+    plot_sequence_state_distribution,
+    plot_transition_network,
 )
 from .covariate_hmm import (
     CovariateSequenceHMM,
@@ -103,6 +131,28 @@ __all__ = [
     "CovariateSequenceHMM",
     "TimeVaryingSequenceModel",
     "MotifPositionResult",
+    "WideSequenceAdapter",
+    "ArulesSequenceAdapter",
+    "GrpStringInput",
+    "SequenceAnalysisAudit",
+    "SequenceAnalysisComparison",
+    "as_traminer_sequences",
+    "as_arules_sequences",
+    "as_grpstring_data",
+    "as_seqhmm_sequences",
+    "as_igraph_transition_network",
+    "prepare_gp3tools_sequences",
+    "sequence_capabilities",
+    "audit_sequence_analysis",
+    "compare_sequence_analysis_results",
+    "plot_consensus_sequence",
+    "plot_sequence_group_comparison",
+    "plot_sequence_index",
+    "plot_sequence_state_distribution",
+    "plot_sequence_entropy",
+    "plot_sequence_distance_heatmap",
+    "plot_transition_network",
+    "plot_sequence_cluster_silhouette",
     "audit_sequence_data",
     "validate_sequence_data",
     "prepare_sequence_data",

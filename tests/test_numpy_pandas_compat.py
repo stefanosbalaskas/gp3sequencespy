@@ -11,8 +11,9 @@ def test_community_detection_works_with_pandas_copy_on_write():
             "state": ["A", "B", "A", "C", "A", "C", "B", "C"],
         }
     )
-    with pd.option_context("mode.copy_on_write", True):
-        network = create_transition_network(data, normalise="from")
-        first = detect_transition_communities(network, seed=9)
-        second = detect_transition_communities(network, seed=9)
+    # pandas >= 3.0 always uses Copy-on-Write; the test exercises the
+    # resulting read-only array-view behavior without toggling a deprecated option.
+    network = create_transition_network(data, normalise="from")
+    first = detect_transition_communities(network, seed=9)
+    second = detect_transition_communities(network, seed=9)
     pd.testing.assert_frame_equal(first, second)
