@@ -7,11 +7,22 @@ import pandas as pd
 from scipy.special import expit
 from scipy.stats import norm
 import matplotlib.pyplot as plt
-import patsy
-import statsmodels.api as sm
 
 from ._advanced import adv_data, scalar_logical, scalar_number
-from ._exceptions import ValidationError
+from ._exceptions import ModelFitError, ValidationError
+
+
+def _require_time_backend():
+    try:
+        import patsy
+        import statsmodels.api as sm
+    except ImportError as exc:
+        raise ModelFitError(
+            "Time-varying sequence models require the optional 'time' dependencies. "
+            "Install them with `pip install gp3sequencespy[time]` or "
+            "`uv sync --extra time`."
+        ) from exc
+    return patsy, sm
 
 
 @dataclass(slots=True)
@@ -78,6 +89,7 @@ def fit_time_varying_sequence_model(data:Any,group_col:str,participant_id_col:st
     if outcome=="transition" and (not isinstance(from_state,str) or not from_state or not isinstance(to_state,str) or not to_state):raise ValidationError("`from_state` and `to_state` must be non-empty strings.")
     md,groups,parts=_make_model_data(data,group_col,participant_id_col,sequence_id_col,order_col,state_col,time_col,outcome,target_state,from_state,to_state);k_used=min(int(k),int(md.time.nunique()-1))
     formula=_formula(groups,k_used,include_random_effect)
+    patsy, sm = _require_time_backend()
     try:
         y,X=patsy.dmatrices(formula,md,return_type="dataframe")
         fit=sm.GLM(y,X,family=sm.families.Binomial()).fit()
@@ -93,6 +105,7 @@ def predict_time_varying_sequence_model(model:TimeVaryingSequenceModel,time:Sequ
     gs=model.group_levels if groups is None else [str(g) for g in groups]
     if any(g not in model.group_levels for g in gs):raise ValidationError("Unknown groups requested for prediction.")
     rows=[{"time":float(t),"group":g,"participant":model.participant_levels[0]} for g in gs for t in sorted(set(tv.tolist()))];grid=pd.DataFrame(rows)
+    patsy, _ = _require_time_backend()
     try:X=patsy.build_design_matrices([model.design_info],grid,return_type="dataframe")[0]
     except Exception as e:raise ValidationError(f"Prediction design construction failed: {e}") from e
     params=np.asarray(model.model.params);cov=np.asarray(model.model.cov_params());eta=np.asarray(X)@params;se=np.sqrt(np.maximum(np.einsum("ij,jk,ik->i",np.asarray(X),cov,np.asarray(X)),0));z=norm.ppf(1-(1-level)/2)

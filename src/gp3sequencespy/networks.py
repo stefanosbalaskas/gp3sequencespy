@@ -65,7 +65,14 @@ def _graph_matrix(network:pd.DataFrame,use_weight:bool=True,symmetrise:bool=Fals
     vals=network.weight.to_numpy(float) if use_weight else np.ones(len(network))
     for (_,r),v in zip(network.iterrows(),vals,strict=True): a.loc[str(r.from_state),str(r.to_state)]+=v
     if symmetrise:
-        diag=np.diag(a.to_numpy()).copy(); a=a+a.T; np.fill_diagonal(a.values,diag)
+        # Pandas Copy-on-Write may expose a read-only NumPy view.  Work on an
+        # explicit writable array and reconstruct the DataFrame instead of
+        # mutating ``DataFrame.values`` in place.
+        arr = a.to_numpy(dtype=float, copy=True)
+        diag = np.diag(arr).copy()
+        arr = arr + arr.T
+        np.fill_diagonal(arr, diag)
+        a = pd.DataFrame(arr, index=states, columns=states)
     return a
 
 

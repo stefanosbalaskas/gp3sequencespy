@@ -2,37 +2,49 @@
 
 from ._exceptions import GP3SequencesError, ModelFitError, ParityError, ValidationError
 from .consensus import (
-    create_consensus_sequence, summarise_consensus_agreement,
-    format_consensus_sequence, compare_sequence_groups,
+    compare_sequence_groups,
+    create_consensus_sequence,
+    format_consensus_sequence,
+    summarise_consensus_agreement,
+)
+from .covariate_hmm import (
+    CovariateSequenceHMM,
+    decode_covariate_sequence_states,
+    fit_covariate_sequence_hmm,
+    predict_covariate_transition_probabilities,
+    summarise_covariate_sequence_hmm,
 )
 from .data import audit_sequence_data, prepare_sequence_data, validate_sequence_data
 from .distances import (
-    compute_sequence_distance, summarise_sequence_distance, cluster_sequences,
-    validate_sequence_clusters, extract_representative_sequences,
-    bootstrap_sequence_clusters, summarise_sequence_cluster_stability,
+    bootstrap_sequence_clusters,
+    cluster_sequences,
+    compute_sequence_distance,
     create_sequence_cluster_ensemble,
-)
-from .networks import (
-    create_transition_network, summarise_transition_centrality,
-    detect_transition_communities, fit_higher_order_transition_model,
-    predict_next_state, bootstrap_transition_network,
-)
-from .panel import (
-    prepare_sequence_panel, summarise_sequence_panel,
-    compare_sequence_panel_changes, plot_sequence_panel_changes,
+    extract_representative_sequences,
+    summarise_sequence_cluster_stability,
+    summarise_sequence_distance,
+    validate_sequence_clusters,
 )
 from .hmm import (
-    fit_sequence_hmm, fit_sequence_hmm_mixture, decode_sequence_states,
-    summarise_sequence_hmm, compare_sequence_hmms,
+    compare_sequence_hmms,
+    decode_sequence_states,
+    fit_sequence_hmm,
+    fit_sequence_hmm_mixture,
+    summarise_sequence_hmm,
 )
 from .inference import (
-    declare_sequence_comparison_design, test_sequence_group_difference,
-    bootstrap_sequence_group_difference, summarise_sequence_group_inference,
+    bootstrap_sequence_group_difference,
+    declare_sequence_comparison_design,
     plot_sequence_group_inference,
+    summarise_sequence_group_inference,
+    test_sequence_group_difference,
 )
-from .multichannel_hmm import (
-    fit_multichannel_sequence_hmm, decode_multichannel_sequence_states,
-    summarise_multichannel_sequence_hmm, plot_multichannel_sequence_hmm,
+from .motif_visualisation import (
+    MotifPositionResult,
+    format_sequence_motif_positions,
+    plot_sequence_motif_positions,
+    plot_sequence_motifs,
+    summarise_sequence_motif_positions,
 )
 from .motifs import (
     extract_sequence_ngrams,
@@ -40,10 +52,32 @@ from .motifs import (
     format_sequence_motifs,
     summarise_sequence_motifs,
 )
+from .multichannel_hmm import (
+    decode_multichannel_sequence_states,
+    fit_multichannel_sequence_hmm,
+    plot_multichannel_sequence_hmm,
+    summarise_multichannel_sequence_hmm,
+)
+from .networks import (
+    bootstrap_transition_network,
+    create_transition_network,
+    detect_transition_communities,
+    fit_higher_order_transition_model,
+    predict_next_state,
+    summarise_transition_centrality,
+)
+from .panel import (
+    compare_sequence_panel_changes,
+    plot_sequence_panel_changes,
+    prepare_sequence_panel,
+    summarise_sequence_panel,
+)
 from .subsequences import (
-    extract_sequence_subsequences, summarise_sequence_subsequences,
-    filter_sequence_subsequences, compare_sequence_subsequences,
+    compare_sequence_subsequences,
+    extract_sequence_subsequences,
+    filter_sequence_subsequences,
     plot_sequence_subsequences,
+    summarise_sequence_subsequences,
 )
 from .summaries import (
     encode_sequence_data,
@@ -51,59 +85,86 @@ from .summaries import (
     summarise_sequence_states,
     summarise_sequence_transitions,
 )
+from .time_models import (
+    TimeVaryingSequenceModel,
+    fit_time_varying_sequence_model,
+    plot_time_varying_sequence_model,
+    predict_time_varying_sequence_model,
+    summarise_time_varying_sequence_model,
+)
 
 __version__ = "0.1.0a1"
 
 __all__ = [
-    "GP3SequencesError", "ValidationError", "ModelFitError", "ParityError",
-    "audit_sequence_data", "validate_sequence_data", "prepare_sequence_data",
-    "encode_sequence_data", "summarise_sequence_states",
-    "summarise_sequence_transitions", "format_sequence_paths",
-    "extract_sequence_ngrams", "summarise_sequence_motifs",
-    "filter_sequence_motifs", "format_sequence_motifs",
-    "create_consensus_sequence", "summarise_consensus_agreement",
-    "format_consensus_sequence", "compare_sequence_groups",
-    "compute_sequence_distance", "summarise_sequence_distance", "cluster_sequences",
-    "validate_sequence_clusters", "extract_representative_sequences",
-    "bootstrap_sequence_clusters", "summarise_sequence_cluster_stability",
+    "GP3SequencesError",
+    "ValidationError",
+    "ModelFitError",
+    "ParityError",
+    "CovariateSequenceHMM",
+    "TimeVaryingSequenceModel",
+    "MotifPositionResult",
+    "audit_sequence_data",
+    "validate_sequence_data",
+    "prepare_sequence_data",
+    "encode_sequence_data",
+    "summarise_sequence_states",
+    "summarise_sequence_transitions",
+    "format_sequence_paths",
+    "extract_sequence_ngrams",
+    "summarise_sequence_motifs",
+    "filter_sequence_motifs",
+    "format_sequence_motifs",
+    "summarise_sequence_motif_positions",
+    "format_sequence_motif_positions",
+    "plot_sequence_motifs",
+    "plot_sequence_motif_positions",
+    "create_consensus_sequence",
+    "summarise_consensus_agreement",
+    "format_consensus_sequence",
+    "compare_sequence_groups",
+    "compute_sequence_distance",
+    "summarise_sequence_distance",
+    "cluster_sequences",
+    "validate_sequence_clusters",
+    "extract_representative_sequences",
+    "bootstrap_sequence_clusters",
+    "summarise_sequence_cluster_stability",
     "create_sequence_cluster_ensemble",
-    "create_transition_network", "summarise_transition_centrality",
-    "detect_transition_communities", "fit_higher_order_transition_model",
-    "predict_next_state", "bootstrap_transition_network",
-    "prepare_sequence_panel", "summarise_sequence_panel",
-    "compare_sequence_panel_changes", "plot_sequence_panel_changes",
-    "extract_sequence_subsequences", "summarise_sequence_subsequences",
-    "filter_sequence_subsequences", "compare_sequence_subsequences",
+    "create_transition_network",
+    "summarise_transition_centrality",
+    "detect_transition_communities",
+    "fit_higher_order_transition_model",
+    "predict_next_state",
+    "bootstrap_transition_network",
+    "prepare_sequence_panel",
+    "summarise_sequence_panel",
+    "compare_sequence_panel_changes",
+    "plot_sequence_panel_changes",
+    "extract_sequence_subsequences",
+    "summarise_sequence_subsequences",
+    "filter_sequence_subsequences",
+    "compare_sequence_subsequences",
     "plot_sequence_subsequences",
-    "fit_sequence_hmm", "fit_sequence_hmm_mixture", "decode_sequence_states",
-    "summarise_sequence_hmm", "compare_sequence_hmms",
-    "declare_sequence_comparison_design", "test_sequence_group_difference",
-    "bootstrap_sequence_group_difference", "summarise_sequence_group_inference",
+    "fit_sequence_hmm",
+    "fit_sequence_hmm_mixture",
+    "decode_sequence_states",
+    "summarise_sequence_hmm",
+    "compare_sequence_hmms",
+    "declare_sequence_comparison_design",
+    "test_sequence_group_difference",
+    "bootstrap_sequence_group_difference",
+    "summarise_sequence_group_inference",
     "plot_sequence_group_inference",
-    "fit_multichannel_sequence_hmm", "decode_multichannel_sequence_states",
-    "summarise_multichannel_sequence_hmm", "plot_multichannel_sequence_hmm",
+    "fit_multichannel_sequence_hmm",
+    "decode_multichannel_sequence_states",
+    "summarise_multichannel_sequence_hmm",
+    "plot_multichannel_sequence_hmm",
+    "fit_covariate_sequence_hmm",
+    "predict_covariate_transition_probabilities",
+    "decode_covariate_sequence_states",
+    "summarise_covariate_sequence_hmm",
+    "fit_time_varying_sequence_model",
+    "predict_time_varying_sequence_model",
+    "summarise_time_varying_sequence_model",
+    "plot_time_varying_sequence_model",
 ]
-
-from .covariate_hmm import (
-    CovariateSequenceHMM,
-    fit_covariate_sequence_hmm,
-    predict_covariate_transition_probabilities,
-    decode_covariate_sequence_states,
-    summarise_covariate_sequence_hmm,
-)
-
-from .time_models import (
-    TimeVaryingSequenceModel,
-    fit_time_varying_sequence_model,
-    predict_time_varying_sequence_model,
-    summarise_time_varying_sequence_model,
-    plot_time_varying_sequence_model,
-)
-
-from .motif_visualisation import (
-    MotifPositionResult,
-    summarise_sequence_motif_positions,
-    format_sequence_motif_positions,
-    plot_sequence_motifs,
-    plot_sequence_motif_positions,
-)

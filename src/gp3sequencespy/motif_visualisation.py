@@ -79,7 +79,8 @@ def format_sequence_motif_positions(x:MotifPositionResult,digits:int=3,position_
         table["rank"]=0
         if len(table):
             if by:
-                for _,idx in table.groupby(by,sort=True,dropna=False).groups.items():table.loc[idx,"rank"]=table.loc[idx,"mean_position"].rank(method="min").astype(int)
+                groupby_key = by[0] if len(by) == 1 else by
+                for _,idx in table.groupby(groupby_key,sort=True,dropna=False).groups.items():table.loc[idx,"rank"]=table.loc[idx,"mean_position"].rank(method="min").astype(int)
             else:table["rank"]=table.mean_position.rank(method="min").astype(int)
         table["rank"]=table["rank"].astype(int)
     applied=position_units if x.settings["scale"]=="relative" else "index";cols=["min_position","max_position","mean_position","median_position"]
