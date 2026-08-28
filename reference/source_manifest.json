@@ -1,0 +1,117 @@
+[
+  {
+    "filename": "gp3sequences-package.R",
+    "lines": 26,
+    "sha256": "6c95984e87d194190db85bda75af2b4938a6a464ef1fbb859689d18042eb1629"
+  },
+  {
+    "filename": "sequence-adapters.R",
+    "lines": 300,
+    "sha256": "f6ff96a77c390c56621f35a46089e342a3f15b1778c9ec297d8b590f3aa9c02c"
+  },
+  {
+    "filename": "sequence-advanced-internals.R",
+    "lines": 479,
+    "sha256": "ebe8baeec1374e12a7ec1b6553970d1b7afe637fe7727429692d55432cf075fb"
+  },
+  {
+    "filename": "sequence-analysis-audit.R",
+    "lines": 647,
+    "sha256": "4651ff9cc84934f9331d02aad42d0dbbdf92f46e12ffd6cfcf621fb0f97c1ace"
+  },
+  {
+    "filename": "sequence-capabilities.R",
+    "lines": 260,
+    "sha256": "f87f038ab1ee6e325547f6308f0c7a09b35422ed84e39401e701249032e6cc77"
+  },
+  {
+    "filename": "sequence-consensus-groups.R",
+    "lines": 642,
+    "sha256": "0500976d608c83b44bb28b1547755a6359a4fef6f1442daba78a64fc7037681d"
+  },
+  {
+    "filename": "sequence-contracts.R",
+    "lines": 982,
+    "sha256": "2a3f5026613fec88f63ad9120dd023e8670b5ca10374fc5ab7811883fadbdd2d"
+  },
+  {
+    "filename": "sequence-covariate-hmm.R",
+    "lines": 583,
+    "sha256": "2b5318c405b40670fbd1c4d7990cf316b70a2fd9bdb5ad33de81f31c46393144"
+  },
+  {
+    "filename": "sequence-data.R",
+    "lines": 1624,
+    "sha256": "9f5b4a393e41a970e922dfb2f5efcc3ab57b3130a92878a5ad9545b788af9e66"
+  },
+  {
+    "filename": "sequence-distances-clustering.R",
+    "lines": 667,
+    "sha256": "b43de2dd02f83a28b1cd19164ce18c08cf252aa5cabfb14cfa661af7d71d1638"
+  },
+  {
+    "filename": "sequence-encoding-summaries.R",
+    "lines": 1168,
+    "sha256": "279294625184fea1345038f6a64b609333ec7b86215555c2dfa6581a4dade950"
+  },
+  {
+    "filename": "sequence-extension-internals.R",
+    "lines": 217,
+    "sha256": "2e2586eec97540718b54396d2b361522ab63072b3f4aad4a84e500aedfc76d92"
+  },
+  {
+    "filename": "sequence-inference.R",
+    "lines": 393,
+    "sha256": "4a1c37280cc53800f4552cfb7e22fffe99a01216b11b159b0c9b65b147ea65ad"
+  },
+  {
+    "filename": "sequence-latent-models.R",
+    "lines": 688,
+    "sha256": "c7eae7ba6d7b1520e34a88fb579a293f360023137ddc09a8ea7eb88e4a92eaf6"
+  },
+  {
+    "filename": "sequence-motif-visualisation.R",
+    "lines": 1374,
+    "sha256": "3ad742dda9827d6ba3e89500a5d4ece4b41f9592fbddb2c2f4784bcd5a46247b"
+  },
+  {
+    "filename": "sequence-motifs.R",
+    "lines": 1266,
+    "sha256": "a6b2528ea6eadc8007aecb1ba4962704c694a089f8c0a9212d05c8cc4c2ca2a4"
+  },
+  {
+    "filename": "sequence-multichannel-hmm.R",
+    "lines": 471,
+    "sha256": "7ce3c6cea30122d1c05932d8e7eaee326c25b5dc3dad061369343193979f1775"
+  },
+  {
+    "filename": "sequence-networks.R",
+    "lines": 619,
+    "sha256": "36b718e1236397493726969cd8ac00782d64c989f23fb284aefbc95d45a67d75"
+  },
+  {
+    "filename": "sequence-panel.R",
+    "lines": 359,
+    "sha256": "f46e2a861cd7b91d9411026caded5fe802eef62771e30f99a2319d9089c0b058"
+  },
+  {
+    "filename": "sequence-subsequences.R",
+    "lines": 406,
+    "sha256": "a213ac11e7f3c8ae7c8407503a721c9b30eced820adf68bd2a937bee35c7103b"
+  },
+  {
+    "filename": "sequence-test-cases.R",
+    "lines": 202,
+    "sha256": "122852a1e869db598da195c95ded11b90485072c6f6f50485e3a997d2597e508"
+  },
+  {
+    "filename": "sequence-time-models.R",
+    "lines": 355,
+    "sha256": "4107bc244b3cf0b494ed1d2506ea114bf9224188b91359487f9f91df22a3e3a3"
+  },
+  {
+    "filename": "sequence-visualisations-extended.R",
+    "lines": 308,
+    "sha256": "89dbc95ac257737ce4498617659e9863fc11b80d9d706b316bab9a3be7057c4f"
+  }
+]

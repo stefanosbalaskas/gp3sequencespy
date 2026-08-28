@@ -1,0 +1,77 @@
+[
+  {
+    "filename": "choosing-a-sequence-analysis-method.Rmd",
+    "stem": "choosing-a-sequence-analysis-method",
+    "sha256": "6546f778ea9109294e6852191758666b1e09cf33c3e99c76b843eedc7ac77a87"
+  },
+  {
+    "filename": "consensus-and-group-comparisons.Rmd",
+    "stem": "consensus-and-group-comparisons",
+    "sha256": "80e9b7df734da9a7b9a6992af968a5201384845e2dee66b972c85eef3ae103df"
+  },
+  {
+    "filename": "contiguous-motif-workflow.Rmd",
+    "stem": "contiguous-motif-workflow",
+    "sha256": "26e27b037d93379289b586fc5efeb94a909942c8a53c104a54a8fe8d432107e8"
+  },
+  {
+    "filename": "distances-clustering-and-stability.Rmd",
+    "stem": "distances-clustering-and-stability",
+    "sha256": "69d4693a9defa825812674bda7505c237462812dc9562213f5cce0f78f762eaa"
+  },
+  {
+    "filename": "extended-sequence-visualisations.Rmd",
+    "stem": "extended-sequence-visualisations",
+    "sha256": "2335513ad01390b747e8c9d77cdcab8b39c5e51cdb9b3315fafad9d2e27c62ab"
+  },
+  {
+    "filename": "getting-started-with-gp3sequences.Rmd",
+    "stem": "getting-started-with-gp3sequences",
+    "sha256": "c7f770591ffd17915cd8b3eb659ae67d318612897fefc03928e4bb722350c7c9"
+  },
+  {
+    "filename": "latent-models-and-optional-adapters.Rmd",
+    "stem": "latent-models-and-optional-adapters",
+    "sha256": "0d8bec0d528fb6d03a50499eb041ddd74763691c01a4c847abc593ddcfb19e30"
+  },
+  {
+    "filename": "longitudinal-panel-sequences.Rmd",
+    "stem": "longitudinal-panel-sequences",
+    "sha256": "ff8c8870683ccb8afea2414fdc2ac5fd29568c7974d93ac455b717dfedbfb228"
+  },
+  {
+    "filename": "multichannel-and-covariate-hmms.Rmd",
+    "stem": "multichannel-and-covariate-hmms",
+    "sha256": "d0c35b0f9ab30836b8127c67d92b470542442e5f57fb700bd75f9ebb098924d2"
+  },
+  {
+    "filename": "noncontiguous-subsequence-mining.Rmd",
+    "stem": "noncontiguous-subsequence-mining",
+    "sha256": "7b72bb3918dea63399a2e5eebbb20585df7c372eae420508e8a5951f9d1bd78d"
+  },
+  {
+    "filename": "reproducible-sequence-analysis-case-study.Rmd",
+    "stem": "reproducible-sequence-analysis-case-study",
+    "sha256": "ec275e656876dec45f3a77aaab191d4f2ff782f6c66f30ee250d390dbc1b9ba2"
+  },
+  {
+    "filename": "sequence-data-validation-and-preparation.Rmd",
+    "stem": "sequence-data-validation-and-preparation",
+    "sha256": "bcdf5066c8b0f5ed28517ab695bad0af54e67e3d7dbf6c0fd89c419976e75978"
+  },
+  {
+    "filename": "sequence-inference-and-randomization.Rmd",
+    "stem": "sequence-inference-and-randomization",
+    "sha256": "de357e6004955025911191d3dcb358bf7fcbb26ee4b4616a96826d0cacae0707"
+  },
+  {
+    "filename": "time-varying-condition-models.Rmd",
+    "stem": "time-varying-condition-models",
+    "sha256": "fa258b83940f12ddeb0d6fd603f42f67d6e1dd4b8773df3accbf70339e0b2e99"
+  },
+  {
+    "filename": "transition-networks-and-higher-order-models.Rmd",
+    "stem": "transition-networks-and-higher-order-models",
+    "sha256": "2dd1f3ce650dcdf9a3dc53498db28cb6a9e8e931b27d0e8155d09871989a02e9"
+  }
+]

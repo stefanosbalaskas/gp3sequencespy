@@ -1,0 +1,112 @@
+[
+  {
+    "filename": "test-adversarial-inputs.R",
+    "test_that_blocks": 2,
+    "sha256": "302dcfcd743d3738855994f41951712eb390822f52f2537a06c9c4057fc825a7"
+  },
+  {
+    "filename": "test-analysis-audit.R",
+    "test_that_blocks": 3,
+    "sha256": "b9f6f76e99654705d7850d0dcbe60edb0c60983129f6327cd966a836ea51e26f"
+  },
+  {
+    "filename": "test-capabilities.R",
+    "test_that_blocks": 3,
+    "sha256": "27a16f1b16ecf2186ccd1ff53c97c1c19359446765fc3931716391a20dbc0fb6"
+  },
+  {
+    "filename": "test-contract-invariants.R",
+    "test_that_blocks": 3,
+    "sha256": "6165cf9dd09b932cc344846435add14566da16ee8463f4891c04666e7f05326b"
+  },
+  {
+    "filename": "test-metamorphic-invariants.R",
+    "test_that_blocks": 3,
+    "sha256": "3b458fc5ca75c2b2fbb57f097c320629eeaeb385750cfe902358e53b48653d59"
+  },
+  {
+    "filename": "test-package.R",
+    "test_that_blocks": 1,
+    "sha256": "270991aabf9d72ac5780d4935204ed73f24c20c7bd0b3c96d87548d54c192a6f"
+  },
+  {
+    "filename": "test-sequence-adapters.R",
+    "test_that_blocks": 6,
+    "sha256": "af6a8406846f121c47b7711770f030902f66d29e42d941d098fdbbed5cb1f57d"
+  },
+  {
+    "filename": "test-sequence-consensus-groups.R",
+    "test_that_blocks": 13,
+    "sha256": "977f1bfa174c2a1f81be102cee3b18e9f675c18e3853cc17d99f7a3077e7991c"
+  },
+  {
+    "filename": "test-sequence-covariate-hmm.R",
+    "test_that_blocks": 1,
+    "sha256": "618e3d6a50d700d85ef5056c30f6fc922fdf3e9dd18333bb958ce0fe2002d69c"
+  },
+  {
+    "filename": "test-sequence-data.R",
+    "test_that_blocks": 10,
+    "sha256": "28b827b2d4062e6c0ef1e235ffb21e1beed0d612302d066f6911c7f0e3587270"
+  },
+  {
+    "filename": "test-sequence-distances-clustering.R",
+    "test_that_blocks": 17,
+    "sha256": "c466492c561035c97a5af15fe136166c7547c32e124e4e36a8139389f668b016"
+  },
+  {
+    "filename": "test-sequence-encoding-summaries.R",
+    "test_that_blocks": 11,
+    "sha256": "968e7d95a57f2ca7f6e0456ffe80f29efcc22a45bdc7cc8e0e5681100ffda7d2"
+  },
+  {
+    "filename": "test-sequence-inference.R",
+    "test_that_blocks": 1,
+    "sha256": "3d671e9acf372fed72d6715692f09c15b5287c56bfd1aea995e98cd0d79adff3"
+  },
+  {
+    "filename": "test-sequence-latent-models.R",
+    "test_that_blocks": 12,
+    "sha256": "c0515baf8db6d69fb57e7d99894597b68146d5fc47c2052feb5b1909318f4930"
+  },
+  {
+    "filename": "test-sequence-motif-visualisation.R",
+    "test_that_blocks": 12,
+    "sha256": "1c216daf615fd3e3d5c3f225d9960b31faed4a6d1aaa0cb3a45299e11a1935ae"
+  },
+  {
+    "filename": "test-sequence-motifs.R",
+    "test_that_blocks": 12,
+    "sha256": "ed07fb9c6e3528f9663e8a91454bc1538b11fe948c0c9d133fc86fcaa4022b04"
+  },
+  {
+    "filename": "test-sequence-multichannel-hmm.R",
+    "test_that_blocks": 1,
+    "sha256": "29d3773d3a711ffaf2e4d4a8b07722907f6c30873d2b83c985d57196d4091fe9"
+  },
+  {
+    "filename": "test-sequence-networks.R",
+    "test_that_blocks": 10,
+    "sha256": "a02f05e3912f9630afcc58124f309c12543dfca96e8c2c71ab32df2b110f3bea"
+  },
+  {
+    "filename": "test-sequence-panel.R",
+    "test_that_blocks": 3,
+    "sha256": "ea1c298017812022d297a64d7a24a5e7ba6649f3ad7df6c42a8468ff9a46ddc9"
+  },
+  {
+    "filename": "test-sequence-subsequences.R",
+    "test_that_blocks": 4,
+    "sha256": "4a42daa34a6d63d79fe0bbaa58445d959825b7e8e55a3863be6460f639781012"
+  },
+  {
+    "filename": "test-sequence-time-models.R",
+    "test_that_blocks": 1,
+    "sha256": "a030f85469de29aec0bf5378445c9efea18108d47a66fad68385045b83dde875"
+  },
+  {
+    "filename": "test-sequence-visualisations-extended.R",
+    "test_that_blocks": 1,
+    "sha256": "85358b2e5c05e6fc91eec4f6ba69ba993a9bafff4119b8862f37e596849859da"
+  }
+]

@@ -1,0 +1,488 @@
+[
+  {
+    "name": "as_arules_sequences",
+    "source_file": "sequence-adapters.R",
+    "source_line": 77,
+    "r_signature": "data,\n                                sequence_id_col = \"sequence_id\",\n                                order_col = \"sequence_order\",\n                                state_col = \"state\""
+  },
+  {
+    "name": "as_grpstring_data",
+    "source_file": "sequence-adapters.R",
+    "source_line": 123,
+    "r_signature": "data,\n                              sequence_id_col = \"sequence_id\",\n                              order_col = \"sequence_order\",\n                              state_col = \"state\",\n                              alphabet = NULL"
+  },
+  {
+    "name": "as_igraph_transition_network",
+    "source_file": "sequence-adapters.R",
+    "source_line": 208,
+    "r_signature": "network, directed = TRUE"
+  },
+  {
+    "name": "as_seqhmm_sequences",
+    "source_file": "sequence-adapters.R",
+    "source_line": 179,
+    "r_signature": "data,\n                                sequence_id_col = \"sequence_id\",\n                                order_col = \"sequence_order\",\n                                state_col = \"state\", ..."
+  },
+  {
+    "name": "as_traminer_sequences",
+    "source_file": "sequence-adapters.R",
+    "source_line": 40,
+    "r_signature": "data,\n                                  sequence_id_col = \"sequence_id\",\n                                  order_col = \"sequence_order\",\n                                  state_col = \"state\",\n                                  missing = NA,\n                                  right = \"DEL\", ..."
+  },
+  {
+    "name": "audit_sequence_analysis",
+    "source_file": "sequence-analysis-audit.R",
+    "source_line": 299,
+    "r_signature": "x,\n  strict = FALSE,\n  tolerance = 1e-8"
+  },
+  {
+    "name": "audit_sequence_data",
+    "source_file": "sequence-data.R",
+    "source_line": 289,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL"
+  },
+  {
+    "name": "bootstrap_sequence_clusters",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 467,
+    "r_signature": "distance, k,\n                                        method = c(\"hierarchical\", \"pam\", \"clara\"),\n                                        n_boot = 100L, sample_fraction = 0.8,\n                                        seed = 1L, linkage = \"average\", ..."
+  },
+  {
+    "name": "bootstrap_sequence_group_difference",
+    "source_file": "sequence-inference.R",
+    "source_line": 287,
+    "r_signature": "inference,\n  n_boot = 999L,\n  level = 0.95,\n  seed = 1L"
+  },
+  {
+    "name": "bootstrap_transition_network",
+    "source_file": "sequence-networks.R",
+    "source_line": 569,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  n_boot = 100L,\n  level = 0.95,\n  seed = 1L,\n  include_self = TRUE"
+  },
+  {
+    "name": "cluster_sequences",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 200,
+    "r_signature": "distance, k,\n                              method = c(\"hierarchical\", \"pam\", \"clara\"),\n                              linkage = \"average\", seed = 1L, ..."
+  },
+  {
+    "name": "compare_sequence_analysis_results",
+    "source_file": "sequence-analysis-audit.R",
+    "source_line": 478,
+    "r_signature": "x,\n  y,\n  tolerance = 1e-8,\n  compare_values = FALSE"
+  },
+  {
+    "name": "compare_sequence_groups",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 412,
+    "r_signature": "data,\n  group_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  reference = NULL,\n  metrics = c(\"state\", \"transition\", \"length\"),\n  include_self = TRUE,\n  transition_separator = \" -> \",\n  zero_policy = c(\"missing\", \"infinite\")"
+  },
+  {
+    "name": "compare_sequence_hmms",
+    "source_file": "sequence-latent-models.R",
+    "source_line": 643,
+    "r_signature": "..."
+  },
+  {
+    "name": "compare_sequence_panel_changes",
+    "source_file": "sequence-panel.R",
+    "source_line": 213,
+    "r_signature": "panel,\n  method = c(\"levenshtein\", \"lcs\", \"optimal_matching\", \"transition\"),\n  normalise = c(\"none\", \"max_length\", \"path_length\"),\n  indel_cost = 1,\n  substitution_cost = 1,\n  substitution_matrix = NULL,\n  transition_smoothing = 0"
+  },
+  {
+    "name": "compare_sequence_subsequences",
+    "source_file": "sequence-subsequences.R",
+    "source_line": 280,
+    "r_signature": "occurrences,\n  group_col,\n  test = c(\"auto\", \"chisq\", \"fisher\"),\n  p_adjust = \"BH\",\n  min_sequence_count = 1L"
+  },
+  {
+    "name": "compute_sequence_distance",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 32,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  method = c(\"levenshtein\", \"lcs\", \"optimal_matching\", \"transition\"),\n  indel_cost = 1,\n  substitution_cost = 1,\n  substitution_matrix = NULL,\n  transition_smoothing = 0,\n  normalise = c(\"none\", \"max_length\", \"path_length\")"
+  },
+  {
+    "name": "create_consensus_sequence",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 34,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  group_cols = NULL,\n  weight_col = NULL,\n  missing_state_policy = c(\"exclude\", \"state\", \"error\"),\n  missing_state_label = \"<MISSING>\",\n  tie_method = c(\"first\", \"last\", \"missing\", \"all\"),\n  state_levels = NULL,\n  min_support = 1L"
+  },
+  {
+    "name": "create_sequence_cluster_ensemble",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 619,
+    "r_signature": "..., k, linkage = \"average\""
+  },
+  {
+    "name": "create_transition_network",
+    "source_file": "sequence-networks.R",
+    "source_line": 28,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  group_cols = NULL,\n  order = 1L,\n  include_self = TRUE,\n  normalise = c(\"count\", \"from\", \"global\"),\n  smoothing = 0,\n  context_separator = \" > \""
+  },
+  {
+    "name": "declare_sequence_comparison_design",
+    "source_file": "sequence-inference.R",
+    "source_line": 20,
+    "r_signature": "group_col,\n  unit_col,\n  design = c(\"observational\", \"randomized\", \"paired_randomized\"),\n  pair_col = NULL,\n  cluster_col = NULL"
+  },
+  {
+    "name": "decode_covariate_sequence_states",
+    "source_file": "sequence-covariate-hmm.R",
+    "source_line": 461,
+    "r_signature": "model,\n  data = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  method = c(\"viterbi\", \"posterior\")"
+  },
+  {
+    "name": "decode_multichannel_sequence_states",
+    "source_file": "sequence-multichannel-hmm.R",
+    "source_line": 338,
+    "r_signature": "model,\n  data = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  channel_cols = NULL,\n  method = c(\"viterbi\", \"posterior\")"
+  },
+  {
+    "name": "decode_sequence_states",
+    "source_file": "sequence-latent-models.R",
+    "source_line": 469,
+    "r_signature": "model, data = NULL,\n                                   sequence_id_col = \"sequence_id\",\n                                   order_col = \"sequence_order\",\n                                   state_col = \"state\",\n                                   method = c(\"viterbi\", \"posterior\"),\n                                   component = NULL"
+  },
+  {
+    "name": "detect_transition_communities",
+    "source_file": "sequence-networks.R",
+    "source_line": 341,
+    "r_signature": "network,\n                                          method = c(\"label_propagation\", \"components\"),\n                                          max_iter = 100L, seed = 1L"
+  },
+  {
+    "name": "encode_sequence_data",
+    "source_file": "sequence-encoding-summaries.R",
+    "source_line": 373,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    state_levels = NULL,\n    prefix = \"S\",\n    width = NULL"
+  },
+  {
+    "name": "extract_representative_sequences",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 405,
+    "r_signature": "clustering, distance = NULL,\n                                             n_per_cluster = 1L"
+  },
+  {
+    "name": "extract_sequence_ngrams",
+    "source_file": "sequence-motifs.R",
+    "source_line": 467,
+    "r_signature": "data,\n  sequence_id_col,\n  order_col,\n  state_col,\n  duration_col = NULL,\n  metadata_cols = NULL,\n  expected_states = NULL,\n  min_length = 2L,\n  max_length = 3L,\n  overlap = c(\"allow\", \"disallow\"),\n  separator = \" > \",\n  state_levels = NULL"
+  },
+  {
+    "name": "extract_sequence_subsequences",
+    "source_file": "sequence-subsequences.R",
+    "source_line": 34,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  metadata_cols = NULL,\n  min_length = 2L,\n  max_length = 5L,\n  max_gap = Inf,\n  max_span = Inf,\n  repeated_state_policy = c(\"preserve\", \"collapse\"),\n  separator = \" > \",\n  max_combinations_per_sequence = 100000L"
+  },
+  {
+    "name": "filter_sequence_motifs",
+    "source_file": "sequence-motifs.R",
+    "source_line": 960,
+    "r_signature": "x,\n  min_occurrences = 1L,\n  min_sequences = 1L,\n  min_prevalence = 0,\n  motif_lengths = NULL,\n  top_n = NULL,\n  rank_by = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\"\n  ),\n  ties = c(\"include\", \"first\")"
+  },
+  {
+    "name": "filter_sequence_subsequences",
+    "source_file": "sequence-subsequences.R",
+    "source_line": 215,
+    "r_signature": "summary,\n  min_sequences = 1L,\n  min_prevalence = 0,\n  max_mean_gap = Inf,\n  top_n = NULL,\n  ties = c(\"include\", \"exclude\")"
+  },
+  {
+    "name": "fit_covariate_sequence_hmm",
+    "source_file": "sequence-covariate-hmm.R",
+    "source_line": 209,
+    "r_signature": "data,\n  n_states,\n  initial_covariate_cols = NULL,\n  transition_covariate_cols = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  emission_probs = NULL,\n  max_iter = 100L,\n  inner_maxit = 100L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  ridge = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE"
+  },
+  {
+    "name": "fit_higher_order_transition_model",
+    "source_file": "sequence-networks.R",
+    "source_line": 421,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  order = 2L,\n  smoothing = 0.5,\n  backoff = TRUE,\n  context_separator = \" > \""
+  },
+  {
+    "name": "fit_multichannel_sequence_hmm",
+    "source_file": "sequence-multichannel-hmm.R",
+    "source_line": 185,
+    "r_signature": "data,\n  n_states,\n  channel_cols,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  initial_probs = NULL,\n  transition_probs = NULL,\n  emission_probs = NULL,\n  max_iter = 200L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE"
+  },
+  {
+    "name": "fit_sequence_hmm",
+    "source_file": "sequence-latent-models.R",
+    "source_line": 133,
+    "r_signature": "data,\n  n_states,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  initial_probs = NULL,\n  transition_probs = NULL,\n  emission_probs = NULL,\n  max_iter = 200L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE"
+  },
+  {
+    "name": "fit_sequence_hmm_mixture",
+    "source_file": "sequence-latent-models.R",
+    "source_line": 269,
+    "r_signature": "data,\n  n_components,\n  n_states,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  max_iter = 200L,\n  inner_initial_iter = 20L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L"
+  },
+  {
+    "name": "fit_time_varying_sequence_model",
+    "source_file": "sequence-time-models.R",
+    "source_line": 79,
+    "r_signature": "data,\n  group_col,\n  participant_id_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  time_col = NULL,\n  outcome = c(\"state\", \"transition\"),\n  target_state = NULL,\n  from_state = NULL,\n  to_state = NULL,\n  k = 5L,\n  method = \"REML\",\n  include_random_effect = TRUE"
+  },
+  {
+    "name": "format_consensus_sequence",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 253,
+    "r_signature": "consensus, separator = \" -> \",\n                                      include_order = FALSE,\n                                      include_agreement = FALSE,\n                                      digits = 3L"
+  },
+  {
+    "name": "format_sequence_motif_positions",
+    "source_file": "sequence-motif-visualisation.R",
+    "source_line": 887,
+    "r_signature": "x,\n  digits = 3L,\n  position_units = c(\"proportion\", \"percent\"),\n  include_rank = TRUE"
+  },
+  {
+    "name": "format_sequence_motifs",
+    "source_file": "sequence-motifs.R",
+    "source_line": 1144,
+    "r_signature": "x,\n  digits = 3L,\n  prevalence = c(\"proportion\", \"percent\"),\n  include_rank = TRUE,\n  rank_by = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\"\n  ),\n  ties = c(\"min\", \"first\"),\n  include_ids = TRUE"
+  },
+  {
+    "name": "format_sequence_paths",
+    "source_file": "sequence-encoding-summaries.R",
+    "source_line": 1054,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    separator = \" > \",\n    collapse_repeats = FALSE"
+  },
+  {
+    "name": "plot_consensus_sequence",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 324,
+    "r_signature": "consensus, type = c(\"agreement\", \"states\"),\n                                    group = NULL, main = NULL,\n                                    xlab = \"Sequence position\", ylab = NULL, ..."
+  },
+  {
+    "name": "plot_multichannel_sequence_hmm",
+    "source_file": "sequence-multichannel-hmm.R",
+    "source_line": 452,
+    "r_signature": "model, channel = model$channel_names[1L], ..."
+  },
+  {
+    "name": "plot_sequence_cluster_silhouette",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 295,
+    "r_signature": "clustering, distance = NULL, ..."
+  },
+  {
+    "name": "plot_sequence_distance_heatmap",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 181,
+    "r_signature": "distance,\n  order_by = NULL,\n  palette = \"Viridis\",\n  show_labels = TRUE,\n  ..."
+  },
+  {
+    "name": "plot_sequence_entropy",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 133,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  base = 2,\n  normalise = TRUE,\n  ..."
+  },
+  {
+    "name": "plot_sequence_group_comparison",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 600,
+    "r_signature": "comparison,\n                                           component = c(\"state\", \"transition\", \"length\"),\n                                           measure = NULL, top_n = 12L,\n                                           main = NULL, xlab = NULL, ylab = NULL, ..."
+  },
+  {
+    "name": "plot_sequence_group_inference",
+    "source_file": "sequence-inference.R",
+    "source_line": 371,
+    "r_signature": "inference,\n  type = c(\"permutation\", \"group_means\"),\n  ..."
+  },
+  {
+    "name": "plot_sequence_index",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 18,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  sort_by = c(\"input\", \"length\", \"path\"),\n  state_levels = NULL,\n  palette = \"Dark 3\",\n  show_sequence_labels = TRUE,\n  ..."
+  },
+  {
+    "name": "plot_sequence_motif_positions",
+    "source_file": "sequence-motif-visualisation.R",
+    "source_line": 1203,
+    "r_signature": "x,\n  motifs = NULL,\n  position = c(\"start\", \"centre\", \"end\"),\n  scale = c(\"absolute\", \"relative\"),\n  top_n = 10L,\n  display = c(\"strip\", \"distribution\")"
+  },
+  {
+    "name": "plot_sequence_motifs",
+    "source_file": "sequence-motif-visualisation.R",
+    "source_line": 1050,
+    "r_signature": "x,\n  metric = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\",\n    \"occurrence_share\"\n  ),\n  top_n = 20L,\n  motif_lengths = NULL,\n  ties = c(\"include\", \"first\"),\n  horizontal = TRUE"
+  },
+  {
+    "name": "plot_sequence_panel_changes",
+    "source_file": "sequence-panel.R",
+    "source_line": 306,
+    "r_signature": "changes,\n  metric = c(\"distance\", \"length_change\", \"transition_change\"),\n  type = c(\"individual\", \"summary\"),\n  ..."
+  },
+  {
+    "name": "plot_sequence_state_distribution",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 83,
+    "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  proportion = TRUE,\n  state_levels = NULL,\n  palette = \"Dark 3\",\n  ..."
+  },
+  {
+    "name": "plot_sequence_subsequences",
+    "source_file": "sequence-subsequences.R",
+    "source_line": 381,
+    "r_signature": "x,\n  metric = \"sequence_prevalence\",\n  top_n = 10L,\n  decreasing = TRUE,\n  ..."
+  },
+  {
+    "name": "plot_time_varying_sequence_model",
+    "source_file": "sequence-time-models.R",
+    "source_line": 326,
+    "r_signature": "model,\n  time = NULL,\n  level = 0.95,\n  show_interval = TRUE,\n  ..."
+  },
+  {
+    "name": "plot_transition_network",
+    "source_file": "sequence-visualisations-extended.R",
+    "source_line": 229,
+    "r_signature": "network,\n  weight_col = \"weight\",\n  minimum_weight = 0,\n  vertex_cex = 1,\n  edge_scale = 5,\n  ..."
+  },
+  {
+    "name": "predict_covariate_transition_probabilities",
+    "source_file": "sequence-covariate-hmm.R",
+    "source_line": 414,
+    "r_signature": "model, newdata"
+  },
+  {
+    "name": "predict_next_state",
+    "source_file": "sequence-networks.R",
+    "source_line": 503,
+    "r_signature": "model, history, top_n = NULL"
+  },
+  {
+    "name": "predict_time_varying_sequence_model",
+    "source_file": "sequence-time-models.R",
+    "source_line": 229,
+    "r_signature": "model,\n  time = NULL,\n  groups = NULL,\n  level = 0.95"
+  },
+  {
+    "name": "prepare_gp3tools_sequences",
+    "source_file": "sequence-adapters.R",
+    "source_line": 254,
+    "r_signature": "data,\n                                       sequence_id_col = NULL,\n                                       order_col = NULL,\n                                       state_col = NULL,\n                                       duration_col = NULL,\n                                       metadata_cols = NULL, ..."
+  },
+  {
+    "name": "prepare_sequence_data",
+    "source_file": "sequence-data.R",
+    "source_line": 1051,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    missing_state_policy = c(\"error\", \"drop\"),\n    duplicate_position_policy = c(\"error\", \"first\", \"last\"),\n    repeated_state_policy = c(\"preserve\", \"collapse\"),\n    zero_duration_policy = c(\"preserve\", \"drop\", \"error\"),\n    unknown_state_policy = c(\"preserve\", \"drop\", \"error\"),\n    unused_state_levels = c(\"preserve\", \"drop\")"
+  },
+  {
+    "name": "prepare_sequence_panel",
+    "source_file": "sequence-panel.R",
+    "source_line": 29,
+    "r_signature": "data,\n  panel_id_col,\n  occasion_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  metadata_cols = NULL,\n  require_unique_occasions = TRUE"
+  },
+  {
+    "name": "sequence_capabilities",
+    "source_file": "sequence-capabilities.R",
+    "source_line": 20,
+    "r_signature": "include_optional = TRUE,\n  check_versions = TRUE"
+  },
+  {
+    "name": "summarise_consensus_agreement",
+    "source_file": "sequence-consensus-groups.R",
+    "source_line": 170,
+    "r_signature": "consensus,\n                                          by = c(\"overall\", \"group\", \"position\"),\n                                          threshold = 0.5"
+  },
+  {
+    "name": "summarise_covariate_sequence_hmm",
+    "source_file": "sequence-covariate-hmm.R",
+    "source_line": 540,
+    "r_signature": "model"
+  },
+  {
+    "name": "summarise_multichannel_sequence_hmm",
+    "source_file": "sequence-multichannel-hmm.R",
+    "source_line": 413,
+    "r_signature": "model"
+  },
+  {
+    "name": "summarise_sequence_cluster_stability",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 554,
+    "r_signature": "bootstrap, threshold = 0.8"
+  },
+  {
+    "name": "summarise_sequence_distance",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 148,
+    "r_signature": "distance"
+  },
+  {
+    "name": "summarise_sequence_group_inference",
+    "source_file": "sequence-inference.R",
+    "source_line": 340,
+    "r_signature": "inference"
+  },
+  {
+    "name": "summarise_sequence_hmm",
+    "source_file": "sequence-latent-models.R",
+    "source_line": 570,
+    "r_signature": "model"
+  },
+  {
+    "name": "summarise_sequence_motif_positions",
+    "source_file": "sequence-motif-visualisation.R",
+    "source_line": 663,
+    "r_signature": "x,\n  position = c(\"start\", \"centre\", \"end\"),\n  scale = c(\"absolute\", \"relative\"),\n  by = NULL"
+  },
+  {
+    "name": "summarise_sequence_motifs",
+    "source_file": "sequence-motifs.R",
+    "source_line": 752,
+    "r_signature": "x"
+  },
+  {
+    "name": "summarise_sequence_panel",
+    "source_file": "sequence-panel.R",
+    "source_line": 136,
+    "r_signature": "panel"
+  },
+  {
+    "name": "summarise_sequence_states",
+    "source_file": "sequence-encoding-summaries.R",
+    "source_line": 575,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL"
+  },
+  {
+    "name": "summarise_sequence_subsequences",
+    "source_file": "sequence-subsequences.R",
+    "source_line": 161,
+    "r_signature": "occurrences"
+  },
+  {
+    "name": "summarise_sequence_transitions",
+    "source_file": "sequence-encoding-summaries.R",
+    "source_line": 806,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    include_self = TRUE"
+  },
+  {
+    "name": "summarise_time_varying_sequence_model",
+    "source_file": "sequence-time-models.R",
+    "source_line": 287,
+    "r_signature": "model"
+  },
+  {
+    "name": "summarise_transition_centrality",
+    "source_file": "sequence-networks.R",
+    "source_line": 260,
+    "r_signature": "network, directed = TRUE,\n                                            pagerank_damping = 0.85,\n                                            pagerank_tolerance = 1e-10,\n                                            pagerank_max_iter = 1000L"
+  },
+  {
+    "name": "test_sequence_group_difference",
+    "source_file": "sequence-inference.R",
+    "source_line": 179,
+    "r_signature": "data,\n  design,\n  metric = c(\"sequence_length\", \"transition_count\", \"state_prevalence\",\n             \"subsequence_presence\"),\n  target_state = NULL,\n  target_subsequence = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  separator = \" > \",\n  n_permutations = 999L,\n  alternative = c(\"two.sided\", \"greater\", \"less\"),\n  seed = 1L"
+  },
+  {
+    "name": "validate_sequence_clusters",
+    "source_file": "sequence-distances-clustering.R",
+    "source_line": 320,
+    "r_signature": "clustering, distance = NULL"
+  },
+  {
+    "name": "validate_sequence_data",
+    "source_file": "sequence-data.R",
+    "source_line": 912,
+    "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL"
+  }
+]
