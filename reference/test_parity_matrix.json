@@ -900,7 +900,7 @@
     "r_block_index": 1,
     "r_block": "time-varying models are dependency guarded and auditable",
     "python_test": "tests/test_r_remaining_contracts.py::test_r_time_model_auditable_python_translation",
-    "status": "functional_translation; mgcv_oracle_pending"
+    "status": "functional_translation; mssm_mgcv_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-visualisations-extended.R",

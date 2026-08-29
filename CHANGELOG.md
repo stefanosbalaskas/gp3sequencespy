@@ -6,10 +6,21 @@ R package `gp3sequences` 0.3.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Replaced the statsmodels/Patsy time-varying-model approximation with an `mssm` binomial GAMM backend using penalized by-group smooths and genuine participant random intercepts.
+- Population-level time-model prediction now excludes participant random effects and supports the same finite out-of-support time inputs accepted by the frozen R API.
+- Preserved the frozen public `k >= 3` contract with validated `k=3/4/5` mssm mappings.
+
+### Validation
+
+- Added six focused mssm time-backend regression tests.
+- Validated 12 / 12 small-k state/transition × random-effect scenarios against frozen R `mgcv::gam()` outputs.
+- Validated transition extrapolation against frozen R (`0.1906916` vs `0.19068331` in the benchmark fixture).
+
 ### Planned before 0.1.0
 
-- Execute the deterministic R ↔ Python oracle against the frozen R 0.3.0 tarball.
-- Review and close or explicitly retain every item in `PARITY_EXCEPTIONS.md`.
+- Review and close or explicitly retain every remaining item in `PARITY_EXCEPTIONS.md`.
 - Perform an exact-artifact release candidate install and documentation build.
 - Freeze the final 0.1.0 metadata, tag, and release notes.
 
@@ -39,6 +50,4 @@ R package `gp3sequences` 0.3.0.
 ### Known parity boundaries
 
 See `PARITY_EXCEPTIONS.md`. API and behavioral-contract coverage do not by
-themselves establish exact numerical parity for R RNG streams, selected
-clustering details, ecosystem-specific adapter objects, or the `mgcv`
-time-varying model.
+themselves establish exact numerical parity for R RNG streams, cross-language RNG streams, ecosystem-specific adapter objects, or explicitly documented backend boundaries.

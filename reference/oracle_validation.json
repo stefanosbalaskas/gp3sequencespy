@@ -26,5 +26,34 @@
     "pam": true,
     "fixtures": 4
   },
-  "remaining_non_exact_backend": "time-varying mgcv GAM translated to statsmodels GLM + Patsy splines"
+  "remaining_non_exact_backend": "mssm time GAMM is a validated close semantic translation rather than bit-for-bit mgcv identity; non-default mgcv smoothing criteria remain unsupported",
+  "time_model_backend_validation": {
+    "status": "PASS_CLOSE_SEMANTIC_TRANSLATION",
+    "r_backend": "mgcv::gam",
+    "python_backend": "mssm",
+    "validated_mssm_version": "1.2.5",
+    "benchmark_scenarios": 4,
+    "mssm_estimate_mae_wins": "3/4",
+    "median_mssm_to_old_backend_mae_ratio": 0.094519,
+    "transition_extrapolation_time18": {
+      "r_mgcv": 0.1906916,
+      "mssm": 0.19068331
+    },
+    "small_k_scenarios": 12,
+    "small_k_all_fit_successfully": true,
+    "validated_k": [
+      3,
+      4,
+      5
+    ],
+    "validated_outcomes": [
+      "state",
+      "transition"
+    ],
+    "validated_random_effect": [
+      false,
+      true
+    ],
+    "validated_default_method": "REML"
+  }
 }

@@ -56,6 +56,8 @@ uv build
 uv run twine check --strict dist/*
 ```
 
-## Remaining non-exact backend translation
+## Time-varying model validation
 
-The time-varying model remains a deliberate Python backend translation: R uses penalized `mgcv::gam()` smooths/random effects, while Python currently uses statsmodels GLM + Patsy spline bases. See `PARITY_EXCEPTIONS.md`.
+The former statsmodels/Patsy approximation was benchmarked against frozen R 0.3.0 `mgcv::gam()` and replaced by `mssm` 1.2.5. The first benchmark covered four deterministic state/transition × random-effect scenarios; `mssm` had lower estimate MAE in 3/4 scenarios with a median mssm/current MAE ratio of **0.094519**, and reproduced the transition-model time-18 extrapolation (`R = 0.1906916`, `mssm = 0.19068331`) while Patsy failed outside its stored spline knots.
+
+A second calibration covered **12 / 12** combinations of `k = 3, 4, 5`, state/transition outcomes, and participant random effect on/off. All fits succeeded. The `k=3` estimate MAEs were approximately 0.00320 for state models and 0.00143 for transition models; transition MAEs remained below 0.0036 for `k=4/5`. The Python implementation therefore uses `mssm` GAMMs as the closest validated Python-native analogue. Exact coefficient/penalty identity with `mgcv` is not claimed, and non-default `mgcv` smoothing criteria remain outside the validated Python contract. See `PARITY_EXCEPTIONS.md`.

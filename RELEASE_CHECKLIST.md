@@ -25,8 +25,11 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Compare the six deterministic core contracts.
 - [x] Investigate and repair deterministic hierarchical-clustering mismatches.
 - [x] Validate all eight hierarchical linkage families and deterministic PAM against the extended R oracle fixtures.
+- [x] Benchmark frozen R `mgcv::gam()` against the old Python backend and `mssm 1.2.5` on state/transition × random-effect on/off scenarios.
+- [x] Validate the `mssm` mapping for `k=3`, `k=4`, and `k=5` across all 12 state/transition × random-effect scenarios.
+- [x] Validate population prediction and out-of-support transition prediction against frozen R.
 - [ ] Review every remaining entry in `PARITY_EXCEPTIONS.md`; retain only deliberate translations with explicit rationale.
-- [ ] Decide whether the `mgcv` → statsmodels/Patsy time-model translation is acceptable for stable 0.1.0 or requires a closer backend.
+- [x] Replace the statsmodels/Patsy time-model approximation with the validated `mssm` GAMM backend.
 - [ ] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.
 - [ ] Freeze version `0.1.0`, release notes, and tag only after the above review.
 

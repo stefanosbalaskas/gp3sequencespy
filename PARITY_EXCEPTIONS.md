@@ -34,9 +34,7 @@ These are deliberate semantic translations. Their data contracts are tested; obj
 ## Remaining deliberate/non-exact numerical boundaries
 
 - **Randomised algorithms:** NumPy and R use different random-number generators and streams. The parity target is deterministic behavior for a declared Python seed, global-RNG isolation, and equivalent statistical/algorithmic contracts—not bit-for-bit identity of cross-language random draws.
-- **Time-varying sequence models:** the frozen R reference uses `mgcv::gam()` with penalized group-specific smooths and an optional participant random-effect smooth. The current Python implementation uses a statsmodels binomial GLM with group-specific Patsy B-spline bases and optional participant fixed effects. This is a functional backend translation, not numerical `mgcv` parity.
-
-A stable release must not claim exact numerical `mgcv` parity unless that backend translation is replaced or separately validated as an intentionally different implementation.
+- **Time-varying sequence models:** the statsmodels/Patsy approximation has been replaced by `mssm` 1.2.5, using a binomial GAMM with a group main effect, separate penalized time smooths by group, and a genuine participant random intercept when requested. The documented `mgcv k -> mssm nk=k-1` mapping is used, with an adaptive spline degree at the frozen public minimum `k=3`. Population prediction excludes the participant random effect, as frozen R `predict.gam(..., exclude='s(.participant)')` does. Cross-language calibration covered state/transition outcomes, random effect on/off, `k=3/4/5`, and out-of-support transition prediction. This is a validated close semantic translation, not a claim of bit-for-bit `mgcv` identity. The Python backend intentionally supports the verified frozen default `method='REML'`; other `mgcv::gam()` smoothing criteria remain an explicit unsupported non-default boundary.
 
 ## Frozen-test translation status
 

@@ -2,7 +2,7 @@
 
 `gp3sequencespy` is currently **0.1.0a1**. The repository is publication-ready
 from a Python packaging and documentation perspective, but the stable `0.1.0`
-parity claim is intentionally gated on the deterministic R ↔ Python oracle.
+parity claim is now gated on the final exception review and exact built-artifact release candidate.
 
 ## Current verified contracts
 
@@ -14,9 +14,7 @@ parity claim is intentionally gated on the deterministic R ↔ Python oracle.
 
 ## Stable-release gate
 
-Before `0.1.0`, the authoritative R 0.3.0 tarball must be used to generate the
-deterministic R oracle outputs, those outputs must be compared with the Python
-outputs, and every documented parity exception must be reviewed.
+The authoritative R 0.3.0 reference has now been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Before `0.1.0`, every remaining documented parity exception must be reviewed and the exact wheel/sdist release candidate must pass the full artifact matrix.
 
 The full operational checklist is maintained in
 [`RELEASE_CHECKLIST.md`](https://github.com/stefanosbalaskas/gp3sequencespy/blob/main/RELEASE_CHECKLIST.md).

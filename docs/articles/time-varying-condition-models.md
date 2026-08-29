@@ -2,8 +2,12 @@
 
 ```python
 import pandas as pd
-import gp3sequencespypy as g
+import gp3sequencespy as g
 ```
+
+## Backend and R-parity target
+
+The Python implementation uses `mssm` for binomial GAMMs. The frozen R 0.3.0 reference uses `mgcv::gam()` with group-specific smooths and an optional participant random-effect smooth. The Python mapping uses a group main effect, one penalized smooth of time per group, and an `mssm` random intercept when requested. Population-level prediction excludes the participant random effect, matching the frozen R prediction contract. The validated default smoothing criterion is `method="REML"`.
 
 ## Model target
 
