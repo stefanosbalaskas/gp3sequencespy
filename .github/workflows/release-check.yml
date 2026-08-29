@@ -13,8 +13,8 @@ jobs:
   release-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.13"
           enable-cache: true
@@ -50,7 +50,7 @@ jobs:
           wheel="$(echo dist/*.whl)"
           /tmp/gp3seq-release-wheel/bin/pip install "${wheel}[time]"
           /tmp/gp3seq-release-wheel/bin/python -c "import gp3sequencespy as g; assert g.__version__ == '0.1.0'; print(g.__version__); print(len(g.__all__))"
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@v7.0.1
         with:
           name: gp3sequencespy-release-candidate
           path: dist/*

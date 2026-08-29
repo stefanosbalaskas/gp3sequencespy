@@ -73,15 +73,15 @@ def test_release_check_workflow_validates_but_does_not_publish():
     assert "tags:" in workflow and '"v*"' in workflow
     assert "validate-pyproject" in workflow
     assert "twine check" in workflow
-    assert "actions/upload-artifact@v7" in workflow
+    assert "actions/upload-artifact@v7.0.1" in workflow
     assert not re.search(r"pypi|publish-package|trusted.publisher", workflow, flags=re.IGNORECASE)
 
     publisher = (ROOT / ".github/workflows/publish-pypi.yml").read_text(encoding="utf-8")
     assert "release:" in publisher and "types: [published]" in publisher
     assert "environment:" in publisher and "name: pypi" in publisher
     assert publisher.count("id-token: write") == 1
-    assert "actions/upload-artifact@v7" in publisher
-    assert "actions/download-artifact@v8" in publisher
+    assert "actions/upload-artifact@v7.0.1" in publisher
+    assert "actions/download-artifact@v8.0.1" in publisher
     assert "pypa/gh-action-pypi-publish@release/v1" in publisher
     assert "gh release download" in publisher
     assert "twine check --strict" in publisher

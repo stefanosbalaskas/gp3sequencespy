@@ -55,7 +55,7 @@ jobs:
           print("release filenames match stable tag", tag)
           PY
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.13"
 
@@ -63,7 +63,7 @@ jobs:
         run: uv tool run --from twine==7.0.0 twine check --strict dist/*
 
       - name: Upload verified distributions for publish job
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: verified-pypi-distributions
           path: dist/*
@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: Download verified distributions
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           name: verified-pypi-distributions
           path: dist
