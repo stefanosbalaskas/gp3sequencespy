@@ -6,24 +6,51 @@ R package `gp3sequences` 0.3.0.
 
 ## [Unreleased]
 
+No changes yet.
+
+## [0.1.0] - 2026-08-30
+
+### Added
+
+- First non-prerelease Python release preserving all **81 / 81** frozen
+  `gp3sequences 0.3.0` public function counterparts.
+- **130 / 130** dedicated translations of the frozen R `test_that()` blocks.
+- Fifteen Python-native article/vignette counterparts, MkDocs documentation,
+  release governance, and multi-platform CI across Python 3.11–3.14.
+- Machine-readable frozen API, test-block, signature, and oracle records.
+
 ### Changed
 
-- Replaced the statsmodels/Patsy time-varying-model approximation with an `mssm` binomial GAMM backend using penalized by-group smooths and genuine participant random intercepts.
-- Population-level time-model prediction now excludes participant random effects and supports the same finite out-of-support time inputs accepted by the frozen R API.
-- Preserved the frozen public `k >= 3` contract with validated `k=3/4/5` mssm mappings.
+- Replaced the early statsmodels/Patsy time-model approximation with a validated
+  `mssm` binomial GAMM backend using penalized by-group smooths and genuine
+  participant random intercepts.
+- Restored frozen plotting defaults and retained Matplotlib `ax=` only as a
+  keyword-only Python extension.
+- Aligned hierarchical clustering and medoid semantics with R `hclust()`/PAM,
+  including `members=` behavior and tie-sensitive medoid scoring.
 
 ### Validation
 
-- Audited all 81 frozen R public signatures, repaired plotting-default drift, and froze the executable signature matrix with zero unexplained differences.
-- Added six focused mssm time-backend regression tests.
-- Validated 12 / 12 small-k state/transition × random-effect scenarios against frozen R `mgcv::gam()` outputs.
-- Validated transition extrapolation against frozen R (`0.1906916` vs `0.19068331` in the benchmark fixture).
+- **182** Python tests pass locally before the release-candidate artifact freeze.
+- Frozen API: **81 / 81**.
+- Frozen R block ledger: **130 / 130**.
+- Frozen public signatures: **81 / 81**, with **0 unexplained drift**.
+- Deterministic six-contract R↔Python oracle: **PASS**.
+- Extended clustering oracle: **3915 / 3915** partition rows and **108 / 108**
+  medoid rows matched, plus fresh `members=` oracle **PASS**.
+- Time-model calibration: **12 / 12** `k=3/4/5 × state/transition × random-effect`
+  scenarios fit successfully within the validated R-error envelope; frozen-R
+  transition extrapolation matched to an absolute difference of approximately
+  `8.29e-06`.
+- Exact final-version wheel and sdist must pass clean-environment artifact tests
+  before this commit can be pushed by the RC transaction.
 
-### Planned before 0.1.0
+### Deliberate parity boundaries
 
-- Review and close or explicitly retain every remaining item in `PARITY_EXCEPTIONS.md`.
-- Perform an exact-artifact release candidate install and documentation build.
-- Freeze the final 0.1.0 metadata, tag, and release notes.
+The stable release retains the explicitly reviewed boundaries in
+`PARITY_EXCEPTIONS.md`: ecosystem-specific R object identity, plotting-engine
+identity, cross-language RNG stream identity, and bit-for-bit `mgcv` identity /
+non-default smoothing criteria are not claimed.
 
 ## [0.1.0a1] - 2026-08-29
 

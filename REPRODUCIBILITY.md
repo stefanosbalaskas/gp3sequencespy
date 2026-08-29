@@ -66,6 +66,18 @@ semantic_translation_with_python_extension = 15
 unexplained_signature_drift = 0
 ```
 
+## Stable 0.1.0 release-candidate policy
+
+On 2026-08-30, the remaining deliberate parity boundaries were reviewed and retained
+with rationale in `PARITY_EXCEPTIONS.md`. The 0.1.0 transaction commits the final
+versioned source **before** building release artifacts, then validates the exact
+wheel and sdist produced from that commit in fresh environments. Artifact SHA-256
+hashes and the candidate commit are exported in an external release-candidate
+manifest so the source tree does not self-reference hashes of artifacts that
+contain that source.
+
+The `v0.1.0` tag and PyPI publication are intentionally separate actions.
+
 ## Reproducing Python validation
 
 ```bash

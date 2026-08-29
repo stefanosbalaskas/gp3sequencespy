@@ -30,10 +30,11 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Validate population prediction and out-of-support transition prediction against frozen R.
 - [x] Audit all 81 frozen R public formals against Python signatures and classify every R→Python translation.
 - [x] Repair frozen plotting defaults and make the Python-only `ax=` hook keyword-only.
-- [ ] Review every remaining entry in `PARITY_EXCEPTIONS.md`; retain only deliberate translations with explicit rationale.
+- [x] Review every remaining entry in `PARITY_EXCEPTIONS.md`; retain only deliberate translations with explicit rationale.
 - [x] Replace the statsmodels/Patsy time-model approximation with the validated `mssm` GAMM backend.
-- [ ] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.
-- [ ] Freeze version `0.1.0`, release notes, and tag only after the above review.
+- [x] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.
+- [x] Freeze version `0.1.0` and release notes after parity-exception review.
+- [ ] Create tag `v0.1.0` only after the exact RC commit is green in GitHub CI and the `Release checks` workflow.
 
 ## Publication
 

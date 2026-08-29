@@ -4,7 +4,7 @@
 
 The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-first: preserve the frozen scientific contracts, validate them explicitly, and only then add Python-native extensions.
 
-## Current alpha status
+## Version 0.1.0 status
 
 - **81 / 81** frozen R public function counterparts are present and exported.
 - **81 / 81** frozen R public signatures have been audited; every difference is either structurally matched or explicitly classified as an R→Python semantic/plotting translation.
@@ -16,11 +16,11 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 
 Documentation: https://stefanosbalaskas.github.io/gp3sequencespy/
 
-This remains an **alpha** package. API-surface coverage and translated behavioral tests are not, by themselves, proof of exact R numerical parity. Backend-object translations, cross-language random-number streams, and the explicitly documented non-default `mgcv` smoothing-criterion boundary remain in `PARITY_EXCEPTIONS.md`.
+Version **0.1.0** is the first non-prerelease Python release candidate. Its parity claims are deliberately bounded: backend-object translations, cross-language random-number streams, Matplotlib rendering, and the validated `mssm` translation of the R `mgcv` model remain explicitly documented in `PARITY_EXCEPTIONS.md`.
 
 ## Installation
 
-The project is currently alpha software. For development installs from the repository:
+For development installs from the repository:
 
 ```bash
 uv sync --extra time
@@ -29,10 +29,10 @@ uv sync --extra time
 For a built wheel:
 
 ```bash
-pip install gp3sequencespy-0.1.0a1-py3-none-any.whl
+pip install gp3sequencespy-0.1.0-py3-none-any.whl
 ```
 
-A stable PyPI release remains deferred until the final exact-artifact release candidate and the remaining deliberate parity exceptions have been reviewed.
+The exact 0.1.0 wheel and sdist are validated before tagging. PyPI publication remains separate from release validation and is not performed by repository workflows.
 
 ## Reproducibility and release governance
 

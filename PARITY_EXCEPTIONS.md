@@ -37,6 +37,29 @@ These are deliberate semantic translations. Their data contracts are tested; obj
 - **Randomised algorithms:** NumPy and R use different random-number generators and streams. The parity target is deterministic behavior for a declared Python seed, global-RNG isolation, and equivalent statistical/algorithmic contracts—not bit-for-bit identity of cross-language random draws.
 - **Time-varying sequence models:** the statsmodels/Patsy approximation has been replaced by `mssm` 1.2.5, using a binomial GAMM with a group main effect, separate penalized time smooths by group, and a genuine participant random intercept when requested. The documented `mgcv k -> mssm nk=k-1` mapping is used, with an adaptive spline degree at the frozen public minimum `k=3`. Population prediction excludes the participant random effect, as frozen R `predict.gam(..., exclude='s(.participant)')` does. Cross-language calibration covered state/transition outcomes, random effect on/off, `k=3/4/5`, and out-of-support transition prediction. This is a validated close semantic translation, not a claim of bit-for-bit `mgcv` identity. The Python backend intentionally supports the verified frozen default `method='REML'`; other `mgcv::gam()` smoothing criteria remain an explicit unsupported non-default boundary.
 
+## Stable 0.1.0 exception review — 2026-08-30
+
+Every remaining entry was reviewed before the 0.1.0 release-candidate freeze.
+All are **retained deliberately**; none is an unexplained implementation gap:
+
+1. **R ecosystem objects → Python-native adapters:** TraMineR/seqHMM/arules/igraph
+   object identity is runtime-specific. The Python adapters preserve the tested data
+   contract and expose native Python/NetworkX structures.
+2. **Base-R graphics → Matplotlib:** plot-data contracts, public defaults, and call
+   semantics are tested. Pixel-level identity across rendering engines is neither
+   meaningful nor claimed.
+3. **R RNG streams → NumPy RNG streams:** declared Python seeds are deterministic and
+   global-RNG isolation/algorithmic contracts are tested; cross-language random draws
+   are not expected to be bit-for-bit identical.
+4. **`mgcv::gam()` → `mssm` GAMM:** the frozen default REML contract is calibrated
+   cross-language, including `k=3/4/5`, state/transition outcomes, participant random
+   effects, and extrapolation. Exact penalty/coefficient identity and non-default mgcv
+   smoothing criteria are outside the validated Python contract.
+
+These retained boundaries are compatible with a stable Python API because they are
+explicit, tested, and arise from language/backend differences rather than silent
+behavioral drift.
+
 ## Frozen-test translation status
 
 All **130 / 130** frozen R `test_that()` blocks have one dedicated Python translation test. The mapping is machine-readable in `reference/test_parity_matrix.json` and human-readable in `PARITY_TEST_MATRIX.md`.

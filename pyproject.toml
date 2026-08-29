@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gp3sequencespy"
-version = "0.1.0a1"
+version = "0.1.0"
 description = "Transparent, reproducible, and auditable analysis of ordered categorical sequences in Python."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -14,7 +14,7 @@ authors = [{name = "Stefanos Balaskas"}]
 maintainers = [{name = "Stefanos Balaskas"}]
 keywords = ["sequence-analysis", "scanpaths", "eye-tracking", "categorical-sequences", "reproducibility"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Science/Research",
   "Operating System :: OS Independent",
   "Programming Language :: Python",

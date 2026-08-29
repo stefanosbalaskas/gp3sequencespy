@@ -28,12 +28,12 @@ def test_release_governance_files_exist():
     assert (ROOT / "docs" / "release-readiness.md").is_file()
 
 
-def test_distribution_metadata_is_publication_ready_but_alpha():
+def test_distribution_metadata_is_publication_ready_for_0_1_0():
     project = _project()
-    assert project["version"] == g.__version__ == "0.1.0a1"
+    assert project["version"] == g.__version__ == "0.1.0"
     assert project["license"] == "MIT"
     assert project["license-files"] == ["LICENSE"]
-    assert "Development Status :: 3 - Alpha" in project["classifiers"]
+    assert "Development Status :: 4 - Beta" in project["classifiers"]
     assert "Programming Language :: Python :: 3.14" in project["classifiers"]
     assert set(project["urls"]) >= {"Homepage", "Documentation", "Source", "Issues", "Changelog"}
     assert set(project["optional-dependencies"]) >= {"dev", "docs", "time", "release"}
@@ -42,8 +42,8 @@ def test_distribution_metadata_is_publication_ready_but_alpha():
 def test_citation_and_changelog_match_package_version():
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert "version: 0.1.0a1" in citation
-    assert "## [0.1.0a1] - 2026-08-29" in changelog
+    assert "version: 0.1.0" in citation
+    assert "## [0.1.0] - 2026-08-30" in changelog
 
 
 def test_reproducibility_document_freezes_authoritative_r_reference():
@@ -59,6 +59,8 @@ def test_stable_release_is_explicitly_blocked_on_r_oracle_review():
     # The checklist decomposes the oracle gate into executable steps rather than a slogan.
     assert "generate_reference_outputs.R" in checklist
     assert "PARITY_EXCEPTIONS.md" in checklist
+    assert "- [x] Review every remaining entry in `PARITY_EXCEPTIONS.md`" in checklist
+    assert "- [ ] Create tag `v0.1.0`" in checklist
 
 
 def test_release_check_workflow_validates_but_does_not_publish():

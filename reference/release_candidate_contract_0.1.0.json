@@ -1,0 +1,17 @@
+{
+  "package": "gp3sequencespy",
+  "version": "0.1.0",
+  "candidate_parent": "c104924b4a11bccc5ee17b9ca5d18d728a3a9eca",
+  "reference_r_package": "gp3sequences",
+  "reference_r_version": "0.3.0",
+  "canonical_r_tarball_sha256": "1d2ca1d72ebd375292fc9bdd0f41848b8224f9e1ae9d34acbd9469f103bf5b8d",
+  "source_equivalent_r_tarball_sha256": "4024a6657d4567e44615cdf87419654bd097822016c8b84bd929aa3db4dcd3a8",
+  "normalized_r_source_manifest_sha256": "4dd1566e38cb20da1115fc466cc6db3b99f98413aa93876402f59221fc954e56",
+  "expected_python_tests": 182,
+  "frozen_api_functions": 81,
+  "frozen_r_test_blocks": 130,
+  "frozen_signatures": 81,
+  "unexplained_signature_drift": 0,
+  "tag_created": false,
+  "pypi_published": false
+}

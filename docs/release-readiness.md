@@ -1,8 +1,6 @@
 # Release readiness
 
-`gp3sequencespy` is currently **0.1.0a1**. The repository is publication-ready
-from a Python packaging and documentation perspective, but the stable `0.1.0`
-parity claim is now gated on the final exception review and exact built-artifact release candidate.
+`gp3sequencespy` is frozen as **0.1.0** for the exact release-candidate artifact transaction. The deliberate parity boundaries have been reviewed and retained with explicit rationale; the final wheel and sdist must pass exact-artifact tests before the RC commit is pushed.
 
 ## Current verified contracts
 
@@ -15,7 +13,7 @@ parity claim is now gated on the final exception review and exact built-artifact
 
 ## Stable-release gate
 
-The authoritative R 0.3.0 reference has now been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Before `0.1.0`, every remaining documented parity exception must be reviewed and the exact wheel/sdist release candidate must pass the full artifact matrix.
+The authoritative R 0.3.0 reference has been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Every remaining parity exception has been explicitly reviewed. The exact 0.1.0 wheel/sdist are tested from the committed candidate tree before push; tagging remains a separate post-CI step.
 
 The full operational checklist is maintained in
 [`RELEASE_CHECKLIST.md`](https://github.com/stefanosbalaskas/gp3sequencespy/blob/main/RELEASE_CHECKLIST.md).
