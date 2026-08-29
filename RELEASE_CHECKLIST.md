@@ -34,8 +34,27 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Replace the statsmodels/Patsy time-model approximation with the validated `mssm` GAMM backend.
 - [x] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.
 - [x] Freeze version `0.1.0` and release notes after parity-exception review.
-- [ ] Create tag `v0.1.0` only after the exact RC commit is green in GitHub CI and the `Release checks` workflow.
+- [x] Create tag `v0.1.0` only after the exact RC commit is green in GitHub CI and the `Release checks` workflow.
 
 ## Publication
 
-The repository's `Release checks` workflow deliberately **does not publish to PyPI**. PyPI publishing should be enabled only after the trusted-publishing relationship and release governance are configured and reviewed.
+### 0.1.0
+
+- [x] Publish the exact frozen `0.1.0` wheel and sdist to production PyPI.
+- [x] Re-query PyPI and verify the published wheel and sdist SHA-256 values match
+  the frozen GitHub Release artifacts.
+- [x] Preserve the GitHub `v0.1.0` tag and assets unchanged after PyPI publication.
+
+### Future releases
+
+- [x] Add a dedicated `.github/workflows/publish-pypi.yml` Trusted Publishing workflow.
+- [x] Use a dedicated GitHub environment named `pypi`.
+- [ ] Register the GitHub Actions Trusted Publisher in the PyPI project settings.
+- [ ] For the next release, confirm PyPI reports Trusted Publishing/provenance for
+  the published files.
+- [ ] Revoke a manually created API token if it was dedicated solely to
+  `gp3sequencespy` and is no longer needed.
+
+The `Release checks` workflow remains validation-only. The separate
+`Publish to PyPI` workflow receives OIDC permission only in its publishing job
+and publishes exact GitHub Release distributions without rebuilding them.

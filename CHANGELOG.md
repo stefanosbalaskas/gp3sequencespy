@@ -1,12 +1,22 @@
 # Changelog
 
-All notable changes to `gp3sequencespy` are documented here. The project is
-currently alpha software and follows parity-first development against the frozen
-R package `gp3sequences` 0.3.0.
+All notable changes to `gp3sequencespy` are documented here. The project follows parity-first development against the frozen R package
+`gp3sequences` 0.3.0.
 
 ## [Unreleased]
 
-No changes yet.
+### Added
+
+- PyPI Trusted Publishing workflow for future stable GitHub Releases, using a
+  dedicated `pypi` environment and job-scoped OIDC permissions.
+- `PYPI_PUBLISHING.md` and a machine-readable 0.1.0 publication record.
+
+### Changed
+
+- Upgraded GitHub Actions used by CI, documentation, and release validation to
+  current Node 24-compatible action majors after the 0.1.0 release.
+- Updated release documentation to record the completed GitHub and PyPI 0.1.0
+  publication rather than the former release-candidate state.
 
 ## [0.1.0] - 2026-08-30
 

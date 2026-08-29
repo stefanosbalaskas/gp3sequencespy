@@ -1,6 +1,6 @@
 # Release readiness
 
-`gp3sequencespy` is frozen as **0.1.0** for the exact release-candidate artifact transaction. The deliberate parity boundaries have been reviewed and retained with explicit rationale; the final wheel and sdist must pass exact-artifact tests before the RC commit is pushed.
+`gp3sequencespy` **0.1.0** has completed its exact-artifact release cycle. The GitHub tag/release and production PyPI files correspond to the validated frozen release artifacts, and the deliberate parity boundaries remain explicitly documented.
 
 ## Current verified contracts
 
@@ -13,7 +13,7 @@
 
 ## Stable-release gate
 
-The authoritative R 0.3.0 reference has been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Every remaining parity exception has been explicitly reviewed. The exact 0.1.0 wheel/sdist are tested from the committed candidate tree before push; tagging remains a separate post-CI step.
+The authoritative R 0.3.0 reference has been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Every remaining parity exception has been explicitly reviewed. The exact 0.1.0 wheel/sdist passed committed-source, GitHub release, and PyPI identity checks.
 
 The full operational checklist is maintained in
 [`RELEASE_CHECKLIST.md`](https://github.com/stefanosbalaskas/gp3sequencespy/blob/main/RELEASE_CHECKLIST.md).
@@ -22,7 +22,11 @@ Frozen-reference details are in
 
 ## Publication workflow
 
-The repository's `Release checks` workflow validates metadata, static quality,
-tests, documentation, distributions, wheel contents, and a clean wheel install.
-It uploads the candidate artifacts to GitHub Actions but deliberately does not
-publish them to PyPI.
+The repository's `Release checks` workflow remains validation-only: it validates
+metadata, static quality, tests, documentation, distributions, wheel contents,
+and a clean wheel install.
+
+For future stable releases, `.github/workflows/publish-pypi.yml` is prepared for
+PyPI Trusted Publishing. It verifies the exact distributions attached to the
+published GitHub Release, then gives OIDC `id-token: write` only to the dedicated
+publishing job. See `PYPI_PUBLISHING.md`.

@@ -76,7 +76,30 @@ hashes and the candidate commit are exported in an external release-candidate
 manifest so the source tree does not self-reference hashes of artifacts that
 contain that source.
 
-The `v0.1.0` tag and PyPI publication are intentionally separate actions.
+The `v0.1.0` tag and PyPI publication were intentionally separate actions.
+
+## Stable 0.1.0 publication identity
+
+The release cycle completed on 2026-08-30. The annotated `v0.1.0` tag resolves to:
+
+```text
+28f06a571889bf9db760d00c47e1252d3836679a
+```
+
+The exact GitHub Release artifacts were then published to production PyPI.
+PyPI's JSON API independently reported the same SHA-256 values:
+
+```text
+gp3sequencespy-0.1.0-py3-none-any.whl
+97725d0b34872b79c9f9cb4da57f14a788a8920880a0a415c13669d281a39525
+
+gp3sequencespy-0.1.0.tar.gz
+e01ff3ac4ec0cbede48b1019e4bcabddd38b9587df3fe541ce66aff585bf7e19
+```
+
+The historical `reference/release_candidate_contract_0.1.0.json` is retained as
+the pre-tag/pre-PyPI RC record. Final publication state is recorded separately
+in `reference/release_publication_0.1.0.json`.
 
 ## Reproducing Python validation
 

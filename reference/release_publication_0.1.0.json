@@ -1,0 +1,35 @@
+{
+  "package": "gp3sequencespy",
+  "version": "0.1.0",
+  "publication_date": "2026-08-30",
+  "git_commit": "28f06a571889bf9db760d00c47e1252d3836679a",
+  "git_tag": "v0.1.0",
+  "github_release": "https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.0",
+  "pypi_project": "https://pypi.org/project/gp3sequencespy/0.1.0/",
+  "wheel": {
+    "filename": "gp3sequencespy-0.1.0-py3-none-any.whl",
+    "sha256": "97725d0b34872b79c9f9cb4da57f14a788a8920880a0a415c13669d281a39525"
+  },
+  "sdist": {
+    "filename": "gp3sequencespy-0.1.0.tar.gz",
+    "sha256": "e01ff3ac4ec0cbede48b1019e4bcabddd38b9587df3fe541ce66aff585bf7e19"
+  },
+  "validation": {
+    "python_tests": 182,
+    "frozen_api": "81/81",
+    "frozen_r_test_blocks": "130/130",
+    "frozen_signatures": "81/81",
+    "unexplained_signature_drift": 0,
+    "normal_ci": "PASS",
+    "docs": "PASS",
+    "manual_release_checks": "PASS",
+    "tag_release_checks": "PASS",
+    "github_release_asset_identity": "PASS",
+    "pypi_hash_identity": "PASS"
+  },
+  "trusted_publishing": {
+    "workflow_added": true,
+    "github_environment": "pypi",
+    "pypi_publisher_registration_required": true
+  }
+}

@@ -16,7 +16,7 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 
 Documentation: https://stefanosbalaskas.github.io/gp3sequencespy/
 
-Version **0.1.0** is the first non-prerelease Python release candidate. Its parity claims are deliberately bounded: backend-object translations, cross-language random-number streams, Matplotlib rendering, and the validated `mssm` translation of the R `mgcv` model remain explicitly documented in `PARITY_EXCEPTIONS.md`.
+Version **0.1.0** is the first non-prerelease Python release and is available from both GitHub Releases and PyPI. Its parity claims remain deliberately bounded: backend-object translations, cross-language random-number streams, Matplotlib rendering, and the validated `mssm` translation of the R `mgcv` model are explicitly documented in `PARITY_EXCEPTIONS.md`.
 
 ## Installation
 
@@ -26,13 +26,13 @@ For development installs from the repository:
 uv sync --extra time
 ```
 
-For a built wheel:
+From PyPI:
 
 ```bash
-pip install gp3sequencespy-0.1.0-py3-none-any.whl
+pip install gp3sequencespy==0.1.0
 ```
 
-The exact 0.1.0 wheel and sdist are validated before tagging. PyPI publication remains separate from release validation and is not performed by repository workflows.
+The `v0.1.0` GitHub Release and PyPI publication contain the same frozen wheel and source-distribution hashes. Future PyPI releases are prepared for token-free Trusted Publishing through `PYPI_PUBLISHING.md`.
 
 ## Reproducibility and release governance
 
@@ -42,6 +42,7 @@ The exact 0.1.0 wheel and sdist are validated before tagging. PyPI publication r
 - Changelog: `CHANGELOG.md`
 - Citation metadata: `CITATION.cff`
 - Contribution guidance: `CONTRIBUTING.md`
+- PyPI publishing and Trusted Publishing: `PYPI_PUBLISHING.md`
 
 ## Scientific interpretation guardrail
 

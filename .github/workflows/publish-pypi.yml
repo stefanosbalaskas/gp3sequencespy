@@ -1,0 +1,92 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-release-assets:
+    name: Verify release distributions
+    if: github.event.release.draft == false && github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download exact GitHub Release distributions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir -p dist
+          gh release download "$TAG"             --repo "$GITHUB_REPOSITORY"             --pattern "gp3sequencespy-*.whl"             --pattern "gp3sequencespy-*.tar.gz"             --dir dist
+
+      - name: Require one wheel and one sdist matching the stable tag
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          python - <<'PY'
+          import glob
+          import os
+          import re
+
+          wheels = glob.glob("dist/*.whl")
+          sdists = glob.glob("dist/*.tar.gz")
+          if len(wheels) != 1 or len(sdists) != 1:
+              raise SystemExit(
+                  f"expected one wheel and one sdist; got {wheels=} {sdists=}"
+              )
+
+          tag = os.environ["TAG"]
+          if not re.fullmatch(r"v\d+\.\d+\.\d+", tag):
+              raise SystemExit(f"stable release tag required, got {tag!r}")
+
+          version = tag[1:]
+          expected_wheel = f"dist/gp3sequencespy-{version}-py3-none-any.whl"
+          expected_sdist = f"dist/gp3sequencespy-{version}.tar.gz"
+          if wheels[0].replace("\\", "/") != expected_wheel:
+              raise SystemExit(
+                  f"wheel filename does not match release tag: {wheels[0]!r}"
+              )
+          if sdists[0].replace("\\", "/") != expected_sdist:
+              raise SystemExit(
+                  f"sdist filename does not match release tag: {sdists[0]!r}"
+              )
+          print("release filenames match stable tag", tag)
+          PY
+
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.13"
+
+      - name: Validate release distributions
+        run: uv tool run --from twine==7.0.0 twine check --strict dist/*
+
+      - name: Upload verified distributions for publish job
+        uses: actions/upload-artifact@v7
+        with:
+          name: verified-pypi-distributions
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  pypi-publish:
+    name: Publish verified distributions
+    needs: verify-release-assets
+    if: github.event.release.draft == false && github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/gp3sequencespy/
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download verified distributions
+        uses: actions/download-artifact@v8
+        with:
+          name: verified-pypi-distributions
+          path: dist
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
