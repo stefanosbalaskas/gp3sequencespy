@@ -14,7 +14,9 @@ def write_table(frame: pd.DataFrame, out_dir: Path, name: str) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate deterministic gp3sequencespy parity outputs.")
+    parser = argparse.ArgumentParser(
+        description="Generate deterministic gp3sequencespy parity outputs."
+    )
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--out-dir", type=Path, default=None)
     args = parser.parse_args()

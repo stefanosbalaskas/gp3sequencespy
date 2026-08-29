@@ -44,7 +44,9 @@ def compare_frames(left: pd.DataFrame, right: pd.DataFrame, tolerance: float) ->
         numeric_mask = lnum.notna() & rnum.notna()
         nonblank = (lcol.astype(str) != "") | (rcol.astype(str) != "")
         if numeric_mask.sum() == nonblank.sum() and nonblank.any():
-            if not np.allclose(lnum[numeric_mask], rnum[numeric_mask], atol=tolerance, rtol=tolerance):
+            if not np.allclose(
+                lnum[numeric_mask], rnum[numeric_mask], atol=tolerance, rtol=tolerance
+            ):
                 errors.append(f"numeric mismatch in {column}")
         else:
             if not lcol.astype(str).equals(rcol.astype(str)):

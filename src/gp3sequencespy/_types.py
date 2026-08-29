@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterator, Mapping
 from dataclasses import asdict, dataclass, field
-from typing import Any, Iterator, Mapping
+from typing import Any, cast
 
 import pandas as pd
 
@@ -10,7 +11,7 @@ class ResultMapping(Mapping[str, Any]):
     """Mapping-compatible base class for structured gp3sequencespy results."""
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)  # type: ignore[arg-type]
+        return asdict(cast(Any, self))
 
     def __getitem__(self, key: str) -> Any:
         return getattr(self, key)
@@ -96,6 +97,7 @@ class HMMResult(ResultMapping):
     training_data: pd.DataFrame | None = None
     extra: dict[str, Any] = field(default_factory=dict)
 
+
 @dataclass(slots=True)
 class StateSummaryResult(ResultMapping):
     by_sequence: pd.DataFrame
@@ -173,6 +175,7 @@ class FormattedTableResult(ResultMapping):
     status: str | None
     mapping: pd.DataFrame | None
     settings: dict[str, Any]
+
 
 @dataclass(slots=True)
 class GroupComparisonResult(ResultMapping):

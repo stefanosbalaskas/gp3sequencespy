@@ -10,6 +10,40 @@ permissions:
   contents: read
 
 jobs:
+  quality:
+    name: Static quality / Python 3.11
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+          enable-cache: true
+      - name: Sync environment
+        run: uv sync --extra dev --extra time
+      - name: Ruff lint
+        run: uv run ruff check src tests parity
+      - name: Ruff format
+        run: uv run ruff format --check src tests parity
+      - name: mypy
+        run: uv run mypy src/gp3sequencespy
+      - name: Frozen API contract
+        run: >-
+          uv run python -c "import json,pathlib,gp3sequencespy as g;
+          names=[x['name'] for x in json.loads(pathlib.Path('reference/api_manifest.json').read_text())];
+          missing=[x for x in names if not hasattr(g,x)];
+          hidden=[x for x in names if x not in g.__all__];
+          print('reference:',len(names),'present:',len(names)-len(missing),'missing:',missing,'not_in___all__:',hidden);
+          assert len(names)==81 and not missing and not hidden"
+      - name: Frozen R block ledger
+        run: >-
+          uv run python -c "import json,pathlib;
+          m=json.loads(pathlib.Path('reference/test_parity_matrix.json').read_text());
+          pairs={(r['r_test_file'],r['r_block_index']) for r in m};
+          py={r['python_test'] for r in m};
+          print('mapped blocks:',len(m),'unique R blocks:',len(pairs),'unique Python translations:',len(py));
+          assert len(m)==130 and len(pairs)==130 and len(py)==130"
+
   test:
     name: Python ${{ matrix.python-version }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}

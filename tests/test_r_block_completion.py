@@ -10,6 +10,7 @@ from __future__ import annotations
 import sys
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -74,8 +75,8 @@ def motif_extraction():
 
 # test-analysis-audit.R: malformed distance block
 
+
 def test_r_analysis_audit_catches_malformed_distances():
-    distance = g.compute_sequence_distance(advanced_data(), method="levenshtein")
     malformed = g.compute_sequence_distance(advanced_data(), method="levenshtein")
     matrix = np.asarray(malformed.matrix, dtype=float).copy()
     matrix[0, 1] += 1.0
@@ -88,14 +89,23 @@ def test_r_analysis_audit_catches_malformed_distances():
 
 # test-capabilities.R: split the previously combined blocks
 
+
 def test_r_capabilities_deterministic_dependency_safe_block():
     first = g.sequence_capabilities()
     second = g.sequence_capabilities()
     pd.testing.assert_frame_equal(first, second)
     expected = {
-        "family", "capability", "role", "native", "backend",
-        "backend_required", "available", "installed_version",
-        "minimum_tested_version", "reference_only", "notes",
+        "family",
+        "capability",
+        "role",
+        "native",
+        "backend",
+        "backend_required",
+        "available",
+        "installed_version",
+        "minimum_tested_version",
+        "reference_only",
+        "notes",
     }
     assert expected <= set(first.columns)
     assert (first.role == "native").any()
@@ -105,8 +115,14 @@ def test_r_capabilities_deterministic_dependency_safe_block():
 
 def test_r_capabilities_do_not_import_optional_backends_block():
     optional = {
-        "hmmlearn", "pomegranate", "prefixspan", "numba", "hypothesis",
-        "polars", "pyarrow", "pydtmc",
+        "hmmlearn",
+        "pomegranate",
+        "prefixspan",
+        "numba",
+        "hypothesis",
+        "polars",
+        "pyarrow",
+        "pydtmc",
     }
     before = set(sys.modules)
     result = g.sequence_capabilities()
@@ -116,6 +132,7 @@ def test_r_capabilities_do_not_import_optional_backends_block():
 
 
 # test-contract-invariants.R: internal probability and partition contracts
+
 
 def test_r_probability_simplex_and_matrix_validator_semantics():
     assert np.allclose(vector_normalise(np.array([0.2, 0.8])), [0.2, 0.8])
@@ -148,6 +165,7 @@ def test_r_partition_label_canonicalisation_membership_semantics():
 
 
 # test-sequence-adapters.R: split previously combined adapter contracts
+
 
 def test_r_gp3tools_common_column_mapping_block():
     data = advanced_data().rename(columns={"sequence_order": "position", "state": "aoi_label"})
@@ -195,6 +213,7 @@ def test_r_gp3tools_ambiguous_mapping_guard_block():
 
 # test-sequence-distances-clustering.R: isolate the PAM contract
 
+
 def test_r_integer_controls_reject_values_outside_r_integer_range_block():
     distance = g.compute_sequence_distance(advanced_data())
     with pytest.raises(ValidationError):
@@ -204,6 +223,7 @@ def test_r_integer_controls_reject_values_outside_r_integer_range_block():
 
 
 # test-sequence-latent-models.R: split combined guards
+
 
 def test_r_hmm_initialisation_rejects_nonfinite_probabilities_block():
     data = advanced_data()
@@ -237,9 +257,12 @@ def test_r_hmm_hidden_state_counts_reject_out_of_range_block():
 
 # test-sequence-motif-visualisation.R: split combined plot-data contracts
 
+
 def test_r_motif_plot_top_n_ties_are_deterministic_block():
     summary = g.summarise_sequence_motifs(motif_extraction())
-    included = g.plot_sequence_motifs(summary, metric="sequence_prevalence", top_n=2, ties="include")
+    included = g.plot_sequence_motifs(
+        summary, metric="sequence_prevalence", top_n=2, ties="include"
+    )
     included_data = included.gp3_data.copy()
     plt.close(included.figure)
     first = g.plot_sequence_motifs(summary, metric="sequence_prevalence", top_n=2, ties="first")

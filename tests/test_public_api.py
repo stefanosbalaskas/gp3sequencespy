@@ -1,6 +1,5 @@
 import gp3sequencespy as g
 
-
 EXPECTED_R_COUNTERPARTS = {
     "audit_sequence_data",
     "validate_sequence_data",

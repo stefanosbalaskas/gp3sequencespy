@@ -25,16 +25,6 @@ from .consensus import (
     format_consensus_sequence,
     summarise_consensus_agreement,
 )
-from .visualisations import (
-    plot_consensus_sequence,
-    plot_sequence_cluster_silhouette,
-    plot_sequence_distance_heatmap,
-    plot_sequence_entropy,
-    plot_sequence_group_comparison,
-    plot_sequence_index,
-    plot_sequence_state_distribution,
-    plot_transition_network,
-)
 from .covariate_hmm import (
     CovariateSequenceHMM,
     decode_covariate_sequence_states,
@@ -119,6 +109,16 @@ from .time_models import (
     plot_time_varying_sequence_model,
     predict_time_varying_sequence_model,
     summarise_time_varying_sequence_model,
+)
+from .visualisations import (
+    plot_consensus_sequence,
+    plot_sequence_cluster_silhouette,
+    plot_sequence_distance_heatmap,
+    plot_sequence_entropy,
+    plot_sequence_group_comparison,
+    plot_sequence_index,
+    plot_sequence_state_distribution,
+    plot_transition_network,
 )
 
 __version__ = "0.1.0a1"

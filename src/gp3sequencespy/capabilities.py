@@ -6,7 +6,6 @@ import pandas as pd
 
 from ._advanced import scalar_logical
 
-
 _ROWS = [
     ("Data contract", "Validation and preparation", "native", None, False),
     ("Distances", "Native sequence distances", "native", None, False),
@@ -19,9 +18,21 @@ _ROWS = [
     ("Networks", "Native transition networks", "native", None, False),
     ("Networks", "Graph interoperability", "adapter", "networkx", False),
     ("Networks", "Markov-chain interoperability", "planned_adapter", "pydtmc", False),
-    ("Inference", "Permutation/distance reference validation", "reference", "scipy|scikit-learn", True),
+    (
+        "Inference",
+        "Permutation/distance reference validation",
+        "reference",
+        "scipy|scikit-learn",
+        True,
+    ),
     ("Missingness", "Sequence-imputation handoff", "handoff", "scikit-learn", True),
-    ("Model-based clustering", "Specialist model-based clustering handoff", "handoff", "pomegranate", True),
+    (
+        "Model-based clustering",
+        "Specialist model-based clustering handoff",
+        "handoff",
+        "pomegranate",
+        True,
+    ),
     ("Graphics", "Sequence-plot handoff", "handoff", "matplotlib", True),
     ("Graphics", "Seriation/ordering handoff", "handoff", "scipy", True),
     ("Property testing", "Property-based testing", "development", "hypothesis", True),
@@ -49,7 +60,9 @@ def _version(package: str) -> str:
     return "<not installed>"
 
 
-def sequence_capabilities(include_optional: bool = True, check_versions: bool = True) -> pd.DataFrame:
+def sequence_capabilities(
+    include_optional: bool = True, check_versions: bool = True
+) -> pd.DataFrame:
     scalar_logical(include_optional, "include_optional")
     scalar_logical(check_versions, "check_versions")
     records = []
@@ -75,10 +88,15 @@ def sequence_capabilities(include_optional: bool = True, check_versions: bool = 
                 "reference_only": bool(reference_only),
                 "notes": "Available without the optional backend."
                 if role == "native"
-                else "Optional integration, reference validation, development QA, or documented handoff.",
+                else (
+                    "Optional integration, reference validation, development QA, or "
+                    "documented handoff."
+                ),
             }
         )
     result = pd.DataFrame(records)
     if not include_optional:
         result = result.loc[result["role"] == "native"].copy()
-    return result.sort_values(["family", "capability", "role"], kind="stable").reset_index(drop=True)
+    return result.sort_values(["family", "capability", "role"], kind="stable").reset_index(
+        drop=True
+    )

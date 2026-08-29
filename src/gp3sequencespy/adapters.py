@@ -1,10 +1,10 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Sequence
+from typing import Any
 
 import networkx as nx
-import numpy as np
 import pandas as pd
 
 from ._advanced import adv_data, scalar_logical
@@ -49,7 +49,9 @@ def _wide_sequence_data(
 ) -> tuple[pd.DataFrame, list[float], list[str], list[str]]:
     x = adv_data(data, sequence_id_col, order_col, state_col, missing_state_policy="error")
     positions = sorted(float(v) for v in pd.unique(x["data"][order_col]))
-    columns = [f"position_{int(p) if float(p).is_integer() else format(p, '.17g')}" for p in positions]
+    columns = [
+        f"position_{int(p) if float(p).is_integer() else format(p, '.17g')}" for p in positions
+    ]
     wide = pd.DataFrame(fill, index=x["sequence_ids"], columns=columns, dtype=object)
     position_index = {p: i for i, p in enumerate(positions)}
     for sid in x["sequence_ids"]:
@@ -87,7 +89,9 @@ def as_arules_sequences(
     sequence_lookup = {sid: i + 1 for i, sid in enumerate(x["sequence_ids"])}
     sequence_id = x["data"][sequence_id_col].astype(str).map(sequence_lookup).astype(int)
     event_id = x["data"].groupby(sequence_id_col, sort=False).cumcount() + 1
-    info = pd.DataFrame({"sequenceID": sequence_id.to_numpy(), "eventID": event_id.to_numpy(dtype=int)})
+    info = pd.DataFrame(
+        {"sequenceID": sequence_id.to_numpy(), "eventID": event_id.to_numpy(dtype=int)}
+    )
     return ArulesSequenceAdapter(itemsets, info, list(x["sequence_ids"]))
 
 
@@ -144,7 +148,14 @@ def as_igraph_transition_network(network: pd.DataFrame, directed: bool = True) -
     scalar_logical(directed, "directed")
     if not isinstance(network, pd.DataFrame):
         raise ValidationError("`network` must be created by `create_transition_network()`.")
-    required = {"from_state", "to_state", "weight", "count", "sequence_count", "sequence_prevalence"}
+    required = {
+        "from_state",
+        "to_state",
+        "weight",
+        "count",
+        "sequence_count",
+        "sequence_prevalence",
+    }
     if not required.issubset(network.columns):
         raise ValidationError("`network` must be created by `create_transition_network()`.")
     order = int(network.attrs.get("settings", {}).get("order", 1))
@@ -166,7 +177,9 @@ def as_igraph_transition_network(network: pd.DataFrame, directed: bool = True) -
     return graph
 
 
-def _infer_column(data: pd.DataFrame, explicit: str | None, candidates: list[str], role: str) -> str:
+def _infer_column(
+    data: pd.DataFrame, explicit: str | None, candidates: list[str], role: str
+) -> str:
     if explicit is not None:
         if explicit not in data.columns:
             raise ValidationError(f"Missing explicitly mapped {role} column `{explicit}`.")
@@ -176,7 +189,8 @@ def _infer_column(data: pd.DataFrame, explicit: str | None, candidates: list[str
         raise ValidationError(f"Could not infer the {role} column. Supply it explicitly.")
     if len(found) > 1:
         raise ValidationError(
-            f"Multiple candidate {role} columns were found: {', '.join(found)}. Supply the mapping explicitly."
+            f"Multiple candidate {role} columns were found: {', '.join(found)}. "
+            "Supply the mapping explicitly."
         )
     return found[0]
 
@@ -190,12 +204,18 @@ def prepare_gp3tools_sequences(
     metadata_cols: Sequence[str] | str | None = None,
     **kwargs: Any,
 ):
-    if not isinstance(data, pd.DataFrame) and hasattr(data, "data") and isinstance(data.data, pd.DataFrame):
+    if (
+        not isinstance(data, pd.DataFrame)
+        and hasattr(data, "data")
+        and isinstance(data.data, pd.DataFrame)
+    ):
         data = data.data
     elif isinstance(data, dict) and isinstance(data.get("data"), pd.DataFrame):
         data = data["data"]
     if not isinstance(data, pd.DataFrame):
-        raise ValidationError("A data frame or object with a data-frame `data` component is required.")
+        raise ValidationError(
+            "A data frame or object with a data-frame `data` component is required."
+        )
     sequence_id_col = _infer_column(
         data,
         sequence_id_col,
@@ -215,7 +235,9 @@ def prepare_gp3tools_sequences(
         "state",
     )
     if duration_col is None:
-        found = [c for c in ["duration", "fixation_duration", "event_duration"] if c in data.columns]
+        found = [
+            c for c in ["duration", "fixation_duration", "event_duration"] if c in data.columns
+        ]
         if len(found) > 1:
             raise ValidationError(
                 "Multiple candidate duration columns were found: "
