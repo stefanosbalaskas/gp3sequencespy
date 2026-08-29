@@ -1,8 +1,6 @@
 # Release checklist
 
-This checklist separates **release readiness** from **R numerical parity**. A
-green Python test suite is necessary but not sufficient for a stable parity
-claim.
+This checklist separates **release readiness** from **R numerical parity**. A green Python test suite is necessary but not sufficient for a stable parity claim.
 
 ## Always required
 
@@ -14,23 +12,24 @@ claim.
 - [ ] 130 / 130 frozen R test blocks remain mapped.
 - [ ] `mkdocs build --strict` passes.
 - [ ] Wheel and sdist build successfully.
-- [ ] `twine check dist/*` passes.
+- [ ] `twine check --strict dist/*` passes.
 - [ ] Fresh-wheel import succeeds in a clean environment.
 - [ ] `CHANGELOG.md`, `CITATION.cff`, README, and documentation reflect the candidate version.
 
 ## Required before stable 0.1.0
 
-- [ ] Locate and hash the authoritative `gp3sequences_0.3.0.tar.gz`.
-- [ ] Execute `parity/r_scripts/generate_reference_outputs.R` with that exact tarball.
-- [ ] Execute the Python deterministic oracle generator.
-- [ ] Compare deterministic oracle outputs with the committed canonicalizer/tolerance rules.
-- [ ] Investigate every deterministic mismatch.
-- [ ] Review every entry in `PARITY_EXCEPTIONS.md`; close it or retain it with explicit rationale.
-- [ ] Run exact built-artifact tests from the release candidate wheel/sdist.
+- [x] Identify the canonical frozen `gp3sequences 0.3.0` artifact/hash.
+- [x] Prove source equivalence of the locally rebuilt final 0.3.0 tarball.
+- [x] Execute `parity/r_scripts/generate_reference_outputs.R` under R 4.6.1 against the validated frozen 0.3.0 source.
+- [x] Execute the Python deterministic oracle generator.
+- [x] Compare the six deterministic core contracts.
+- [x] Investigate and repair deterministic hierarchical-clustering mismatches.
+- [x] Validate all eight hierarchical linkage families and deterministic PAM against the extended R oracle fixtures.
+- [ ] Review every remaining entry in `PARITY_EXCEPTIONS.md`; retain only deliberate translations with explicit rationale.
+- [ ] Decide whether the `mgcv` → statsmodels/Patsy time-model translation is acceptable for stable 0.1.0 or requires a closer backend.
+- [ ] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.
 - [ ] Freeze version `0.1.0`, release notes, and tag only after the above review.
 
 ## Publication
 
-The repository's `Release checks` workflow deliberately **does not publish to
-PyPI**. PyPI publishing should be enabled only after the trusted-publishing
-relationship and release governance are configured and reviewed.
+The repository's `Release checks` workflow deliberately **does not publish to PyPI**. PyPI publishing should be enabled only after the trusted-publishing relationship and release governance are configured and reviewed.

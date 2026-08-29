@@ -2,6 +2,26 @@
 
 The frozen behavioral reference is **gp3sequences 0.3.0**. Python functions retain the frozen R public names, but R-specific runtime objects cannot always be represented identically in Python.
 
+## Validated deterministic cross-language parity
+
+The deterministic oracle was executed on Windows with **R 4.6.1** against a locally rebuilt final `gp3sequences 0.3.0` tarball from release commit `4ebf0bebea2955c5f98f8ddf0fe03e81d0b7ac3a`.
+
+The local final tarball has archive SHA-256:
+
+```text
+4024a6657d4567e44615cdf87419654bd097822016c8b84bd929aa3db4dcd3a8
+```
+
+It was proven source-equivalent to the canonical frozen artifact after normalizing build-only `DESCRIPTION` fields and excluding generated build artifacts. The normalized 199-file source manifest has SHA-256:
+
+```text
+4dd1566e38cb20da1115fc466cc6db3b99f98413aa93876402f59221fc954e56
+```
+
+The core deterministic oracle matched all six canonical CSV contracts: state summaries, transition summaries, formatted paths, motif summaries, consensus sequences, and Levenshtein distances.
+
+The extended clustering oracle also validates R-compatible hierarchical partitions and medoids for `single`, `complete`, `average`, `mcquitty`, `median`, `centroid`, `ward.D`, and `ward.D2` across four tie-resistant fixtures and multiple `k` values, plus deterministic PAM behavior. Regression tests preserve the discovered R `hclust()` semantics.
+
 ## Explicit backend-object translations
 
 - `as_traminer_sequences()` returns a structured wide-sequence Python adapter rather than a TraMineR `stslist` S3 object.
@@ -11,18 +31,15 @@ The frozen behavioral reference is **gp3sequences 0.3.0**. Python functions reta
 
 These are deliberate semantic translations. Their data contracts are tested; object identity with the R backend is not claimed.
 
-## Numerical parity still requiring an executable R oracle
+## Remaining deliberate/non-exact numerical boundaries
 
-- Hierarchical clustering methods where SciPy and R `hclust()` implementation details may differ, especially `ward.D`, `ward.D2`, and `mcquitty`.
-- Randomised algorithms because NumPy and R use different random-number generators and streams.
-- Time-varying sequence models: the R reference uses `mgcv::gam()` with smooths and participant random effects; the current Python alpha uses a statsmodels binomial GLM with group-specific Patsy B-spline bases and optional participant fixed effects. This is a functional approximation, not numerical mgcv parity.
+- **Randomised algorithms:** NumPy and R use different random-number generators and streams. The parity target is deterministic behavior for a declared Python seed, global-RNG isolation, and equivalent statistical/algorithmic contracts—not bit-for-bit identity of cross-language random draws.
+- **Time-varying sequence models:** the frozen R reference uses `mgcv::gam()` with penalized group-specific smooths and an optional participant random-effect smooth. The current Python implementation uses a statsmodels binomial GLM with group-specific Patsy B-spline bases and optional participant fixed effects. This is a functional backend translation, not numerical `mgcv` parity.
 
-No stable release should claim exact cross-language numerical parity for these items until the R oracle suite is executable in CI or a validated parity environment.
+A stable release must not claim exact numerical `mgcv` parity unless that backend translation is replaced or separately validated as an intentionally different implementation.
 
 ## Frozen-test translation status
 
-All **130 / 130** frozen R `test_that()` blocks now have one dedicated Python translation test. The mapping is machine-readable in `reference/test_parity_matrix.json` and human-readable in `PARITY_TEST_MATRIX.md`. These tests validate behavioral contracts in Python; they do not convert the explicitly listed numerical or backend-object exceptions into exact parity claims.
+All **130 / 130** frozen R `test_that()` blocks have one dedicated Python translation test. The mapping is machine-readable in `reference/test_parity_matrix.json` and human-readable in `PARITY_TEST_MATRIX.md`.
 
-## Cross-language oracle harness
-
-The `parity/` harness pins the authoritative R 0.3.0 tarball SHA-256 and provides deterministic R/Python output generation plus canonical CSV comparison for state summaries, transition summaries, formatted paths, motif summaries, consensus sequences, and Levenshtein distances. The current development container has no R executable, so the R side of that harness has **not** been executed here. Exact oracle results must therefore be reported only after an R-enabled validation run.
+Behavioral-contract coverage, deterministic oracle coverage, and deliberate backend translations are reported separately so that one does not overstate the other.

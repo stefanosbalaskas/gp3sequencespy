@@ -1,0 +1,30 @@
+{
+  "reference_package": "gp3sequences",
+  "reference_version": "0.3.0",
+  "reference_commit": "4ebf0bebea2955c5f98f8ddf0fe03e81d0b7ac3a",
+  "canonical_tarball_sha256": "1d2ca1d72ebd375292fc9bdd0f41848b8224f9e1ae9d34acbd9469f103bf5b8d",
+  "validated_local_tarball_sha256": "4024a6657d4567e44615cdf87419654bd097822016c8b84bd929aa3db4dcd3a8",
+  "normalized_source_manifest_sha256": "4dd1566e38cb20da1115fc466cc6db3b99f98413aa93876402f59221fc954e56",
+  "normalized_source_file_count": 199,
+  "r_version": "4.6.1",
+  "core_deterministic_oracle": {
+    "status": "PASS",
+    "contracts": 6
+  },
+  "extended_clustering_oracle": {
+    "status": "PASS",
+    "hierarchical_linkages": [
+      "single",
+      "complete",
+      "average",
+      "mcquitty",
+      "median",
+      "centroid",
+      "ward.D",
+      "ward.D2"
+    ],
+    "pam": true,
+    "fixtures": 4
+  },
+  "remaining_non_exact_backend": "time-varying mgcv GAM translated to statsmodels GLM + Patsy splines"
+}

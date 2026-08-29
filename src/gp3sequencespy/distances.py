@@ -1,12 +1,13 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
+import math
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Any
 
 import numpy as np
 import pandas as pd
-from scipy.cluster.hierarchy import cut_tree
 from scipy.cluster.hierarchy import linkage as scipy_linkage
 from scipy.spatial.distance import squareform
 
@@ -205,8 +206,197 @@ def summarise_sequence_distance(distance: Any) -> dict[str, Any]:
     }
 
 
+def _cut_linkage_by_k(z: np.ndarray, n: int, k: int) -> np.ndarray:
+    """Cut a linkage tree by merge count, matching ``stats::cutree(k=...)`` semantics."""
+
+    clusters: dict[int, set[int]] = {i: {i} for i in range(n)}
+    active = set(range(n))
+    for step, row in enumerate(z[: n - k]):
+        left = int(row[0])
+        right = int(row[1])
+        new_id = n + step
+        clusters[new_id] = clusters[left] | clusters[right]
+        active.remove(left)
+        active.remove(right)
+        active.add(new_id)
+
+    labels = np.empty(n, dtype=int)
+    ordered = sorted(active, key=lambda cluster_id: min(clusters[cluster_id]))
+    for label, cluster_id in enumerate(ordered, start=1):
+        for index in clusters[cluster_id]:
+            labels[index] = label
+    return labels
+
+
+def _floor_log2_fraction(value: Fraction) -> int:
+    """Return floor(log2(value)) exactly for a positive rational."""
+
+    numerator = value.numerator
+    denominator = value.denominator
+    exponent = numerator.bit_length() - denominator.bit_length()
+    if exponent >= 0:
+        if numerator < (denominator << exponent):
+            exponent -= 1
+    elif (numerator << (-exponent)) < denominator:
+        exponent -= 1
+    return exponent
+
+
+def _round_fraction_binary(value: Fraction, precision: int) -> Fraction:
+    """Round a rational to a binary significand using ties-to-even."""
+
+    if value == 0:
+        return value
+
+    sign = -1 if value < 0 else 1
+    positive = -value if sign < 0 else value
+    exponent = _floor_log2_fraction(positive)
+    shift = precision - 1 - exponent
+
+    if shift >= 0:
+        numerator = positive.numerator << shift
+        denominator = positive.denominator
+    else:
+        numerator = positive.numerator
+        denominator = positive.denominator << (-shift)
+
+    quotient, remainder = divmod(numerator, denominator)
+    twice_remainder = 2 * remainder
+    if twice_remainder > denominator or (twice_remainder == denominator and quotient % 2 == 1):
+        quotient += 1
+
+    if shift >= 0:
+        rounded = Fraction(quotient, 1 << shift)
+    else:
+        rounded = Fraction(quotient << (-shift), 1)
+    return rounded if sign > 0 else -rounded
+
+
+def _r_rowsum_score(values: Iterable[float]) -> float:
+    """Emulate R's REAL ``rowSums()`` accumulation for finite values.
+
+    R 4.6 accumulates matrix rows sequentially in ``LDOUBLE`` and stores the
+    result back into a double.  On the validated Windows R build, ``LDOUBLE``
+    has a 64-bit binary significand.  Emulating the two rounding stages here
+    avoids platform-dependent NumPy ``longdouble`` behavior while preserving
+    the frozen R oracle's near-tie medoid choices.
+    """
+
+    accumulator = Fraction(0)
+    for value in values:
+        accumulator = _round_fraction_binary(
+            accumulator + Fraction.from_float(float(value)),
+            64,
+        )
+    return float(_round_fraction_binary(accumulator, 53))
+
+
+def _cluster_medoids(m: np.ndarray, ids: list[str], assignments: pd.Series) -> list[str]:
+    """Return within-cluster medoids with validated R ``rowSums()`` semantics."""
+
+    values = assignments.to_numpy()
+    medoids: list[str] = []
+    for cluster_id in sorted(assignments.unique()):
+        indices = np.flatnonzero(values == cluster_id)
+        scores = [_r_rowsum_score(float(m[i, j]) for j in indices) for i in indices]
+        best = indices[int(np.argmin(scores))]
+        medoids.append(ids[best])
+    return medoids
+
+
+def _r_lance_williams_members(
+    m: np.ndarray,
+    linkage: str,
+    members: Sequence[float],
+) -> np.ndarray:
+    """R-style Lance-Williams hierarchy when initial cluster sizes are supplied."""
+
+    n = len(members)
+    active = list(range(n))
+    weights = {i: float(members[i]) for i in range(n)}
+    leaf_counts = {i: 1 for i in range(n)}
+    distances = {(i, j): float(m[i, j]) for i in range(n - 1) for j in range(i + 1, n)}
+    if linkage == "ward.D2":
+        distances = {pair: value * value for pair, value in distances.items()}
+
+    def get_distance(left: int, right: int) -> float:
+        if left > right:
+            left, right = right, left
+        return distances[(left, right)]
+
+    z = np.zeros((n - 1, 4), dtype=float)
+    next_id = n
+    for step in range(n - 1):
+        best_pair: tuple[int, int] | None = None
+        best_distance = np.inf
+        for left_pos, left in enumerate(active[:-1]):
+            for right in active[left_pos + 1 :]:
+                value = get_distance(left, right)
+                if value < best_distance:
+                    best_distance = value
+                    best_pair = (left, right)
+        assert best_pair is not None
+        left, right = best_pair
+        left_weight = weights[left]
+        right_weight = weights[right]
+
+        height = math.sqrt(max(best_distance, 0.0)) if linkage == "ward.D2" else best_distance
+        z[step] = [
+            float(left),
+            float(right),
+            float(height),
+            float(leaf_counts[left] + leaf_counts[right]),
+        ]
+
+        for other in active:
+            if other in {left, right}:
+                continue
+            left_distance = get_distance(left, other)
+            right_distance = get_distance(right, other)
+            other_weight = weights[other]
+
+            if linkage == "single":
+                updated = min(left_distance, right_distance)
+            elif linkage == "complete":
+                updated = max(left_distance, right_distance)
+            elif linkage == "average":
+                updated = (left_weight * left_distance + right_weight * right_distance) / (
+                    left_weight + right_weight
+                )
+            elif linkage == "mcquitty":
+                updated = 0.5 * (left_distance + right_distance)
+            elif linkage == "median":
+                updated = 0.5 * left_distance + 0.5 * right_distance - 0.25 * best_distance
+            elif linkage == "centroid":
+                total = left_weight + right_weight
+                updated = (left_weight * left_distance + right_weight * right_distance) / total - (
+                    left_weight * right_weight / (total * total)
+                ) * best_distance
+            else:
+                total = left_weight + right_weight + other_weight
+                updated = (
+                    (left_weight + other_weight) * left_distance
+                    + (right_weight + other_weight) * right_distance
+                    - other_weight * best_distance
+                ) / total
+            key = (next_id, other) if next_id < other else (other, next_id)
+            distances[key] = float(updated)
+
+        active = [cluster_id for cluster_id in active if cluster_id not in {left, right}]
+        active.append(next_id)
+        weights[next_id] = left_weight + right_weight
+        leaf_counts[next_id] = leaf_counts[left] + leaf_counts[right]
+        next_id += 1
+
+    return z
+
+
 def _hierarchical(
-    m: np.ndarray, ids: list[str], k: int, linkage: str
+    m: np.ndarray,
+    ids: list[str],
+    k: int,
+    linkage: str,
+    members: Sequence[float] | None = None,
 ) -> tuple[pd.Series, Any, list[str]]:
     mapping = {
         "ward.D": "ward",
@@ -218,16 +408,34 @@ def _hierarchical(
         "centroid": "centroid",
         "mcquitty": "weighted",
     }
-    z = scipy_linkage(squareform(m, checks=False), method=mapping[linkage])
-    labels = cut_tree(z, n_clusters=[k]).reshape(-1) + 1
+
+    if members is not None:
+        raw_members = np.asarray(members, dtype=float)
+        if (
+            raw_members.ndim != 1
+            or len(raw_members) != len(ids)
+            or not np.isfinite(raw_members).all()
+            or (raw_members <= 0).any()
+        ):
+            raise ValidationError(
+                "`members` must contain one finite positive cluster size per sequence."
+            )
+        z = _r_lance_williams_members(m, linkage, raw_members)
+    else:
+        condensed = squareform(m, checks=False)
+        if linkage in {"ward.D", "median", "centroid"}:
+            scipy_input = np.sqrt(np.maximum(condensed, 0.0))
+        else:
+            scipy_input = condensed
+        z = scipy_linkage(scipy_input, method=mapping[linkage])
+        if linkage in {"ward.D", "median", "centroid"}:
+            z = z.copy()
+            z[:, 2] = np.square(z[:, 2])
+
+    labels = _cut_linkage_by_k(z, len(ids), k)
     assignments = pd.Series(labels, index=ids, dtype=int)
-    med = []
-    for c in sorted(assignments.unique()):
-        idx = np.flatnonzero(assignments.to_numpy() == c)
-        scores = m[np.ix_(idx, idx)].sum(axis=1)
-        best = idx[int(np.argmin(scores))]
-        med.append(ids[best])
-    return assignments, z, med
+    medoids = _cluster_medoids(m, ids, assignments)
+    return assignments, z, medoids
 
 
 def _pam(m: np.ndarray, ids: list[str], k: int) -> tuple[pd.Series, dict[str, Any], list[str]]:
@@ -370,7 +578,7 @@ def cluster_sequences(
                 + ", ".join(sorted(unexpected))
                 + "."
             )
-        a, model, med = _hierarchical(m, ids, int(k), linkage)
+        a, model, med = _hierarchical(m, ids, int(k), linkage, kwargs.get("members"))
     elif method == "pam":
         a, model, med = _pam(m, ids, int(k))
     else:

@@ -8,8 +8,8 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 
 - **81 / 81** frozen R public function counterparts are present and exported.
 - **130 / 130** frozen R `test_that()` blocks have dedicated Python translation tests recorded in `PARITY_TEST_MATRIX.md`.
-- The current Python suite contains **168 tests**, including documentation and release-contract tests.
-- GitHub Actions covers Linux, macOS, and Windows with Python 3.11–3.14, a dedicated Ruff/mypy/frozen-contract quality job, and a fresh-wheel smoke build.
+- The current Python suite contains **172 tests**, including documentation, release-contract, and R-hclust oracle-regression tests.
+- GitHub Actions covers Linux, macOS, and Windows with Python 3.11β€“3.14, a dedicated Ruff/mypy/frozen-contract quality job, and a fresh-wheel smoke build.
 - Fifteen Python-native articles port the full frozen R vignette set, with MkDocs documentation under `docs/`.
 - A cross-language oracle harness is available under `parity/`; exact R numerical comparison remains pending where documented in `PARITY_EXCEPTIONS.md`.
 
@@ -31,7 +31,7 @@ For a built wheel:
 pip install gp3sequencespy-0.1.0a1-py3-none-any.whl
 ```
 
-A stable PyPI release is intentionally deferred until the deterministic R ↔ Python
+A stable PyPI release is intentionally deferred until the deterministic R β†” Python
 oracle and the remaining documented parity exceptions have been reviewed.
 
 ## Reproducibility and release governance

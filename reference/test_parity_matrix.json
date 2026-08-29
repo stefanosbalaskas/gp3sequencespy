@@ -340,28 +340,28 @@
     "r_block_index": 4,
     "r_block": "hierarchical clustering and validation are auditable",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_hierarchical_cluster_validation_and_representatives",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
     "r_block_index": 5,
     "r_block": "PAM is guarded by the optional cluster package",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_pam_native_backend_available",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
     "r_block_index": 6,
     "r_block": "bootstrap stability is reproducible",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_bootstrap_cluster_stability_reproducible",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
     "r_block_index": 7,
     "r_block": "cluster ensembles use transparent co-association",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_cluster_ensemble_coassociation_contract",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
@@ -375,7 +375,7 @@
     "r_block_index": 9,
     "r_block": "CLARA is guarded and preserves sequence identifiers",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_clara_preserves_sequence_identifiers",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
@@ -403,14 +403,14 @@
     "r_block_index": 13,
     "r_block": "ensemble linkage and stability summaries are validated",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_ensemble_linkage_and_stability_validation",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
     "r_block_index": 14,
     "r_block": "optional CLARA clustering restores the caller RNG and is repeatable",
     "python_test": "tests/test_r_advanced_deterministic_contracts.py::test_r_clara_repeatable_and_global_rng_safe",
-    "status": "semantic_contract; R_clustering_oracle_pending"
+    "status": "semantic_contract; R_clustering_oracle_validated"
   },
   {
     "r_test_file": "test-sequence-distances-clustering.R",
