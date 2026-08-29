@@ -8,7 +8,7 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 
 - **81 / 81** frozen R public function counterparts are present and exported.
 - **130 / 130** frozen R `test_that()` blocks have dedicated Python translation tests recorded in `PARITY_TEST_MATRIX.md`.
-- The current Python suite contains **162 tests**, including four documentation-contract tests.
+- The current Python suite contains **168 tests**, including documentation and release-contract tests.
 - GitHub Actions covers Linux, macOS, and Windows with Python 3.11–3.14, a dedicated Ruff/mypy/frozen-contract quality job, and a fresh-wheel smoke build.
 - Fifteen Python-native articles port the full frozen R vignette set, with MkDocs documentation under `docs/`.
 - A cross-language oracle harness is available under `parity/`; exact R numerical comparison remains pending where documented in `PARITY_EXCEPTIONS.md`.
@@ -16,6 +16,32 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 Documentation: https://stefanosbalaskas.github.io/gp3sequencespy/
 
 This remains an **alpha** package. API-surface coverage and translated behavioral tests are not, by themselves, proof of exact R numerical parity. In particular, backend-object translations, random-number streams, selected clustering details, and the time-varying `mgcv` model require the explicit treatment documented in `PARITY_EXCEPTIONS.md`.
+
+## Installation
+
+The project is currently alpha software. For development installs from the repository:
+
+```bash
+uv sync --extra time
+```
+
+For a built wheel:
+
+```bash
+pip install gp3sequencespy-0.1.0a1-py3-none-any.whl
+```
+
+A stable PyPI release is intentionally deferred until the deterministic R ↔ Python
+oracle and the remaining documented parity exceptions have been reviewed.
+
+## Reproducibility and release governance
+
+- Frozen-reference details: `REPRODUCIBILITY.md`
+- Known parity boundaries: `PARITY_EXCEPTIONS.md`
+- Release gates: `RELEASE_CHECKLIST.md`
+- Changelog: `CHANGELOG.md`
+- Citation metadata: `CITATION.cff`
+- Contribution guidance: `CONTRIBUTING.md`
 
 ## Scientific interpretation guardrail
 

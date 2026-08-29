@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://stefanosbalaskas.github.io/gp3sequencespy/
+    about: Check the documentation and parity notes before filing an issue.

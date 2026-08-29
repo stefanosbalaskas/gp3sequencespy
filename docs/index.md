@@ -23,3 +23,7 @@ Outputs are structural or statistical. They do not independently establish atten
 ## Start here
 
 Read [Getting Started](articles/getting-started-with-gp3sequences.md), then use [Choosing a Sequence Analysis Method](articles/choosing-a-sequence-analysis-method.md) to select a workflow.
+
+## Release status
+
+See [Release readiness](release-readiness.md) for the current alpha freeze, packaging gates, and the explicit deterministic R-oracle requirement before stable `0.1.0`.

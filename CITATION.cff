@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: >-
+  If you use gp3sequencespy in research, please cite the software and record
+  the exact version used.
+title: gp3sequencespy
+type: software
+authors:
+  - family-names: Balaskas
+    given-names: Stefanos
+version: 0.1.0a1
+license: MIT
+repository-code: https://github.com/stefanosbalaskas/gp3sequencespy
+url: https://stefanosbalaskas.github.io/gp3sequencespy/
+keywords:
+  - sequence analysis
+  - scanpaths
+  - eye tracking
+  - categorical sequences
+  - reproducible research

@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a parity-preserving or Python-native extension
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Scientific or software problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Relationship to frozen R 0.3.0
+      options:
+        - Direct parity counterpart
+        - Parity clarification or bug fix
+        - Python-native extension after frozen parity
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Methodological references or examples

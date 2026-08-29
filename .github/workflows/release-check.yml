@@ -1,0 +1,54 @@
+name: Release checks
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+          enable-cache: true
+      - name: Sync release environment
+        run: uv sync --extra dev --extra time --extra docs --extra release
+      - name: Validate project metadata
+        run: uv run validate-pyproject pyproject.toml
+      - name: Static quality
+        run: |
+          uv run ruff check src tests parity
+          uv run ruff format --check src tests parity
+          uv run mypy src/gp3sequencespy
+      - name: Tests and frozen contracts
+        run: |
+          uv run pytest -q
+          uv run python -c "import json,pathlib,gp3sequencespy as g; n=[x['name'] for x in json.loads(pathlib.Path('reference/api_manifest.json').read_text())]; assert len(n)==81 and all(hasattr(g,x) and x in g.__all__ for x in n)"
+          uv run python -c "import json,pathlib; m=json.loads(pathlib.Path('reference/test_parity_matrix.json').read_text()); assert len(m)==130 and len({(r['r_test_file'],r['r_block_index']) for r in m})==130"
+      - name: Strict documentation build
+        run: uv run mkdocs build --strict
+      - name: Build distributions
+        run: uv build
+      - name: Validate distributions
+        run: uv run twine check --strict dist/*
+      - name: Verify wheel contents and metadata
+        run: >-
+          uv run python -c "import glob,zipfile; w=glob.glob('dist/*.whl'); assert len(w)==1; z=zipfile.ZipFile(w[0]); n=z.namelist(); assert any(x.endswith('.dist-info/licenses/LICENSE') for x in n); assert any(x=='gp3sequencespy/__init__.py' for x in n); print(w[0]); print('wheel files:',len(n))"
+      - name: Fresh wheel smoke test
+        shell: bash
+        run: |
+          python -m venv /tmp/gp3seq-release-wheel
+          /tmp/gp3seq-release-wheel/bin/pip install dist/*.whl
+          /tmp/gp3seq-release-wheel/bin/python -c "import gp3sequencespy as g; print(g.__version__); print(len(g.__all__))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gp3sequencespy-release-candidate
+          path: dist/*
+          if-no-files-found: error
