@@ -1,0 +1,41 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "src/**"
+      - "pyproject.toml"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "src/**"
+      - "pyproject.toml"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+          enable-cache: true
+      - name: Sync docs environment
+        run: uv sync --extra docs --extra dev --extra time
+      - name: Validate documentation contracts
+        run: uv run pytest -q tests/test_docs_contract.py
+      - name: Build documentation
+        run: uv run mkdocs build --strict
+      - name: Deploy gh-pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: uv run mkdocs gh-deploy --force

@@ -1,0 +1,64 @@
+site_name: gp3sequencespy
+site_description: Transparent, reproducible, and auditable ordered categorical sequence analysis in Python
+site_url: https://stefanosbalaskas.github.io/gp3sequencespy/
+repo_url: https://github.com/stefanosbalaskas/gp3sequencespy
+repo_name: stefanosbalaskas/gp3sequencespy
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.tooltips
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            show_signature_annotations: true
+            separate_signature: true
+            members_order: source
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Articles:
+      - Overview: articles/index.md
+      - "Choosing a Sequence-Analysis Method": articles/choosing-a-sequence-analysis-method.md
+      - "Consensus Sequences and Descriptive Group Comparisons": articles/consensus-and-group-comparisons.md
+      - "Contiguous Motif Workflow": articles/contiguous-motif-workflow.md
+      - "Sequence Distances, Clustering, and Stability": articles/distances-clustering-and-stability.md
+      - "Extended Sequence Visualisations": articles/extended-sequence-visualisations.md
+      - "Getting Started with gp3sequencespy": articles/getting-started-with-gp3sequences.md
+      - "Latent Sequence Models and Optional Adapters": articles/latent-models-and-optional-adapters.md
+      - "Longitudinal and Panel Sequence Workflows": articles/longitudinal-panel-sequences.md
+      - "Multichannel and Covariate-Dependent HMMs": articles/multichannel-and-covariate-hmms.md
+      - "Bounded Non-Contiguous Subsequence Mining": articles/noncontiguous-subsequence-mining.md
+      - "Reproducible Sequence Analysis: A Synthetic Case Study": articles/reproducible-sequence-analysis-case-study.md
+      - "Sequence Data Validation and Preparation": articles/sequence-data-validation-and-preparation.md
+      - "Design-Aware Sequence Group Inference": articles/sequence-inference-and-randomization.md
+      - "Time-Varying Condition Comparisons": articles/time-varying-condition-models.md
+      - "Transition Networks and Higher-Order Models": articles/transition-networks-and-higher-order-models.md
+  - Reference:
+      - Overview: reference/index.md
+      - Frozen public API: reference/api.md
+  - Parity: parity.md
