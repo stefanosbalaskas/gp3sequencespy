@@ -30,7 +30,7 @@ jobs:
       - name: Tests and frozen contracts
         run: |
           uv run pytest -q
-          uv run python -c "import json,pathlib,gp3sequencespy as g; assert g.__version__ == '0.1.0'; n=[x['name'] for x in json.loads(pathlib.Path('reference/api_manifest.json').read_text())]; assert len(n)==81 and all(hasattr(g,x) and x in g.__all__ for x in n)"
+          uv run python -c "import json,pathlib,tomllib,gp3sequencespy as g; v=tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version']; assert g.__version__ == v; n=[x['name'] for x in json.loads(pathlib.Path('reference/api_manifest.json').read_text())]; assert len(n)==81 and all(hasattr(g,x) and x in g.__all__ for x in n)"
           uv run python -c "import json,pathlib; m=json.loads(pathlib.Path('reference/test_parity_matrix.json').read_text()); assert len(m)==130 and len({(r['r_test_file'],r['r_block_index']) for r in m})==130"
       - name: Verify frozen signature matrix
         run: uv run python parity/signature_audit.py --check reference/signature_parity_matrix.json
@@ -49,7 +49,7 @@ jobs:
           python -m venv /tmp/gp3seq-release-wheel
           wheel="$(echo dist/*.whl)"
           /tmp/gp3seq-release-wheel/bin/pip install "${wheel}[time]"
-          /tmp/gp3seq-release-wheel/bin/python -c "import gp3sequencespy as g; assert g.__version__ == '0.1.0'; print(g.__version__); print(len(g.__all__))"
+          /tmp/gp3seq-release-wheel/bin/python -c "import importlib.metadata as m,gp3sequencespy as g; assert g.__version__ == m.version('gp3sequencespy'); print(g.__version__); print(len(g.__all__))"
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: gp3sequencespy-release-candidate

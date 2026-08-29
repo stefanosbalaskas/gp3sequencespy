@@ -7,11 +7,15 @@ type: software
 authors:
   - family-names: Balaskas
     given-names: Stefanos
-version: 0.1.0
+version: 0.1.1
 date-released: 2026-08-30
 license: MIT
 repository-code: https://github.com/stefanosbalaskas/gp3sequencespy
 url: https://stefanosbalaskas.github.io/gp3sequencespy/
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22166449
+    description: Zenodo archival DOI for gp3sequencespy
 keywords:
   - sequence analysis
   - scanpaths

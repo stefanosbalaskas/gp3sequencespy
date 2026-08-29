@@ -1,6 +1,6 @@
 # Release readiness
 
-`gp3sequencespy` **0.1.0** has completed its exact-artifact release cycle. The GitHub tag/release and production PyPI files correspond to the validated frozen release artifacts, and the deliberate parity boundaries remain explicitly documented.
+`gp3sequencespy` **0.1.1** is a metadata/release-infrastructure maintenance release over the completed 0.1.0 scientific freeze. The 81-function API, frozen R 0.3.0 contracts, and deliberate parity boundaries are unchanged.
 
 ## Current verified contracts
 
@@ -26,7 +26,8 @@ The repository's `Release checks` workflow remains validation-only: it validates
 metadata, static quality, tests, documentation, distributions, wheel contents,
 and a clean wheel install.
 
-For future stable releases, `.github/workflows/publish-pypi.yml` is prepared for
-PyPI Trusted Publishing. It verifies the exact distributions attached to the
-published GitHub Release, then gives OIDC `id-token: write` only to the dedicated
-publishing job. See `PYPI_PUBLISHING.md`.
+The registered `.github/workflows/publish-pypi.yml` Trusted Publisher verifies
+the exact distributions attached to the published GitHub Release, then gives
+OIDC `id-token: write` only to the dedicated publishing job. Version 0.1.1 is
+the first release intended to exercise this token-free path end-to-end. See
+`PYPI_PUBLISHING.md`.

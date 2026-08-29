@@ -101,6 +101,20 @@ The historical `reference/release_candidate_contract_0.1.0.json` is retained as
 the pre-tag/pre-PyPI RC record. Final publication state is recorded separately
 in `reference/release_publication_0.1.0.json`.
 
+## 0.1.1 metadata-only maintenance release
+
+Version 0.1.1 does not alter scientific implementations, frozen public
+signatures, deterministic oracle fixtures, or parity boundaries. It updates
+release metadata and publication infrastructure only. The Zenodo GitHub
+integration reports archival DOI `10.5281/zenodo.22166449`.
+
+The 0.1.1 release transaction must re-run the complete 182-test suite, frozen
+API/signature/block-ledger checks, strict documentation build, exact-artifact
+validation, GitHub CI/Docs, manual Release checks, and tag-triggered Release
+checks before the GitHub Release is published. PyPI publication is then
+performed from those exact GitHub Release artifacts through OIDC Trusted
+Publishing.
+
 ## Reproducing Python validation
 
 ```bash

@@ -121,7 +121,7 @@ from .visualisations import (
     plot_transition_network,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "GP3SequencesError",

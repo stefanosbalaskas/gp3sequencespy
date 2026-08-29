@@ -30,6 +30,8 @@
   "trusted_publishing": {
     "workflow_added": true,
     "github_environment": "pypi",
-    "pypi_publisher_registration_required": true
+    "pypi_publisher_registration_required": false,
+    "pypi_publisher_registered": true,
+    "pypi_publisher_registration_date": "2026-08-30"
   }
 }

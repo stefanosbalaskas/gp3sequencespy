@@ -45,11 +45,21 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
   the frozen GitHub Release artifacts.
 - [x] Preserve the GitHub `v0.1.0` tag and assets unchanged after PyPI publication.
 
+### 0.1.1 metadata maintenance release
+
+- [x] Preserve the frozen 81-function scientific API and R 0.3.0 parity contracts.
+- [x] Correct stale PyPI-facing release-candidate wording.
+- [x] Record the Zenodo archival DOI in citation/project metadata.
+- [x] Keep the original `v0.1.0` tag and PyPI 0.1.0 artifacts immutable.
+- [x] Configure GitHub `pypi` environment and PyPI Trusted Publisher.
+- [ ] Publish `v0.1.1` only after exact source, artifact, CI, Docs, and Release-check gates pass.
+- [ ] Confirm the first Trusted Publishing/OIDC upload succeeds with exact GitHub Release artifacts.
+
 ### Future releases
 
 - [x] Add a dedicated `.github/workflows/publish-pypi.yml` Trusted Publishing workflow.
 - [x] Use a dedicated GitHub environment named `pypi`.
-- [ ] Register the GitHub Actions Trusted Publisher in the PyPI project settings.
+- [x] Register the GitHub Actions Trusted Publisher in the PyPI project settings.
 - [ ] For the next release, confirm PyPI reports Trusted Publishing/provenance for
   the published files.
 - [ ] Revoke a manually created API token if it was dedicated solely to

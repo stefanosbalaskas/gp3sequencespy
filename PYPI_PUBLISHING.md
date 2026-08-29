@@ -21,19 +21,18 @@ from the exact wheel and source distribution already frozen in the GitHub
 PyPI's JSON API was queried after upload and both published hashes matched
 the frozen GitHub release artifacts exactly.
 
-## Trusted Publishing for future releases
+## Trusted Publishing
 
-Future releases are designed to use PyPI Trusted Publishing through
-`.github/workflows/publish-pypi.yml`.
+The PyPI project has an active GitHub Actions Trusted Publisher for
+`.github/workflows/publish-pypi.yml` using the `pypi` environment.
 
 The workflow deliberately publishes **existing GitHub Release assets** rather
 than rebuilding the package. This preserves the release model used for 0.1.0:
 validate and freeze exact artifacts first, then publish those same artifacts.
 
-### Required PyPI configuration
+### Active PyPI configuration
 
-In the PyPI project settings for `gp3sequencespy`, add a GitHub Actions
-Trusted Publisher with:
+The registered GitHub Actions Trusted Publisher uses:
 
 - **Owner:** `stefanosbalaskas`
 - **Repository:** `gp3sequencespy`
@@ -64,5 +63,6 @@ No long-lived PyPI token is stored in the repository or workflow.
 
 The 0.1.0 first publication used a manually supplied PyPI API token because
 the project did not yet exist on PyPI when release automation was prepared.
-After the Trusted Publisher is registered and confirmed for a future release,
-a token created solely for `gp3sequencespy` can be revoked from PyPI.
+The Trusted Publisher was registered on 2026-08-30. After 0.1.1 confirms the
+OIDC path end-to-end, any API token created solely for `gp3sequencespy` can
+be revoked from PyPI.

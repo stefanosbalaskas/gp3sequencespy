@@ -31,22 +31,32 @@ def test_release_governance_files_exist():
     assert (ROOT / "reference" / "release_publication_0.1.0.json").is_file()
 
 
-def test_distribution_metadata_is_publication_ready_for_0_1_0():
+def test_distribution_metadata_is_publication_ready_for_current_release():
     project = _project()
-    assert project["version"] == g.__version__ == "0.1.0"
+    assert project["version"] == g.__version__ == "0.1.1"
     assert project["license"] == "MIT"
     assert project["license-files"] == ["LICENSE"]
     assert "Development Status :: 4 - Beta" in project["classifiers"]
     assert "Programming Language :: Python :: 3.14" in project["classifiers"]
-    assert set(project["urls"]) >= {"Homepage", "Documentation", "Source", "Issues", "Changelog"}
+    expected_urls = {
+        "Homepage",
+        "Documentation",
+        "Source",
+        "Issues",
+        "Changelog",
+        "Archive",
+    }
+    assert set(project["urls"]) >= expected_urls
+    assert project["urls"]["Archive"] == "https://doi.org/10.5281/zenodo.22166449"
     assert set(project["optional-dependencies"]) >= {"dev", "docs", "time", "release"}
 
 
 def test_citation_and_changelog_match_package_version():
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert "version: 0.1.0" in citation
-    assert "## [0.1.0] - 2026-08-30" in changelog
+    assert "version: 0.1.1" in citation
+    assert "10.5281/zenodo.22166449" in citation
+    assert "## [0.1.1] - 2026-08-30" in changelog
 
 
 def test_reproducibility_document_freezes_authoritative_r_reference():
@@ -65,6 +75,13 @@ def test_stable_release_gate_records_completed_r_oracle_review():
     assert "- [x] Review every remaining entry in `PARITY_EXCEPTIONS.md`" in checklist
     assert "- [x] Create tag `v0.1.0`" in checklist
     assert "- [x] Publish the exact frozen `0.1.0` wheel and sdist to production PyPI." in checklist
+    trusted_publisher_gate = " ".join(
+        [
+            "- [x] Register the GitHub Actions Trusted Publisher in the PyPI",
+            "project settings.",
+        ]
+    )
+    assert trusted_publisher_gate in checklist
 
 
 def test_release_check_workflow_validates_but_does_not_publish():
@@ -100,3 +117,5 @@ def test_release_check_workflow_validates_but_does_not_publish():
     assert record["sdist"]["sha256"] == (
         "e01ff3ac4ec0cbede48b1019e4bcabddd38b9587df3fe541ce66aff585bf7e19"
     )
+    assert record["trusted_publishing"]["pypi_publisher_registered"] is True
+    assert record["trusted_publishing"]["pypi_publisher_registration_required"] is False

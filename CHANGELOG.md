@@ -5,18 +5,36 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 ## [Unreleased]
 
+No changes yet.
+
+## [0.1.1] - 2026-08-30
+
 ### Added
 
-- PyPI Trusted Publishing workflow for future stable GitHub Releases, using a
-  dedicated `pypi` environment and job-scoped OIDC permissions.
+- Registered PyPI Trusted Publishing workflow for stable GitHub Releases, using
+  the dedicated `pypi` environment and job-scoped OIDC permissions.
 - `PYPI_PUBLISHING.md` and a machine-readable 0.1.0 publication record.
+- Zenodo archival DOI `10.5281/zenodo.22166449` in citation and project metadata.
 
 ### Changed
 
-- Upgraded GitHub Actions used by CI, documentation, and release validation to
-  current Node 24-compatible action majors after the 0.1.0 release.
+- Corrected the PyPI-facing README so the current release is no longer described
+  as an unpublished release candidate.
+- Upgraded and exactly pinned GitHub Actions used by CI, documentation, release
+  validation, and trusted publication.
+- Made `release-check.yml` derive the package version from `pyproject.toml`
+  instead of hard-coding `0.1.0`.
 - Updated release documentation to record the completed GitHub and PyPI 0.1.0
-  publication rather than the former release-candidate state.
+  publication and active Trusted Publisher configuration.
+
+### Scientific/API status
+
+- No scientific algorithms, public function signatures, plotting semantics, or
+  frozen R 0.3.0 parity contracts changed.
+- Frozen API remains **81 / 81**.
+- Frozen R test-block ledger remains **130 / 130**.
+- Frozen public signatures remain **81 / 81** with **0 unexplained drift**.
+- The Python validation suite remains **182 tests**.
 
 ## [0.1.0] - 2026-08-30
 
