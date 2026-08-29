@@ -17,6 +17,22 @@ def _axis(ax=None):
     return ax if ax is not None else plt.subplots()[1]
 
 
+_R_PALETTE_ALIASES = {
+    "Viridis": "viridis",
+    "Dark 3": "tab10",
+}
+
+
+def _palette_cmap(palette: str):
+    if not isinstance(palette, str) or not palette.strip():
+        raise ValidationError("`palette` must be one non-blank palette name.")
+    resolved = _R_PALETTE_ALIASES.get(palette, palette)
+    try:
+        return plt.get_cmap(resolved)
+    except ValueError as exc:
+        raise ValidationError(f"Unknown plotting palette: {palette!r}.") from exc
+
+
 def plot_consensus_sequence(
     consensus: pd.DataFrame,
     type: str = "agreement",
@@ -24,6 +40,7 @@ def plot_consensus_sequence(
     main: str | None = None,
     xlab: str = "Sequence position",
     ylab: str | None = None,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -100,6 +117,7 @@ def plot_sequence_group_comparison(
     main: str | None = None,
     xlab: str | None = None,
     ylab: str | None = None,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -173,8 +191,9 @@ def plot_sequence_index(
     state_col: str = "state",
     sort_by: str = "input",
     state_levels: Sequence[str] | None = None,
-    palette: str = "viridis",
+    palette: str = "Dark 3",
     show_sequence_labels: bool = True,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -202,7 +221,9 @@ def plot_sequence_index(
         matrix[i, : len(seq)] = [levels.index(s) + 1 for s in seq]
     table = pd.DataFrame(matrix, index=ids, columns=range(1, maxlen + 1))
     ax = _axis(ax)
-    ax.imshow(matrix, aspect="auto", interpolation="nearest", **kwargs)
+    image_kwargs = dict(kwargs)
+    image_kwargs.setdefault("cmap", _palette_cmap(palette))
+    ax.imshow(matrix, aspect="auto", interpolation="nearest", **image_kwargs)
     ax.set_xlabel("Sequence position")
     ax.set_ylabel("Sequence")
     if show_sequence_labels:
@@ -221,7 +242,8 @@ def plot_sequence_state_distribution(
     state_col: str = "state",
     proportion: bool = True,
     state_levels: Sequence[str] | None = None,
-    palette: str = "viridis",
+    palette: str = "Dark 3",
+    *,
     ax=None,
     **kwargs,
 ):
@@ -236,8 +258,11 @@ def plot_sequence_state_distribution(
         if proportion and table.loc[p].sum() > 0:
             table.loc[p] /= table.loc[p].sum()
     ax = _axis(ax)
-    for state in levels:
-        ax.plot(positions, table[state], label=state, **kwargs)
+    palette_colors = _palette_cmap(palette)(np.linspace(0.05, 0.95, max(len(levels), 1)))
+    for index, state in enumerate(levels):
+        line_kwargs = dict(kwargs)
+        line_kwargs.setdefault("color", palette_colors[index])
+        ax.plot(positions, table[state], label=state, **line_kwargs)
     ax.set_xlabel("Sequence position")
     ax.set_ylabel("State proportion" if proportion else "State count")
     ax.legend()
@@ -252,6 +277,7 @@ def plot_sequence_entropy(
     state_col: str = "state",
     base: float = 2,
     normalise: bool = True,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -284,8 +310,9 @@ def plot_sequence_entropy(
 def plot_sequence_distance_heatmap(
     distance: Any,
     order_by: Any = None,
-    palette: str = "viridis",
+    palette: str = "Viridis",
     show_labels: bool = True,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -310,7 +337,9 @@ def plot_sequence_distance_heatmap(
         arr = arr[np.ix_(idx, idx)]
     table = pd.DataFrame(arr, index=ids, columns=ids)
     ax = _axis(ax)
-    ax.imshow(arr, aspect="equal", interpolation="nearest", **kwargs)
+    image_kwargs = dict(kwargs)
+    image_kwargs.setdefault("cmap", _palette_cmap(palette))
+    ax.imshow(arr, aspect="equal", interpolation="nearest", **image_kwargs)
     ax.set_xlabel("Sequence")
     ax.set_ylabel("Sequence")
     if show_labels:
@@ -329,6 +358,7 @@ def plot_transition_network(
     minimum_weight: float = 0,
     vertex_cex: float = 1,
     edge_scale: float = 5,
+    *,
     ax=None,
     **kwargs,
 ):
@@ -375,7 +405,7 @@ def plot_transition_network(
     return ax
 
 
-def plot_sequence_cluster_silhouette(clustering: Any, distance: Any = None, ax=None, **kwargs):
+def plot_sequence_cluster_silhouette(clustering: Any, distance: Any = None, *, ax=None, **kwargs):
     validation = validate_sequence_clusters(clustering, distance)
     current = validation["per_sequence"].copy()
     current = current.sort_values(

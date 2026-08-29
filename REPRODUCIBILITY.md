@@ -43,6 +43,29 @@ All six canonicalized CSV contracts matched.
 
 An extended clustering oracle subsequently compared R and Python cluster co-membership and medoids across four shared distance fixtures, `k = 2..4` where defined, all eight frozen hierarchical linkages, and deterministic PAM. The resulting R-hclust regression behavior is covered by `tests/test_r_hclust_oracle_regressions.py`.
 
+## Frozen signature parity
+
+All **81 / 81** frozen R public formals were audited against the current Python
+call signatures. The executable audit is `parity/signature_audit.py`, its
+machine-readable freeze is `reference/signature_parity_matrix.json`, and the
+human-readable report is `SIGNATURE_PARITY.md`.
+
+The audit reports **0 unexplained signature drifts**. R-specific language
+constructs such as `NULL`, `NA`, `c(...)`, and `...` are translated explicitly.
+Matplotlib plot helpers retain a Python-native **keyword-only** `ax=` extension
+without changing the frozen positional argument contract. Frozen defaults that
+had drifted (`scale`, `Viridis`, and `Dark 3`) were restored.
+
+Classification counts:
+
+```text
+structural_signature_match = 37
+semantic_signature_translation = 29
+python_keyword_only_extension = 0
+semantic_translation_with_python_extension = 15
+unexplained_signature_drift = 0
+```
+
 ## Reproducing Python validation
 
 ```bash

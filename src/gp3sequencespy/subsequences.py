@@ -322,6 +322,7 @@ def plot_sequence_subsequences(
     metric: str = "sequence_prevalence",
     top_n: int = 10,
     decreasing: bool = True,
+    *,
     ax=None,
     **kwargs,
 ) -> pd.DataFrame:

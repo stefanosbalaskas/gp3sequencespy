@@ -1,0 +1,3564 @@
+{
+  "reference_package": "gp3sequences",
+  "reference_version": "0.3.0",
+  "python_package": "gp3sequencespy",
+  "functions": 81,
+  "counts": {
+    "structural_signature_match": 37,
+    "semantic_signature_translation": 29,
+    "semantic_translation_with_python_extension": 15
+  },
+  "unexplained_drift": [],
+  "rows": [
+    {
+      "name": "as_arules_sequences",
+      "r_signature": "data,\n                                sequence_id_col = \"sequence_id\",\n                                order_col = \"sequence_order\",\n                                state_col = \"state\"",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state') -> 'ArulesSequenceAdapter'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        }
+      ]
+    },
+    {
+      "name": "as_grpstring_data",
+      "r_signature": "data,\n                              sequence_id_col = \"sequence_id\",\n                              order_col = \"sequence_order\",\n                              state_col = \"state\",\n                              alphabet = NULL",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', alphabet: 'Sequence[str] | None' = None) -> 'GrpStringInput'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "alphabet",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "as_igraph_transition_network",
+      "r_signature": "network, directed = TRUE",
+      "python_signature": "(network: 'pd.DataFrame', directed: 'bool' = True) -> 'nx.Graph'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "network",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "directed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "as_seqhmm_sequences",
+      "r_signature": "data,\n                                sequence_id_col = \"sequence_id\",\n                                order_col = \"sequence_order\",\n                                state_col = \"state\", ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', **kwargs: 'Any') -> 'WideSequenceAdapter'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "as_traminer_sequences",
+      "r_signature": "data,\n                                  sequence_id_col = \"sequence_id\",\n                                  order_col = \"sequence_order\",\n                                  state_col = \"state\",\n                                  missing = NA,\n                                  right = \"DEL\", ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', missing: 'Any' = None, right: 'str' = 'DEL', **_: 'Any') -> 'WideSequenceAdapter'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "missing: R NA -> Python None",
+        "R ... -> Python **_"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "missing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "right",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "DEL"
+        },
+        {
+          "name": "_",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "audit_sequence_analysis",
+      "r_signature": "x,\n  strict = FALSE,\n  tolerance = 1e-8",
+      "python_signature": "(x: 'Any', strict: 'bool' = False, tolerance: 'float' = 1e-08) -> 'SequenceAnalysisAudit'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "strict",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-08
+        }
+      ]
+    },
+    {
+      "name": "audit_sequence_data",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "bootstrap_sequence_clusters",
+      "r_signature": "distance, k,\n                                        method = c(\"hierarchical\", \"pam\", \"clara\"),\n                                        n_boot = 100L, sample_fraction = 0.8,\n                                        seed = 1L, linkage = \"average\", ...",
+      "python_signature": "(distance: 'Any', k: 'int', method: 'str' = 'hierarchical', n_boot: 'int' = 100, sample_fraction: 'float' = 0.8, seed: 'int' = 1, linkage: 'str' = 'average', **kwargs: 'Any') -> 'SequenceClusterBootstrap'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'hierarchical'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "k",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "hierarchical"
+        },
+        {
+          "name": "n_boot",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100
+        },
+        {
+          "name": "sample_fraction",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.8
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "linkage",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "average"
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "bootstrap_sequence_group_difference",
+      "r_signature": "inference,\n  n_boot = 999L,\n  level = 0.95,\n  seed = 1L",
+      "python_signature": "(inference: 'SequenceGroupInference', n_boot: 'int' = 999, level: 'float' = 0.95, seed: 'int' = 1) -> 'SequenceGroupInference'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "inference",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_boot",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 999
+        },
+        {
+          "name": "level",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.95
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "bootstrap_transition_network",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  n_boot = 100L,\n  level = 0.95,\n  seed = 1L,\n  include_self = TRUE",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', n_boot: 'int' = 100, level: 'float' = 0.95, seed: 'int' = 1, include_self: 'bool' = True) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "n_boot",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100
+        },
+        {
+          "name": "level",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.95
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "include_self",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "cluster_sequences",
+      "r_signature": "distance, k,\n                              method = c(\"hierarchical\", \"pam\", \"clara\"),\n                              linkage = \"average\", seed = 1L, ...",
+      "python_signature": "(distance: 'Any', k: 'int', method: 'str' = 'hierarchical', linkage: 'str' = 'average', seed: 'int' = 1, **kwargs: 'Any') -> 'SequenceClustering'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'hierarchical'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "k",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "hierarchical"
+        },
+        {
+          "name": "linkage",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "average"
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "compare_sequence_analysis_results",
+      "r_signature": "x,\n  y,\n  tolerance = 1e-8,\n  compare_values = FALSE",
+      "python_signature": "(x: 'Any', y: 'Any', tolerance: 'float' = 1e-08, compare_values: 'bool' = False) -> 'SequenceAnalysisComparison'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "y",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-08
+        },
+        {
+          "name": "compare_values",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "compare_sequence_groups",
+      "r_signature": "data,\n  group_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  reference = NULL,\n  metrics = c(\"state\", \"transition\", \"length\"),\n  include_self = TRUE,\n  transition_separator = \" -> \",\n  zero_policy = c(\"missing\", \"infinite\")",
+      "python_signature": "(data: 'Any', group_col: 'str', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', reference: 'Any' = None, metrics: 'Sequence[str]' = ('state', 'transition', 'length'), include_self: 'bool' = True, transition_separator: 'str' = ' -> ', zero_policy: 'str' = 'missing') -> 'GroupComparisonResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "metrics: R vector default -> Python tuple",
+        "zero_policy: R match.arg choices -> first Python default 'missing'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "group_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "reference",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metrics",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": [
+            "state",
+            "transition",
+            "length"
+          ]
+        },
+        {
+          "name": "include_self",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "transition_separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " -> "
+        },
+        {
+          "name": "zero_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "missing"
+        }
+      ]
+    },
+    {
+      "name": "compare_sequence_hmms",
+      "r_signature": "...",
+      "python_signature": "(*models: 'SequenceHMM | SequenceHMMMixture', **named_models: 'SequenceHMM | SequenceHMMMixture') -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "R ... -> Python *models + **named_models"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "models",
+          "kind": "VAR_POSITIONAL",
+          "default": "<required>"
+        },
+        {
+          "name": "named_models",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "compare_sequence_panel_changes",
+      "r_signature": "panel,\n  method = c(\"levenshtein\", \"lcs\", \"optimal_matching\", \"transition\"),\n  normalise = c(\"none\", \"max_length\", \"path_length\"),\n  indel_cost = 1,\n  substitution_cost = 1,\n  substitution_matrix = NULL,\n  transition_smoothing = 0",
+      "python_signature": "(panel: 'SequencePanel', method: 'str' = 'levenshtein', normalise: 'str' = 'none', indel_cost: 'float' = 1, substitution_cost: 'float' = 1, substitution_matrix: 'Any' = None, transition_smoothing: 'float' = 0) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'levenshtein'",
+        "normalise: R match.arg choices -> first Python default 'none'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "panel",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "levenshtein"
+        },
+        {
+          "name": "normalise",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "none"
+        },
+        {
+          "name": "indel_cost",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "substitution_cost",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "substitution_matrix",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "transition_smoothing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "compare_sequence_subsequences",
+      "r_signature": "occurrences,\n  group_col,\n  test = c(\"auto\", \"chisq\", \"fisher\"),\n  p_adjust = \"BH\",\n  min_sequence_count = 1L",
+      "python_signature": "(occurrences: 'pd.DataFrame', group_col: 'str', test: 'str' = 'auto', p_adjust: 'str' = 'BH', min_sequence_count: 'int' = 1) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "test: R match.arg choices -> first Python default 'auto'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "occurrences",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "group_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "test",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "auto"
+        },
+        {
+          "name": "p_adjust",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "BH"
+        },
+        {
+          "name": "min_sequence_count",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "compute_sequence_distance",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  method = c(\"levenshtein\", \"lcs\", \"optimal_matching\", \"transition\"),\n  indel_cost = 1,\n  substitution_cost = 1,\n  substitution_matrix = NULL,\n  transition_smoothing = 0,\n  normalise = c(\"none\", \"max_length\", \"path_length\")",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', method: 'str' = 'levenshtein', indel_cost: 'float' = 1, substitution_cost: 'float' = 1, substitution_matrix: 'Any' = None, transition_smoothing: 'float' = 0, normalise: 'str' = 'none') -> 'SequenceDistanceResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'levenshtein'",
+        "normalise: R match.arg choices -> first Python default 'none'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "levenshtein"
+        },
+        {
+          "name": "indel_cost",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "substitution_cost",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "substitution_matrix",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "transition_smoothing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        },
+        {
+          "name": "normalise",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "none"
+        }
+      ]
+    },
+    {
+      "name": "create_consensus_sequence",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  group_cols = NULL,\n  weight_col = NULL,\n  missing_state_policy = c(\"exclude\", \"state\", \"error\"),\n  missing_state_label = \"<MISSING>\",\n  tie_method = c(\"first\", \"last\", \"missing\", \"all\"),\n  state_levels = NULL,\n  min_support = 1L",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', group_cols: 'Sequence[str] | str | None' = None, weight_col: 'str | None' = None, missing_state_policy: 'str' = 'exclude', missing_state_label: 'str' = '<MISSING>', tie_method: 'str' = 'first', state_levels: 'Sequence[Any] | None' = None, min_support: 'int' = 1) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "missing_state_policy: R match.arg choices -> first Python default 'exclude'",
+        "tie_method: R match.arg choices -> first Python default 'first'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "group_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "weight_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "missing_state_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "exclude"
+        },
+        {
+          "name": "missing_state_label",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<MISSING>"
+        },
+        {
+          "name": "tie_method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "first"
+        },
+        {
+          "name": "state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "min_support",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "create_sequence_cluster_ensemble",
+      "r_signature": "..., k, linkage = \"average\"",
+      "python_signature": "(*solutions: 'Any', k: 'int', linkage: 'str' = 'average') -> 'SequenceClusterEnsemble'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "R ... -> Python *solutions"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "solutions",
+          "kind": "VAR_POSITIONAL",
+          "default": "<required>"
+        },
+        {
+          "name": "k",
+          "kind": "KEYWORD_ONLY",
+          "default": "<required>"
+        },
+        {
+          "name": "linkage",
+          "kind": "KEYWORD_ONLY",
+          "default": "average"
+        }
+      ]
+    },
+    {
+      "name": "create_transition_network",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  group_cols = NULL,\n  order = 1L,\n  include_self = TRUE,\n  normalise = c(\"count\", \"from\", \"global\"),\n  smoothing = 0,\n  context_separator = \" > \"",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', group_cols: 'Sequence[str] | str | None' = None, order: 'int' = 1, include_self: 'bool' = True, normalise: 'str' = 'count', smoothing: 'float' = 0, context_separator: 'str' = ' > ') -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "normalise: R match.arg choices -> first Python default 'count'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "group_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "order",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "include_self",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "normalise",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "count"
+        },
+        {
+          "name": "smoothing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        },
+        {
+          "name": "context_separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        }
+      ]
+    },
+    {
+      "name": "declare_sequence_comparison_design",
+      "r_signature": "group_col,\n  unit_col,\n  design = c(\"observational\", \"randomized\", \"paired_randomized\"),\n  pair_col = NULL,\n  cluster_col = NULL",
+      "python_signature": "(group_col: 'str', unit_col: 'str', design: 'str' = 'observational', pair_col: 'str | None' = None, cluster_col: 'str | None' = None) -> 'SequenceComparisonDesign'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "design: R match.arg choices -> first Python default 'observational'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "group_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "unit_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "design",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "observational"
+        },
+        {
+          "name": "pair_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "cluster_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "decode_covariate_sequence_states",
+      "r_signature": "model,\n  data = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  method = c(\"viterbi\", \"posterior\")",
+      "python_signature": "(model: 'CovariateSequenceHMM', data: 'Any' = None, sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', method: 'str' = 'viterbi') -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'viterbi'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "viterbi"
+        }
+      ]
+    },
+    {
+      "name": "decode_multichannel_sequence_states",
+      "r_signature": "model,\n  data = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  channel_cols = NULL,\n  method = c(\"viterbi\", \"posterior\")",
+      "python_signature": "(model: 'MultichannelSequenceHMM', data: 'Any' = None, sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', channel_cols: 'Sequence[str] | None' = None, method: 'str' = 'viterbi') -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'viterbi'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "channel_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "viterbi"
+        }
+      ]
+    },
+    {
+      "name": "decode_sequence_states",
+      "r_signature": "model, data = NULL,\n                                   sequence_id_col = \"sequence_id\",\n                                   order_col = \"sequence_order\",\n                                   state_col = \"state\",\n                                   method = c(\"viterbi\", \"posterior\"),\n                                   component = NULL",
+      "python_signature": "(model: 'SequenceHMM | SequenceHMMMixture', data: 'Any' = None, sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', method: 'str' = 'viterbi', component: 'int | None' = None) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'viterbi'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "viterbi"
+        },
+        {
+          "name": "component",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "detect_transition_communities",
+      "r_signature": "network,\n                                          method = c(\"label_propagation\", \"components\"),\n                                          max_iter = 100L, seed = 1L",
+      "python_signature": "(network: 'pd.DataFrame', method: 'str' = 'label_propagation', max_iter: 'int' = 100, seed: 'int' = 1) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "method: R match.arg choices -> first Python default 'label_propagation'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "network",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "label_propagation"
+        },
+        {
+          "name": "max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "encode_sequence_data",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    state_levels = NULL,\n    prefix = \"S\",\n    width = NULL",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None, state_levels: 'Sequence[Any] | None' = None, prefix: 'str' = 'S', width: 'int | None' = None) -> 'EncodingResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "prefix",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "S"
+        },
+        {
+          "name": "width",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "extract_representative_sequences",
+      "r_signature": "clustering, distance = NULL,\n                                             n_per_cluster = 1L",
+      "python_signature": "(clustering: 'Any', distance: 'Any' = None, n_per_cluster: 'int' = 1) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "clustering",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "n_per_cluster",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "extract_sequence_ngrams",
+      "r_signature": "data,\n  sequence_id_col,\n  order_col,\n  state_col,\n  duration_col = NULL,\n  metadata_cols = NULL,\n  expected_states = NULL,\n  min_length = 2L,\n  max_length = 3L,\n  overlap = c(\"allow\", \"disallow\"),\n  separator = \" > \",\n  state_levels = NULL",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None, min_length: 'int' = 2, max_length: 'int' = 3, overlap: 'str' = 'allow', separator: 'str' = ' > ', state_levels: 'Sequence[Any] | None' = None) -> 'MotifExtractionResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "overlap: R match.arg choices -> first Python default 'allow'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "min_length",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 2
+        },
+        {
+          "name": "max_length",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 3
+        },
+        {
+          "name": "overlap",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "allow"
+        },
+        {
+          "name": "separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        },
+        {
+          "name": "state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "extract_sequence_subsequences",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  metadata_cols = NULL,\n  min_length = 2L,\n  max_length = 5L,\n  max_gap = Inf,\n  max_span = Inf,\n  repeated_state_policy = c(\"preserve\", \"collapse\"),\n  separator = \" > \",\n  max_combinations_per_sequence = 100000L",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', metadata_cols: 'Sequence[str] | str | None' = None, min_length: 'int' = 2, max_length: 'int' = 5, max_gap: 'float' = inf, max_span: 'float' = inf, repeated_state_policy: 'str' = 'preserve', separator: 'str' = ' > ', max_combinations_per_sequence: 'int' = 100000) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "repeated_state_policy: R match.arg choices -> first Python default 'preserve'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "min_length",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 2
+        },
+        {
+          "name": "max_length",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 5
+        },
+        {
+          "name": "max_gap",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Inf"
+        },
+        {
+          "name": "max_span",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Inf"
+        },
+        {
+          "name": "repeated_state_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "preserve"
+        },
+        {
+          "name": "separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        },
+        {
+          "name": "max_combinations_per_sequence",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100000
+        }
+      ]
+    },
+    {
+      "name": "filter_sequence_motifs",
+      "r_signature": "x,\n  min_occurrences = 1L,\n  min_sequences = 1L,\n  min_prevalence = 0,\n  motif_lengths = NULL,\n  top_n = NULL,\n  rank_by = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\"\n  ),\n  ties = c(\"include\", \"first\")",
+      "python_signature": "(x: 'Any', min_occurrences: 'int' = 1, min_sequences: 'int' = 1, min_prevalence: 'float' = 0, motif_lengths: 'Sequence[int] | None' = None, top_n: 'int | None' = None, rank_by: 'str' = 'sequence_prevalence', ties: 'str' = 'include') -> 'MotifFilterResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "rank_by: R match.arg choices -> first Python default 'sequence_prevalence'",
+        "ties: R match.arg choices -> first Python default 'include'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "min_occurrences",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "min_sequences",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "min_prevalence",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        },
+        {
+          "name": "motif_lengths",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "rank_by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_prevalence"
+        },
+        {
+          "name": "ties",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "include"
+        }
+      ]
+    },
+    {
+      "name": "filter_sequence_subsequences",
+      "r_signature": "summary,\n  min_sequences = 1L,\n  min_prevalence = 0,\n  max_mean_gap = Inf,\n  top_n = NULL,\n  ties = c(\"include\", \"exclude\")",
+      "python_signature": "(summary: 'pd.DataFrame', min_sequences: 'int' = 1, min_prevalence: 'float' = 0, max_mean_gap: 'float' = inf, top_n: 'int | None' = None, ties: 'str' = 'include') -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "ties: R match.arg choices -> first Python default 'include'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "summary",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "min_sequences",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "min_prevalence",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        },
+        {
+          "name": "max_mean_gap",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Inf"
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ties",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "include"
+        }
+      ]
+    },
+    {
+      "name": "fit_covariate_sequence_hmm",
+      "r_signature": "data,\n  n_states,\n  initial_covariate_cols = NULL,\n  transition_covariate_cols = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  emission_probs = NULL,\n  max_iter = 100L,\n  inner_maxit = 100L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  ridge = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE",
+      "python_signature": "(data: 'Any', n_states: 'int', initial_covariate_cols: 'Sequence[str] | None' = None, transition_covariate_cols: 'Sequence[str] | None' = None, sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', symbol_levels: 'Sequence[str] | None' = None, state_names: 'Sequence[str] | None' = None, emission_probs=None, max_iter: 'int' = 100, inner_maxit: 'int' = 100, tolerance: 'float' = 1e-06, pseudocount: 'float' = 1e-06, ridge: 'float' = 1e-06, seed: 'int' = 1, keep_posteriors: 'bool' = False) -> 'CovariateSequenceHMM'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "initial_covariate_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "transition_covariate_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "symbol_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "state_names",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "emission_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100
+        },
+        {
+          "name": "inner_maxit",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 100
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "pseudocount",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "ridge",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "keep_posteriors",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "fit_higher_order_transition_model",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  order = 2L,\n  smoothing = 0.5,\n  backoff = TRUE,\n  context_separator = \" > \"",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', order: 'int' = 2, smoothing: 'float' = 0.5, backoff: 'bool' = True, context_separator: 'str' = ' > ') -> 'HigherOrderTransitionModel'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "order",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 2
+        },
+        {
+          "name": "smoothing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.5
+        },
+        {
+          "name": "backoff",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "context_separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        }
+      ]
+    },
+    {
+      "name": "fit_multichannel_sequence_hmm",
+      "r_signature": "data,\n  n_states,\n  channel_cols,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  initial_probs = NULL,\n  transition_probs = NULL,\n  emission_probs = NULL,\n  max_iter = 200L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE",
+      "python_signature": "(data: 'Any', n_states: 'int', channel_cols: 'Sequence[str]', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', symbol_levels=None, state_names: 'Sequence[str] | None' = None, initial_probs=None, transition_probs=None, emission_probs=None, max_iter: 'int' = 200, tolerance: 'float' = 1e-06, pseudocount: 'float' = 1e-06, seed: 'int' = 1, keep_posteriors: 'bool' = False) -> 'MultichannelSequenceHMM'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "channel_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "symbol_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "state_names",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "initial_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "transition_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "emission_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 200
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "pseudocount",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "keep_posteriors",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "fit_sequence_hmm",
+      "r_signature": "data,\n  n_states,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  state_names = NULL,\n  initial_probs = NULL,\n  transition_probs = NULL,\n  emission_probs = NULL,\n  max_iter = 200L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L,\n  keep_posteriors = FALSE",
+      "python_signature": "(data: 'Any', n_states: 'int', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', symbol_levels: 'Sequence[str] | None' = None, state_names: 'Sequence[str] | None' = None, initial_probs=None, transition_probs=None, emission_probs=None, max_iter: 'int' = 200, tolerance: 'float' = 1e-06, pseudocount: 'float' = 1e-06, seed: 'int' = 1, keep_posteriors: 'bool' = False) -> 'SequenceHMM'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "symbol_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "state_names",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "initial_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "transition_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "emission_probs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 200
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "pseudocount",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "keep_posteriors",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "fit_sequence_hmm_mixture",
+      "r_signature": "data,\n  n_components,\n  n_states,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  symbol_levels = NULL,\n  max_iter = 200L,\n  inner_initial_iter = 20L,\n  tolerance = 1e-6,\n  pseudocount = 1e-6,\n  seed = 1L",
+      "python_signature": "(data: 'Any', n_components: 'int', n_states: 'int | Sequence[int]', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', symbol_levels: 'Sequence[str] | None' = None, max_iter: 'int' = 200, inner_initial_iter: 'int' = 20, tolerance: 'float' = 1e-06, pseudocount: 'float' = 1e-06, seed: 'int' = 1) -> 'SequenceHMMMixture'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_components",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "n_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "symbol_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 200
+        },
+        {
+          "name": "inner_initial_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 20
+        },
+        {
+          "name": "tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "pseudocount",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-06
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "fit_time_varying_sequence_model",
+      "r_signature": "data,\n  group_col,\n  participant_id_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  time_col = NULL,\n  outcome = c(\"state\", \"transition\"),\n  target_state = NULL,\n  from_state = NULL,\n  to_state = NULL,\n  k = 5L,\n  method = \"REML\",\n  include_random_effect = TRUE",
+      "python_signature": "(data: 'Any', group_col: 'str', participant_id_col: 'str', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', time_col: 'str | None' = None, outcome: 'str' = 'state', target_state: 'str | None' = None, from_state: 'str | None' = None, to_state: 'str | None' = None, k: 'int' = 5, method: 'str' = 'REML', include_random_effect: 'bool' = True) -> 'TimeVaryingSequenceModel'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "outcome: R match.arg choices -> first Python default 'state'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "group_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "participant_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "time_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "outcome",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "target_state",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "from_state",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "to_state",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "k",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 5
+        },
+        {
+          "name": "method",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "REML"
+        },
+        {
+          "name": "include_random_effect",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "format_consensus_sequence",
+      "r_signature": "consensus, separator = \" -> \",\n                                      include_order = FALSE,\n                                      include_agreement = FALSE,\n                                      digits = 3L",
+      "python_signature": "(consensus: 'pd.DataFrame', separator: 'str' = ' -> ', include_order: 'bool' = False, include_agreement: 'bool' = False, digits: 'int' = 3) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "consensus",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " -> "
+        },
+        {
+          "name": "include_order",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        },
+        {
+          "name": "include_agreement",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        },
+        {
+          "name": "digits",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 3
+        }
+      ]
+    },
+    {
+      "name": "format_sequence_motif_positions",
+      "r_signature": "x,\n  digits = 3L,\n  position_units = c(\"proportion\", \"percent\"),\n  include_rank = TRUE",
+      "python_signature": "(x: 'MotifPositionResult', digits: 'int' = 3, position_units: 'str' = 'proportion', include_rank: 'bool' = True) -> 'dict[str, Any]'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "position_units: R match.arg choices -> first Python default 'proportion'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "digits",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 3
+        },
+        {
+          "name": "position_units",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "proportion"
+        },
+        {
+          "name": "include_rank",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "format_sequence_motifs",
+      "r_signature": "x,\n  digits = 3L,\n  prevalence = c(\"proportion\", \"percent\"),\n  include_rank = TRUE,\n  rank_by = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\"\n  ),\n  ties = c(\"min\", \"first\"),\n  include_ids = TRUE",
+      "python_signature": "(x: 'Any', digits: 'int' = 3, prevalence: 'str' = 'proportion', include_rank: 'bool' = True, rank_by: 'str' = 'sequence_prevalence', ties: 'str' = 'min', include_ids: 'bool' = True) -> 'FormattedTableResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "prevalence: R match.arg choices -> first Python default 'proportion'",
+        "rank_by: R match.arg choices -> first Python default 'sequence_prevalence'",
+        "ties: R match.arg choices -> first Python default 'min'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "digits",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 3
+        },
+        {
+          "name": "prevalence",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "proportion"
+        },
+        {
+          "name": "include_rank",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "rank_by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_prevalence"
+        },
+        {
+          "name": "ties",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "min"
+        },
+        {
+          "name": "include_ids",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "format_sequence_paths",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    separator = \" > \",\n    collapse_repeats = FALSE",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None, separator: 'str' = ' > ', collapse_repeats: 'bool' = False) -> 'PathFormatResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        },
+        {
+          "name": "collapse_repeats",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "plot_consensus_sequence",
+      "r_signature": "consensus, type = c(\"agreement\", \"states\"),\n                                    group = NULL, main = NULL,\n                                    xlab = \"Sequence position\", ylab = NULL, ...",
+      "python_signature": "(consensus: 'pd.DataFrame', type: 'str' = 'agreement', group: 'Any' = None, main: 'str | None' = None, xlab: 'str' = 'Sequence position', ylab: 'str | None' = None, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "type: R match.arg choices -> first Python default 'agreement'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "consensus",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "type",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "agreement"
+        },
+        {
+          "name": "group",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "main",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "xlab",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Sequence position"
+        },
+        {
+          "name": "ylab",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_multichannel_sequence_hmm",
+      "r_signature": "model, channel = model$channel_names[1L], ...",
+      "python_signature": "(model: 'MultichannelSequenceHMM', channel: 'str | None' = None, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "channel: R model-derived default deferred to Python function body",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "channel",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_cluster_silhouette",
+      "r_signature": "clustering, distance = NULL, ...",
+      "python_signature": "(clustering: 'Any', distance: 'Any' = None, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "clustering",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_distance_heatmap",
+      "r_signature": "distance,\n  order_by = NULL,\n  palette = \"Viridis\",\n  show_labels = TRUE,\n  ...",
+      "python_signature": "(distance: 'Any', order_by: 'Any' = None, palette: 'str' = 'Viridis', show_labels: 'bool' = True, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "palette",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Viridis"
+        },
+        {
+          "name": "show_labels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_entropy",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  base = 2,\n  normalise = TRUE,\n  ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', base: 'float' = 2, normalise: 'bool' = True, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "base",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 2
+        },
+        {
+          "name": "normalise",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_group_comparison",
+      "r_signature": "comparison,\n                                           component = c(\"state\", \"transition\", \"length\"),\n                                           measure = NULL, top_n = 12L,\n                                           main = NULL, xlab = NULL, ylab = NULL, ...",
+      "python_signature": "(comparison: 'GroupComparisonResult', component: 'str' = 'state', measure: 'str | None' = None, top_n: 'int' = 12, main: 'str | None' = None, xlab: 'str | None' = None, ylab: 'str | None' = None, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "component: R match.arg choices -> first Python default 'state'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "comparison",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "component",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "measure",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 12
+        },
+        {
+          "name": "main",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "xlab",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ylab",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_group_inference",
+      "r_signature": "inference,\n  type = c(\"permutation\", \"group_means\"),\n  ...",
+      "python_signature": "(inference: 'SequenceGroupInference', type: 'str' = 'permutation', *, ax=None, **kwargs) -> 'SequenceGroupInference'",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "type: R match.arg choices -> first Python default 'permutation'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "inference",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "type",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "permutation"
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_index",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  sort_by = c(\"input\", \"length\", \"path\"),\n  state_levels = NULL,\n  palette = \"Dark 3\",\n  show_sequence_labels = TRUE,\n  ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', sort_by: 'str' = 'input', state_levels: 'Sequence[str] | None' = None, palette: 'str' = 'Dark 3', show_sequence_labels: 'bool' = True, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "sort_by: R match.arg choices -> first Python default 'input'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "sort_by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "input"
+        },
+        {
+          "name": "state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "palette",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Dark 3"
+        },
+        {
+          "name": "show_sequence_labels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_motif_positions",
+      "r_signature": "x,\n  motifs = NULL,\n  position = c(\"start\", \"centre\", \"end\"),\n  scale = c(\"absolute\", \"relative\"),\n  top_n = 10L,\n  display = c(\"strip\", \"distribution\")",
+      "python_signature": "(x, motifs: 'Sequence[str] | str | None' = None, position: 'str' = 'start', scale: 'str' = 'absolute', top_n: 'int' = 10, display: 'str' = 'strip', *, ax=None)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "position: R match.arg choices -> first Python default 'start'",
+        "scale: R match.arg choices -> first Python default 'absolute'",
+        "display: R match.arg choices -> first Python default 'strip'"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "motifs",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "position",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "start"
+        },
+        {
+          "name": "scale",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "absolute"
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 10
+        },
+        {
+          "name": "display",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "strip"
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_motifs",
+      "r_signature": "x,\n  metric = c(\n    \"sequence_prevalence\",\n    \"n_occurrences\",\n    \"n_sequences\",\n    \"occurrence_share\"\n  ),\n  top_n = 20L,\n  motif_lengths = NULL,\n  ties = c(\"include\", \"first\"),\n  horizontal = TRUE",
+      "python_signature": "(x, metric: 'str' = 'sequence_prevalence', top_n: 'int' = 20, motif_lengths: 'Sequence[int] | None' = None, ties: 'str' = 'include', horizontal: 'bool' = True, *, ax=None)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "metric: R match.arg choices -> first Python default 'sequence_prevalence'",
+        "ties: R match.arg choices -> first Python default 'include'"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metric",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_prevalence"
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 20
+        },
+        {
+          "name": "motif_lengths",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "ties",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "include"
+        },
+        {
+          "name": "horizontal",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_panel_changes",
+      "r_signature": "changes,\n  metric = c(\"distance\", \"length_change\", \"transition_change\"),\n  type = c(\"individual\", \"summary\"),\n  ...",
+      "python_signature": "(changes: 'pd.DataFrame', metric: 'str' = 'distance', type: 'str' = 'individual', *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "metric: R match.arg choices -> first Python default 'distance'",
+        "type: R match.arg choices -> first Python default 'individual'",
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "changes",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metric",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "distance"
+        },
+        {
+          "name": "type",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "individual"
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_state_distribution",
+      "r_signature": "data,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  proportion = TRUE,\n  state_levels = NULL,\n  palette = \"Dark 3\",\n  ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', proportion: 'bool' = True, state_levels: 'Sequence[str] | None' = None, palette: 'str' = 'Dark 3', *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "proportion",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "palette",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "Dark 3"
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_sequence_subsequences",
+      "r_signature": "x,\n  metric = \"sequence_prevalence\",\n  top_n = 10L,\n  decreasing = TRUE,\n  ...",
+      "python_signature": "(x: 'pd.DataFrame', metric: 'str' = 'sequence_prevalence', top_n: 'int' = 10, decreasing: 'bool' = True, *, ax=None, **kwargs) -> 'pd.DataFrame'",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metric",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_prevalence"
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 10
+        },
+        {
+          "name": "decreasing",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_time_varying_sequence_model",
+      "r_signature": "model,\n  time = NULL,\n  level = 0.95,\n  show_interval = TRUE,\n  ...",
+      "python_signature": "(model: 'TimeVaryingSequenceModel', time: 'Sequence[float] | None' = None, level: 'float' = 0.95, show_interval: 'bool' = True, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "time",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "level",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.95
+        },
+        {
+          "name": "show_interval",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "plot_transition_network",
+      "r_signature": "network,\n  weight_col = \"weight\",\n  minimum_weight = 0,\n  vertex_cex = 1,\n  edge_scale = 5,\n  ...",
+      "python_signature": "(network: 'pd.DataFrame', weight_col: 'str' = 'weight', minimum_weight: 'float' = 0, vertex_cex: 'float' = 1, edge_scale: 'float' = 5, *, ax=None, **kwargs)",
+      "classification": "semantic_translation_with_python_extension",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [
+        "keyword-only ax= Matplotlib target; Python plotting extension"
+      ],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "network",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "weight_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "weight"
+        },
+        {
+          "name": "minimum_weight",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0
+        },
+        {
+          "name": "vertex_cex",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        },
+        {
+          "name": "edge_scale",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 5
+        },
+        {
+          "name": "ax",
+          "kind": "KEYWORD_ONLY",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "predict_covariate_transition_probabilities",
+      "r_signature": "model, newdata",
+      "python_signature": "(model: 'CovariateSequenceHMM', newdata: 'pd.DataFrame') -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "newdata",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "predict_next_state",
+      "r_signature": "model, history, top_n = NULL",
+      "python_signature": "(model: 'HigherOrderTransitionModel', history: 'Sequence[str] | str', top_n: 'int | None' = None) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "history",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "top_n",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "predict_time_varying_sequence_model",
+      "r_signature": "model,\n  time = NULL,\n  groups = NULL,\n  level = 0.95",
+      "python_signature": "(model: 'TimeVaryingSequenceModel', time: 'Sequence[float] | None' = None, groups: 'Sequence[str] | None' = None, level: 'float' = 0.95) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "time",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "groups",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "level",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.95
+        }
+      ]
+    },
+    {
+      "name": "prepare_gp3tools_sequences",
+      "r_signature": "data,\n                                       sequence_id_col = NULL,\n                                       order_col = NULL,\n                                       state_col = NULL,\n                                       duration_col = NULL,\n                                       metadata_cols = NULL, ...",
+      "python_signature": "(data: 'Any', sequence_id_col: 'str | None' = None, order_col: 'str | None' = None, state_col: 'str | None' = None, duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | str | None' = None, **kwargs: 'Any')",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "R ... -> Python **kwargs"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "kwargs",
+          "kind": "VAR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "prepare_sequence_data",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    missing_state_policy = c(\"error\", \"drop\"),\n    duplicate_position_policy = c(\"error\", \"first\", \"last\"),\n    repeated_state_policy = c(\"preserve\", \"collapse\"),\n    zero_duration_policy = c(\"preserve\", \"drop\", \"error\"),\n    unknown_state_policy = c(\"preserve\", \"drop\", \"error\"),\n    unused_state_levels = c(\"preserve\", \"drop\")",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None, missing_state_policy: 'str' = 'error', duplicate_position_policy: 'str' = 'error', repeated_state_policy: 'str' = 'preserve', zero_duration_policy: 'str' = 'preserve', unknown_state_policy: 'str' = 'preserve', unused_state_levels: 'str' = 'preserve') -> 'PrepareResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "missing_state_policy: R match.arg choices -> first Python default 'error'",
+        "duplicate_position_policy: R match.arg choices -> first Python default 'error'",
+        "repeated_state_policy: R match.arg choices -> first Python default 'preserve'",
+        "zero_duration_policy: R match.arg choices -> first Python default 'preserve'",
+        "unknown_state_policy: R match.arg choices -> first Python default 'preserve'",
+        "unused_state_levels: R match.arg choices -> first Python default 'preserve'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "missing_state_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "error"
+        },
+        {
+          "name": "duplicate_position_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "error"
+        },
+        {
+          "name": "repeated_state_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "preserve"
+        },
+        {
+          "name": "zero_duration_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "preserve"
+        },
+        {
+          "name": "unknown_state_policy",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "preserve"
+        },
+        {
+          "name": "unused_state_levels",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "preserve"
+        }
+      ]
+    },
+    {
+      "name": "prepare_sequence_panel",
+      "r_signature": "data,\n  panel_id_col,\n  occasion_col,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  metadata_cols = NULL,\n  require_unique_occasions = TRUE",
+      "python_signature": "(data: 'Any', panel_id_col: 'str', occasion_col: 'str', sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', metadata_cols: 'Sequence[str] | str | None' = None, require_unique_occasions: 'bool' = True) -> 'SequencePanel'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "panel_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "occasion_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "require_unique_occasions",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "sequence_capabilities",
+      "r_signature": "include_optional = TRUE,\n  check_versions = TRUE",
+      "python_signature": "(include_optional: 'bool' = True, check_versions: 'bool' = True) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "include_optional",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "check_versions",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "summarise_consensus_agreement",
+      "r_signature": "consensus,\n                                          by = c(\"overall\", \"group\", \"position\"),\n                                          threshold = 0.5",
+      "python_signature": "(consensus: 'pd.DataFrame', by: 'str' = 'overall', threshold: 'float' = 0.5) -> 'pd.DataFrame'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "by: R match.arg choices -> first Python default 'overall'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "consensus",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "overall"
+        },
+        {
+          "name": "threshold",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.5
+        }
+      ]
+    },
+    {
+      "name": "summarise_covariate_sequence_hmm",
+      "r_signature": "model",
+      "python_signature": "(model: 'CovariateSequenceHMM') -> 'dict[str, pd.DataFrame]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_multichannel_sequence_hmm",
+      "r_signature": "model",
+      "python_signature": "(model: 'MultichannelSequenceHMM') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_cluster_stability",
+      "r_signature": "bootstrap, threshold = 0.8",
+      "python_signature": "(bootstrap: 'SequenceClusterBootstrap', threshold: 'float' = 0.8) -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "bootstrap",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "threshold",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.8
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_distance",
+      "r_signature": "distance",
+      "python_signature": "(distance: 'Any') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_group_inference",
+      "r_signature": "inference",
+      "python_signature": "(inference: 'SequenceGroupInference') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "inference",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_hmm",
+      "r_signature": "model",
+      "python_signature": "(model: 'SequenceHMM | SequenceHMMMixture') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_motif_positions",
+      "r_signature": "x,\n  position = c(\"start\", \"centre\", \"end\"),\n  scale = c(\"absolute\", \"relative\"),\n  by = NULL",
+      "python_signature": "(x: 'MotifExtractionResult', position: 'str' = 'start', scale: 'str' = 'absolute', by: 'Sequence[str] | str | None' = None) -> 'MotifPositionResult'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "position: R match.arg choices -> first Python default 'start'",
+        "scale: R match.arg choices -> first Python default 'absolute'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "position",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "start"
+        },
+        {
+          "name": "scale",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "absolute"
+        },
+        {
+          "name": "by",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_motifs",
+      "r_signature": "x",
+      "python_signature": "(x: 'MotifExtractionResult') -> 'MotifSummaryResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "x",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_panel",
+      "r_signature": "panel",
+      "python_signature": "(panel: 'SequencePanel') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "panel",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_states",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None) -> 'StateSummaryResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_subsequences",
+      "r_signature": "occurrences",
+      "python_signature": "(occurrences: 'pd.DataFrame') -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "occurrences",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_sequence_transitions",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    metadata_cols = NULL,\n    expected_states = NULL,\n    include_self = TRUE",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None, include_self: 'bool' = True) -> 'TransitionSummaryResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "include_self",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "summarise_time_varying_sequence_model",
+      "r_signature": "model",
+      "python_signature": "(model: 'TimeVaryingSequenceModel') -> 'dict[str, Any]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "model",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        }
+      ]
+    },
+    {
+      "name": "summarise_transition_centrality",
+      "r_signature": "network, directed = TRUE,\n                                            pagerank_damping = 0.85,\n                                            pagerank_tolerance = 1e-10,\n                                            pagerank_max_iter = 1000L",
+      "python_signature": "(network: 'pd.DataFrame', directed: 'bool' = True, pagerank_damping: 'float' = 0.85, pagerank_tolerance: 'float' = 1e-10, pagerank_max_iter: 'int' = 1000) -> 'pd.DataFrame'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "network",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "directed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": true
+        },
+        {
+          "name": "pagerank_damping",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 0.85
+        },
+        {
+          "name": "pagerank_tolerance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1e-10
+        },
+        {
+          "name": "pagerank_max_iter",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1000
+        }
+      ]
+    },
+    {
+      "name": "test_sequence_group_difference",
+      "r_signature": "data,\n  design,\n  metric = c(\"sequence_length\", \"transition_count\", \"state_prevalence\",\n             \"subsequence_presence\"),\n  target_state = NULL,\n  target_subsequence = NULL,\n  sequence_id_col = \"sequence_id\",\n  order_col = \"sequence_order\",\n  state_col = \"state\",\n  separator = \" > \",\n  n_permutations = 999L,\n  alternative = c(\"two.sided\", \"greater\", \"less\"),\n  seed = 1L",
+      "python_signature": "(data: 'Any', design: 'SequenceComparisonDesign', metric: 'str' = 'sequence_length', target_state: 'str | None' = None, target_subsequence: 'str | None' = None, sequence_id_col: 'str' = 'sequence_id', order_col: 'str' = 'sequence_order', state_col: 'str' = 'state', separator: 'str' = ' > ', n_permutations: 'int' = 999, alternative: 'str' = 'two.sided', seed: 'int' = 1) -> 'SequenceGroupInference'",
+      "classification": "semantic_signature_translation",
+      "translations": [
+        "metric: R match.arg choices -> first Python default 'sequence_length'",
+        "alternative: R match.arg choices -> first Python default 'two.sided'"
+      ],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "design",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "metric",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_length"
+        },
+        {
+          "name": "target_state",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "target_subsequence",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_id"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "sequence_order"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "state"
+        },
+        {
+          "name": "separator",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": " > "
+        },
+        {
+          "name": "n_permutations",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 999
+        },
+        {
+          "name": "alternative",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "two.sided"
+        },
+        {
+          "name": "seed",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "validate_sequence_clusters",
+      "r_signature": "clustering, distance = NULL",
+      "python_signature": "(clustering: 'Any', distance: 'Any' = None) -> 'dict[str, pd.DataFrame]'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "clustering",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "distance",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_sequence_data",
+      "r_signature": "data,\n    sequence_id_col,\n    order_col,\n    state_col,\n    duration_col = NULL,\n    metadata_cols = NULL,\n    expected_states = NULL",
+      "python_signature": "(data: 'pd.DataFrame', sequence_id_col: 'str', order_col: 'str', state_col: 'str', duration_col: 'str | None' = None, metadata_cols: 'Sequence[str] | None' = None, expected_states: 'Sequence[Any] | None' = None) -> 'ValidationResult'",
+      "classification": "structural_signature_match",
+      "translations": [],
+      "extensions": [],
+      "issues": [],
+      "python_parameters": [
+        {
+          "name": "data",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "sequence_id_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "order_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "state_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": "<required>"
+        },
+        {
+          "name": "duration_col",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "metadata_cols",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        },
+        {
+          "name": "expected_states",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null
+        }
+      ]
+    }
+  ]
+}

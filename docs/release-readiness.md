@@ -8,6 +8,7 @@ parity claim is now gated on the final exception review and exact built-artifact
 
 - 81 / 81 frozen R 0.3.0 public API counterparts.
 - 130 / 130 frozen R test blocks mapped to dedicated Python translations.
+- 81 / 81 frozen R public signatures audited with zero unexplained drift.
 - 15 / 15 frozen R vignette counterparts.
 - Ruff, mypy, multi-platform tests, strict documentation builds, and fresh-wheel
   smoke tests in CI.

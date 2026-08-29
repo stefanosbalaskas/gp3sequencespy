@@ -14,6 +14,7 @@ R package `gp3sequences` 0.3.0.
 
 ### Validation
 
+- Audited all 81 frozen R public signatures, repaired plotting-default drift, and froze the executable signature matrix with zero unexplained differences.
 - Added six focused mssm time-backend regression tests.
 - Validated 12 / 12 small-k state/transition × random-effect scenarios against frozen R `mgcv::gam()` outputs.
 - Validated transition extrapolation against frozen R (`0.1906916` vs `0.19068331` in the benchmark fixture).

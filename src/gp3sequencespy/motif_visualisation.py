@@ -338,6 +338,7 @@ def plot_sequence_motifs(
     motif_lengths: Sequence[int] | None = None,
     ties: str = "include",
     horizontal: bool = True,
+    *,
     ax=None,
 ):
     if not isinstance(horizontal, bool):
@@ -490,9 +491,10 @@ def plot_sequence_motif_positions(
     x,
     motifs: Sequence[str] | str | None = None,
     position: str = "start",
-    scale: str = "relative",
+    scale: str = "absolute",
     top_n: int = 10,
     display: str = "strip",
+    *,
     ax=None,
 ):
     if position not in {"start", "centre", "end"}:

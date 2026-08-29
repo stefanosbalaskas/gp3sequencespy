@@ -55,5 +55,17 @@
       true
     ],
     "validated_default_method": "REML"
+  },
+  "signature_parity_audit": {
+    "status": "PASS",
+    "functions": 81,
+    "unexplained_drift": 0,
+    "counts": {
+      "structural_signature_match": 37,
+      "semantic_signature_translation": 29,
+      "semantic_translation_with_python_extension": 15
+    },
+    "matrix": "reference/signature_parity_matrix.json",
+    "report": "SIGNATURE_PARITY.md"
   }
 }

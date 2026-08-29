@@ -44,6 +44,9 @@ jobs:
           print('mapped blocks:',len(m),'unique R blocks:',len(pairs),'unique Python translations:',len(py));
           assert len(m)==130 and len(pairs)==130 and len(py)==130"
 
+      - name: Frozen signature parity
+        run: uv run python parity/signature_audit.py --check reference/signature_parity_matrix.json
+
   test:
     name: Python ${{ matrix.python-version }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}

@@ -403,7 +403,7 @@ def summarise_multichannel_sequence_hmm(model: MultichannelSequenceHMM) -> dict[
 
 
 def plot_multichannel_sequence_hmm(
-    model: MultichannelSequenceHMM, channel: str | None = None, ax=None, **kwargs
+    model: MultichannelSequenceHMM, channel: str | None = None, *, ax=None, **kwargs
 ):
     import matplotlib.pyplot as plt
 

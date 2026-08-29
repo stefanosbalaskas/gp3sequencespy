@@ -7,8 +7,8 @@ This ledger maps every frozen `gp3sequences 0.3.0` `test_that()` block to one de
 - Frozen R test files: **22**
 - Frozen R `test_that()` blocks: **130**
 - Dedicated Python translated tests mapped below: **130 / 130**
-- Total current Python tests (including bootstrap/public-API/compatibility, documentation, release, and hclust-oracle regression tests): **178**
-- Current validated result after the mssm time-backend replacement: **178 passed**.
+- Total current Python tests (including bootstrap/public-API/compatibility, documentation, release, and hclust-oracle regression tests): **182**
+- Current validated result after the frozen-signature/default repair: **182 passed**.
 - Executable R oracle: **validated under R 4.6.1**; six deterministic core contracts and the extended hierarchical/PAM clustering oracle pass.
 
 Status meanings: `exact_semantic_translation` means the Python test directly exercises the same public behavioral invariant; `backend_translation` records a deliberate Python ecosystem object translation; `internal_semantic_translation` exercises the invariant through Python internals/public behavior rather than reproducing an R-only private helper; `*_oracle_pending` means the behavioral contract is covered but exact R↔Python numerical equivalence still requires the executable R oracle.

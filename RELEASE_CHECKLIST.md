@@ -28,6 +28,8 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Benchmark frozen R `mgcv::gam()` against the old Python backend and `mssm 1.2.5` on state/transition × random-effect on/off scenarios.
 - [x] Validate the `mssm` mapping for `k=3`, `k=4`, and `k=5` across all 12 state/transition × random-effect scenarios.
 - [x] Validate population prediction and out-of-support transition prediction against frozen R.
+- [x] Audit all 81 frozen R public formals against Python signatures and classify every R→Python translation.
+- [x] Repair frozen plotting defaults and make the Python-only `ax=` hook keyword-only.
 - [ ] Review every remaining entry in `PARITY_EXCEPTIONS.md`; retain only deliberate translations with explicit rationale.
 - [x] Replace the statsmodels/Patsy time-model approximation with the validated `mssm` GAMM backend.
 - [ ] Run exact built-artifact tests from the final `0.1.0` release candidate wheel/sdist.

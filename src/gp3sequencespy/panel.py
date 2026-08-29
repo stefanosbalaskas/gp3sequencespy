@@ -239,7 +239,7 @@ def compare_sequence_panel_changes(
 
 
 def plot_sequence_panel_changes(
-    changes: pd.DataFrame, metric: str = "distance", type: str = "individual", ax=None, **kwargs
+    changes: pd.DataFrame, metric: str = "distance", type: str = "individual", *, ax=None, **kwargs
 ):
     import matplotlib.pyplot as plt
 

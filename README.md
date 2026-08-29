@@ -7,8 +7,9 @@ The frozen R 0.3.0 tarball is the behavioral reference. Development is parity-fi
 ## Current alpha status
 
 - **81 / 81** frozen R public function counterparts are present and exported.
+- **81 / 81** frozen R public signatures have been audited; every difference is either structurally matched or explicitly classified as an R→Python semantic/plotting translation.
 - **130 / 130** frozen R `test_that()` blocks have dedicated Python translation tests recorded in `PARITY_TEST_MATRIX.md`.
-- The current Python suite contains **178 tests**, including documentation, release-contract, and R-hclust oracle-regression tests.
+- The current Python suite contains **182 tests**, including documentation, release-contract, and R-hclust oracle-regression tests.
 - GitHub Actions covers Linux, macOS, and Windows with Python 3.11–3.14, a dedicated Ruff/mypy/frozen-contract quality job, and a fresh-wheel smoke build.
 - Fifteen Python-native articles port the full frozen R vignette set, with MkDocs documentation under `docs/`.
 - The deterministic core, hierarchical/PAM, and time-varying-model cross-language oracle tranches have been executed against frozen R 0.3.0; remaining deliberate boundaries are documented in `PARITY_EXCEPTIONS.md`.

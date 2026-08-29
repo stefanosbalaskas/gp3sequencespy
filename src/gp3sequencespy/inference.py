@@ -319,7 +319,7 @@ def summarise_sequence_group_inference(inference: SequenceGroupInference) -> dic
 
 
 def plot_sequence_group_inference(
-    inference: SequenceGroupInference, type: str = "permutation", ax=None, **kwargs
+    inference: SequenceGroupInference, type: str = "permutation", *, ax=None, **kwargs
 ) -> SequenceGroupInference:
     import matplotlib.pyplot as plt
 

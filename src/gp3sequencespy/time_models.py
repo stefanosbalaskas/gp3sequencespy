@@ -431,6 +431,7 @@ def plot_time_varying_sequence_model(
     time: Sequence[float] | None = None,
     level: float = 0.95,
     show_interval: bool = True,
+    *,
     ax=None,
     **kwargs,
 ):
