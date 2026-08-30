@@ -1,0 +1,59 @@
+name: Quality completion
+
+on:
+  push:
+    branches: [main, quality/coverage-completion]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.13"
+          enable-cache: true
+      - name: Sync all extras
+        run: uv sync --all-extras
+      - name: Statement and branch coverage
+        run: >-
+          uv run pytest -q
+          --cov=gp3sequencespy
+          --cov-branch
+          --cov-report=term-missing
+          --cov-report=json:coverage.json
+          --cov-report=xml:coverage.xml
+          --cov-report=html:htmlcov
+      - name: Generate coverage deficit ledger
+        if: always()
+        run: uv run python scripts/generate_coverage_ledger.py coverage.json --markdown coverage-ledger.md --json coverage-ledger.json
+      - name: Upload coverage evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: quality-coverage
+          path: |
+            coverage.json
+            coverage.xml
+            coverage-ledger.md
+            coverage-ledger.json
+            htmlcov/
+          if-no-files-found: error
+
+  mutation-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.13"
+          enable-cache: true
+      - name: Sync all extras
+        run: uv sync --all-extras
+      - name: Mutation smoke
+        run: uv run python scripts/run_mutation_smoke.py
