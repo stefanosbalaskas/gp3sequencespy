@@ -123,7 +123,9 @@ def test_subsequence_group_comparison_guard_paths():
     )
     assert skipped.empty
 
-    fisher = subsequences.compare_sequence_subsequences(two, "group", test="fisher", p_adjust="none")
+    fisher = subsequences.compare_sequence_subsequences(
+        two, "group", test="fisher", p_adjust="none"
+    )
     assert not fisher.empty
     assert fisher.test.eq("fisher").all()
     np.testing.assert_allclose(fisher.p_adjusted, fisher.p_value)

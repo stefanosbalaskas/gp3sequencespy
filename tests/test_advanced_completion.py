@@ -32,7 +32,9 @@ def test_match_cols_and_adv_data_validation_paths():
     with pytest.raises(ValidationError, match="missing_state_label"):
         adv.adv_data(data, missing_state_policy="state", missing_state_label="")
 
-    prepared = PrepareResult(data, pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), "ok", 4, 4, ["A", "B"])
+    prepared = PrepareResult(
+        data, pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), "ok", 4, 4, ["A", "B"]
+    )
     assert adv.adv_data(prepared)["sequence_ids"] == ["s1", "s2"]
     wrapped = SimpleNamespace(data=data)
     assert adv.adv_data(wrapped)["sequence_ids"] == ["s1", "s2"]

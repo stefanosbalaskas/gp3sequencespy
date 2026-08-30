@@ -154,10 +154,16 @@ def test_sequence_id_state_method_settings_and_seed_helpers(monkeypatch):
 
 def test_distance_audit_validation_covers_all_failure_modes():
     invalid_numeric = SimpleNamespace(matrix="not numeric", labels=[])
-    assert analysis_audit._validate_distance(invalid_numeric, 1e-8)[0]["code"] == "invalid_distance_matrix"
+    assert (
+        analysis_audit._validate_distance(invalid_numeric, 1e-8)[0]["code"]
+        == "invalid_distance_matrix"
+    )
 
     non_square = SimpleNamespace(matrix=np.array([[0.0, 1.0, 2.0]]), labels=["s1"])
-    assert analysis_audit._validate_distance(non_square, 1e-8)[0]["code"] == "invalid_distance_matrix"
+    assert (
+        analysis_audit._validate_distance(non_square, 1e-8)[0]["code"]
+        == "invalid_distance_matrix"
+    )
 
     non_finite = SimpleNamespace(
         matrix=np.array([[0.0, np.nan], [np.nan, 0.0]]), labels=["s1", "s2"]
@@ -243,7 +249,12 @@ def test_family_specific_validation_paths():
     invalid_status = SimpleNamespace(status="unknown")
     issues = analysis_audit._validate(invalid_status, "prepared_sequence_data", 1e-8)
     assert issues[0]["code"] == "invalid_status"
-    assert analysis_audit._validate(SimpleNamespace(status="review"), "sequence_validation", 1e-8) == []
+    assert (
+        analysis_audit._validate(
+            SimpleNamespace(status="review"), "sequence_validation", 1e-8
+        )
+        == []
+    )
     assert analysis_audit._validate(object(), "generic", 1e-8) == []
 
 

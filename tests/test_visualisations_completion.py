@@ -166,7 +166,9 @@ def test_sequence_index_sorting_levels_and_label_suppression():
     with pytest.raises(ValidationError, match="does not cover"):
         visualisations.plot_sequence_index(data, state_levels=["A", "B"])
 
-    by_length = visualisations.plot_sequence_index(data, sort_by="length", show_sequence_labels=False)
+    by_length = visualisations.plot_sequence_index(
+        data, sort_by="length", show_sequence_labels=False
+    )
     assert by_length.gp3_data.index.tolist() == ["s2", "s1", "s3"]
     assert len(by_length.get_yticks()) == 0
 

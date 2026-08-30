@@ -33,7 +33,9 @@ def _valid_long() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def _model(backend_model=None, *, include_random_effect=True) -> time_models.TimeVaryingSequenceModel:
+def _model(
+    backend_model=None, *, include_random_effect=True
+) -> time_models.TimeVaryingSequenceModel:
     if backend_model is None:
         backend_model = SimpleNamespace(
             coef=np.array([0.1, 0.2]),
