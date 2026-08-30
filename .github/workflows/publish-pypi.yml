@@ -3,6 +3,17 @@ name: Publish to PyPI
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing stable GitHub Release tag to publish, for example v0.1.2
+        required: true
+        type: string
+  push:
+    branches:
+      - main
+    paths:
+      - .github/pypi-publish-request.txt
 
 permissions:
   contents: read
@@ -10,49 +21,107 @@ permissions:
 jobs:
   verify-release-assets:
     name: Verify release distributions
-    if: github.event.release.draft == false && github.event.release.prerelease == false
+    if: >-
+      (github.event_name == 'release' && github.event.release.draft == false && github.event.release.prerelease == false) ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'publish: gp3sequencespy '))
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.target.outputs.tag }}
     steps:
-      - name: Download exact GitHub Release distributions
+      - name: Resolve stable release tag
+        id: target
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          DISPATCH_TAG: ${{ inputs.tag }}
+        run: |
+          case "$GITHUB_EVENT_NAME" in
+            release)
+              TAG="$RELEASE_TAG"
+              ;;
+            workflow_dispatch)
+              TAG="$DISPATCH_TAG"
+              ;;
+            push)
+              MESSAGE="$(jq -r '.head_commit.message' "$GITHUB_EVENT_PATH")"
+              VERSION="${MESSAGE#publish: gp3sequencespy }"
+              VERSION="${VERSION%%$'\n'*}"
+              TAG="v$VERSION"
+              ;;
+            *)
+              echo "unsupported event: $GITHUB_EVENT_NAME" >&2
+              exit 1
+              ;;
+          esac
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "stable vX.Y.Z tag required, got $TAG" >&2
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Publishing exact GitHub Release assets for $TAG"
+
+      - name: Require published stable GitHub Release
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ steps.target.outputs.tag }}
+        run: |
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json tagName,isDraft,isPrerelease > release.json
+          TAG="$TAG" python - <<'PY'
+          import json
+          import os
+          release = json.load(open('release.json', encoding='utf-8'))
+          assert release['tagName'] == os.environ['TAG']
+          assert release['isDraft'] is False
+          assert release['isPrerelease'] is False
+          print('stable GitHub Release: PASS', release['tagName'])
+          PY
+
+      - name: Download exact GitHub Release distributions and checksums
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.target.outputs.tag }}
         run: |
           mkdir -p dist
-          gh release download "$TAG"             --repo "$GITHUB_REPOSITORY"             --pattern "gp3sequencespy-*.whl"             --pattern "gp3sequencespy-*.tar.gz"             --dir dist
+          gh release download "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "gp3sequencespy-*.whl" \
+            --pattern "gp3sequencespy-*.tar.gz" \
+            --pattern "SHA256SUMS.txt" \
+            --dir dist
 
-      - name: Require one wheel and one sdist matching the stable tag
+      - name: Require exact checksums and filenames matching stable tag
+        shell: bash
         env:
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ steps.target.outputs.tag }}
         run: |
+          cd dist
+          sha256sum --check SHA256SUMS.txt
+          cd ..
           python - <<'PY'
           import glob
           import os
           import re
 
-          wheels = glob.glob("dist/*.whl")
-          sdists = glob.glob("dist/*.tar.gz")
+          wheels = glob.glob('dist/*.whl')
+          sdists = glob.glob('dist/*.tar.gz')
           if len(wheels) != 1 or len(sdists) != 1:
-              raise SystemExit(
-                  f"expected one wheel and one sdist; got {wheels=} {sdists=}"
-              )
+              raise SystemExit(f'expected one wheel and one sdist; got {wheels=} {sdists=}')
 
-          tag = os.environ["TAG"]
-          if not re.fullmatch(r"v\d+\.\d+\.\d+", tag):
-              raise SystemExit(f"stable release tag required, got {tag!r}")
+          tag = os.environ['TAG']
+          if not re.fullmatch(r'v\d+\.\d+\.\d+', tag):
+              raise SystemExit(f'stable release tag required, got {tag!r}')
 
           version = tag[1:]
-          expected_wheel = f"dist/gp3sequencespy-{version}-py3-none-any.whl"
-          expected_sdist = f"dist/gp3sequencespy-{version}.tar.gz"
-          if wheels[0].replace("\\", "/") != expected_wheel:
-              raise SystemExit(
-                  f"wheel filename does not match release tag: {wheels[0]!r}"
-              )
-          if sdists[0].replace("\\", "/") != expected_sdist:
-              raise SystemExit(
-                  f"sdist filename does not match release tag: {sdists[0]!r}"
-              )
-          print("release filenames match stable tag", tag)
+          expected_wheel = f'dist/gp3sequencespy-{version}-py3-none-any.whl'
+          expected_sdist = f'dist/gp3sequencespy-{version}.tar.gz'
+          if wheels[0].replace('\\', '/') != expected_wheel:
+              raise SystemExit(f'wheel filename does not match release tag: {wheels[0]!r}')
+          if sdists[0].replace('\\', '/') != expected_sdist:
+              raise SystemExit(f'sdist filename does not match release tag: {sdists[0]!r}')
+          print('release filenames and checksums match stable tag', tag)
           PY
 
       - uses: astral-sh/setup-uv@v10.0.1
@@ -60,20 +129,22 @@ jobs:
           python-version: "3.13"
 
       - name: Validate release distributions
-        run: uv tool run --from twine==7.0.0 twine check --strict dist/*
+        run: uv tool run --from twine==7.0.0 twine check --strict dist/*.whl dist/*.tar.gz
 
       - name: Upload verified distributions for publish job
         uses: actions/upload-artifact@v7.0.1
         with:
           name: verified-pypi-distributions
-          path: dist/*
+          path: |
+            dist/gp3sequencespy-*.whl
+            dist/gp3sequencespy-*.tar.gz
           if-no-files-found: error
           retention-days: 7
 
   pypi-publish:
     name: Publish verified distributions
     needs: verify-release-assets
-    if: github.event.release.draft == false && github.event.release.prerelease == false
+    if: needs.verify-release-assets.result == 'success'
     runs-on: ubuntu-latest
     environment:
       name: pypi
