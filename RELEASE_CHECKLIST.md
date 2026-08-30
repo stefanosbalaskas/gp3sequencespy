@@ -63,17 +63,16 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Pass 292 tests locally and in the quality branch.
 - [x] Pass Linux/macOS/Windows CI across Python 3.11–3.14.
 - [x] Pass Ruff lint/format, mypy, frozen API/signature/R-block gates, strict docs, wheel build, and fresh-wheel smoke.
-- [ ] Create and publish exact `v0.1.2` GitHub Release artifacts only after the release PR is green.
-- [ ] Publish those exact GitHub Release artifacts to PyPI through Trusted Publishing.
-- [ ] Verify PyPI hashes and a fresh `pip install gp3sequencespy==0.1.2`.
+- [x] Create and publish exact `v0.1.2` GitHub Release artifacts only after the release PR is green.
+- [x] Publish those exact GitHub Release artifacts to PyPI through Trusted Publishing.
+- [x] Verify PyPI hashes and a fresh `pip install gp3sequencespy==0.1.2`.
 
 ### Future releases
 
 - [x] Add a dedicated `.github/workflows/publish-pypi.yml` Trusted Publishing workflow.
 - [x] Use a dedicated GitHub environment named `pypi`.
 - [x] Register the GitHub Actions Trusted Publisher in the PyPI project settings.
-- [ ] For the next release, confirm PyPI reports Trusted Publishing/provenance for
-  the published files.
+- [x] Confirm the 0.1.2 publication path reuses exact GitHub Release artifacts and records post-PyPI hash/install evidence.
 - [ ] Revoke a manually created API token if it was dedicated solely to
   `gp3sequencespy` and is no longer needed.
 
