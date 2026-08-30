@@ -153,6 +153,10 @@ def test_covariate_fit_argument_emission_and_convergence_paths():
     assert fitted.posteriors is not None
     assert len(fitted.posteriors) == 3
 
+    one_iteration = _fit(max_iter=1, tolerance=0.0)
+    assert one_iteration.iterations == 1
+    assert one_iteration.converged is False
+
 
 def test_covariate_prediction_decode_external_and_summary_guards():
     model = _fit()
