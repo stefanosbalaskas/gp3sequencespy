@@ -107,7 +107,7 @@ def test_panel_summary_compare_and_plot_validation_paths():
         panel.plot_sequence_panel_changes(empty)
 
 
-def test_panel_summary_plot_covers_mean_and_standard_error_paths():
+def test_panel_summary_and_individual_plot_paths():
     changes = pd.DataFrame(
         {
             "panel_id": ["p1", "p2", "p1"],
@@ -122,4 +122,6 @@ def test_panel_summary_plot_covers_mean_and_standard_error_paths():
     )
     changes.attrs["gp3_class"] = "gp3_sequence_panel_changes"
     returned = panel.plot_sequence_panel_changes(changes, type="summary")
+    assert returned is changes
+    returned = panel.plot_sequence_panel_changes(changes, type="individual")
     assert returned is changes
