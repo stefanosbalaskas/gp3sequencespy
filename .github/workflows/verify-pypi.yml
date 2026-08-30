@@ -1,0 +1,102 @@
+name: Verify PyPI publication
+
+on:
+  workflow_run:
+    workflows:
+      - Publish to PyPI
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out published source commit
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Resolve version
+        shell: bash
+        run: |
+          VERSION="$(python - <<'PY'
+          import pathlib, tomllib
+          print(tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version'])
+          PY
+          )"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "TAG=v$VERSION" >> "$GITHUB_ENV"
+
+      - name: Wait for PyPI JSON and compare exact hashes
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p release-dist
+          gh release download "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "gp3sequencespy-*.whl" \
+            --pattern "gp3sequencespy-*.tar.gz" \
+            --dir release-dist
+
+          VERSION="$VERSION" python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import time
+          import urllib.error
+          import urllib.request
+
+          version = os.environ['VERSION']
+          url = f'https://pypi.org/pypi/gp3sequencespy/{version}/json'
+          payload = None
+          for attempt in range(18):
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as response:
+                      payload = json.load(response)
+                  break
+              except urllib.error.HTTPError as exc:
+                  if exc.code != 404:
+                      raise
+              if attempt == 17:
+                  raise SystemExit(f'PyPI JSON did not expose {version} in time')
+              time.sleep(10)
+
+          release_files = sorted(pathlib.Path('release-dist').iterdir())
+          local = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in release_files}
+          remote = {item['filename']: item['digests']['sha256'] for item in payload['urls']}
+          if local != remote:
+              raise SystemExit(f'PyPI/GitHub release hash mismatch: {local=} {remote=}')
+
+          result = {
+              'schema': 'gp3sequencespy-pypi-verification-v1',
+              'version': version,
+              'github_release_sha256': local,
+              'pypi_sha256': remote,
+              'hashes_match': True,
+          }
+          pathlib.Path(f'pypi_verification_{version}.json').write_text(
+              json.dumps(result, indent=2) + '\n', encoding='utf-8'
+          )
+          print('PyPI hashes match exact GitHub Release artifacts:', version)
+          PY
+
+      - name: Verify fresh PyPI install
+        shell: bash
+        run: |
+          python -m venv /tmp/gp3seq-pypi-verify
+          /tmp/gp3seq-pypi-verify/bin/pip install --no-cache-dir "gp3sequencespy==$VERSION"
+          /tmp/gp3seq-pypi-verify/bin/python -c "import importlib.metadata as m,gp3sequencespy as g; assert g.__version__ == m.version('gp3sequencespy') == '$VERSION'; print('fresh PyPI install:', g.__version__)"
+
+      - name: Upload publication verification evidence
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: gp3sequencespy-pypi-verification-${{ env.VERSION }}
+          path: pypi_verification_${{ env.VERSION }}.json
+          if-no-files-found: error
+          retention-days: 30

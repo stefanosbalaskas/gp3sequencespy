@@ -63,6 +63,8 @@ No long-lived PyPI token is stored in the repository or workflow.
 
 The 0.1.0 first publication used a manually supplied PyPI API token because
 the project did not yet exist on PyPI when release automation was prepared.
-The Trusted Publisher was registered on 2026-08-30. After 0.1.1 confirms the
-OIDC path end-to-end, any API token created solely for `gp3sequencespy` can
-be revoked from PyPI.
+The Trusted Publisher was registered on 2026-08-30. Version 0.1.1 subsequently
+confirmed the OIDC path end-to-end: the `Publish to PyPI` release workflow
+completed successfully using the exact GitHub Release wheel and source
+distribution. Any API token created solely for `gp3sequencespy` is therefore
+no longer required by the automated release path.

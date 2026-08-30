@@ -33,7 +33,7 @@ def test_release_governance_files_exist():
 
 def test_distribution_metadata_is_publication_ready_for_current_release():
     project = _project()
-    assert project["version"] == g.__version__ == "0.1.1"
+    assert project["version"] == g.__version__ == "0.1.2"
     assert project["license"] == "MIT"
     assert project["license-files"] == ["LICENSE"]
     assert "Development Status :: 4 - Beta" in project["classifiers"]
@@ -54,9 +54,9 @@ def test_distribution_metadata_is_publication_ready_for_current_release():
 def test_citation_and_changelog_match_package_version():
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert "version: 0.1.1" in citation
+    assert "version: 0.1.2" in citation
     assert "10.5281/zenodo.22166449" in citation
-    assert "## [0.1.1] - 2026-08-30" in changelog
+    assert "## [0.1.2] - 2026-08-31" in changelog
 
 
 def test_reproducibility_document_freezes_authoritative_r_reference():
