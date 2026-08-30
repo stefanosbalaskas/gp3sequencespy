@@ -14,8 +14,14 @@ MUTATIONS = [
     (
         "vector-normalisation-removes-pseudocount",
         "_advanced.py",
-        "x = np.asarray(x, float) + pseudocount",
-        "x = np.asarray(x, float) + 0.0",
+        (
+            "def vector_normalise(x: np.ndarray, pseudocount: float = 0) -> np.ndarray:\n"
+            "    x = np.asarray(x, float) + pseudocount"
+        ),
+        (
+            "def vector_normalise(x: np.ndarray, pseudocount: float = 0) -> np.ndarray:\n"
+            "    x = np.asarray(x, float) + 0.0"
+        ),
         [
             "tests/test_quality_edge_contracts.py",
             "-k",
@@ -47,8 +53,12 @@ def main() -> int:
         for name, rel, old, new, tests in MUTATIONS:
             target = base / rel
             original = target.read_text(encoding="utf-8")
-            if old not in original:
-                print(f"ERROR {name}: source pattern not found", file=sys.stderr)
+            matches = original.count(old)
+            if matches != 1:
+                print(
+                    f"ERROR {name}: expected exactly one source pattern, found {matches}",
+                    file=sys.stderr,
+                )
                 return 2
             target.write_text(original.replace(old, new, 1), encoding="utf-8")
             env = os.environ.copy()
