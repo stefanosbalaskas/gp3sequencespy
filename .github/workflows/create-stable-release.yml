@@ -1,0 +1,197 @@
+name: Create stable release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - pyproject.toml
+      - src/gp3sequencespy/__init__.py
+      - CITATION.cff
+      - CHANGELOG.md
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: startsWith(github.event.head_commit.message, 'release: gp3sequencespy ')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact release commit
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.13"
+          enable-cache: true
+
+      - name: Resolve and preflight version
+        shell: bash
+        run: |
+          VERSION="$(python - <<'PY'
+          import pathlib, tomllib
+          print(tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version'])
+          PY
+          )"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Stable X.Y.Z version required, got $VERSION" >&2
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "TAG=v$VERSION" >> "$GITHUB_ENV"
+
+          python - <<'PY'
+          import pathlib, re, tomllib
+          project = tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']
+          version = project['version']
+          init_text = pathlib.Path('src/gp3sequencespy/__init__.py').read_text()
+          cff = pathlib.Path('CITATION.cff').read_text()
+          changelog = pathlib.Path('CHANGELOG.md').read_text()
+          match = re.search(r'__version__\s*=\s*["\']([^"\']+)', init_text)
+          assert match and match.group(1) == version
+          assert f'version: {version}' in cff
+          assert f'## [{version}]' in changelog
+          print('release metadata consistency: PASS', version)
+          PY
+
+      - name: Require unpublished version and unused tag
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "$TAG already exists" >&2
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "GitHub Release $TAG already exists" >&2
+            exit 1
+          fi
+          VERSION="$VERSION" python - <<'PY'
+          import os
+          import urllib.error
+          import urllib.request
+          version = os.environ['VERSION']
+          url = f'https://pypi.org/pypi/gp3sequencespy/{version}/json'
+          try:
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  if response.status == 200:
+                      raise SystemExit(f'PyPI version {version} already exists')
+          except urllib.error.HTTPError as exc:
+              if exc.code != 404:
+                  raise
+          print('PyPI version is free:', version)
+          PY
+
+      - name: Sync complete release environment
+        run: uv sync --all-extras --python 3.13
+
+      - name: Validate project metadata
+        run: uv run validate-pyproject pyproject.toml
+
+      - name: Static quality and frozen contracts
+        run: |
+          uv run ruff check src tests parity
+          uv run ruff format --check src tests parity
+          uv run mypy src/gp3sequencespy
+          uv run python -c "import json,pathlib,tomllib,gp3sequencespy as g; v=tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version']; assert g.__version__ == v; n=[x['name'] for x in json.loads(pathlib.Path('reference/api_manifest.json').read_text())]; assert len(n)==81 and all(hasattr(g,x) and x in g.__all__ for x in n)"
+          uv run python -c "import json,pathlib; m=json.loads(pathlib.Path('reference/test_parity_matrix.json').read_text()); assert len(m)==130 and len({(r['r_test_file'],r['r_block_index']) for r in m})==130"
+          uv run python parity/signature_audit.py --check reference/signature_parity_matrix.json
+
+      - name: Full tests and complete coverage
+        run: |
+          uv run pytest -q
+          uv run pytest -q --cov=gp3sequencespy --cov-branch --cov-report=term-missing --cov-fail-under=100
+          uv run python scripts/run_mutation_smoke.py
+
+      - name: Build documentation strictly
+        run: uv run mkdocs build --strict
+
+      - name: Build and validate exact distributions
+        run: |
+          rm -rf dist
+          uv build
+          uv run twine check --strict dist/*
+
+      - name: Fresh wheel smoke test
+        shell: bash
+        run: |
+          python -m venv /tmp/gp3seq-release-wheel
+          wheel="$(echo dist/*.whl)"
+          /tmp/gp3seq-release-wheel/bin/pip install "${wheel}[time]"
+          /tmp/gp3seq-release-wheel/bin/python -c "import importlib.metadata as m,gp3sequencespy as g; assert g.__version__ == m.version('gp3sequencespy') == '$VERSION'; print(g.__version__); print(len(g.__all__))"
+
+      - name: Freeze release notes, checksums, and manifest
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, re
+          version = os.environ['VERSION']
+          tag = os.environ['TAG']
+          changelog = pathlib.Path('CHANGELOG.md').read_text(encoding='utf-8')
+          match = re.search(rf'^## \[{re.escape(version)}\].*?\n(.*?)(?=^## \[|\Z)', changelog, flags=re.M | re.S)
+          if not match:
+              raise SystemExit('release changelog section not found')
+          notes = f'# gp3sequencespy {version}\n\n' + match.group(1).strip() + '\n'
+          pathlib.Path('release-notes.md').write_text(notes, encoding='utf-8')
+
+          artifacts = sorted(pathlib.Path('dist').glob('*'))
+          release_files = [p for p in artifacts if p.suffix == '.whl' or p.name.endswith('.tar.gz')]
+          if len(release_files) != 2:
+              raise SystemExit(f'expected wheel + sdist, got {release_files}')
+          records = []
+          for path in release_files:
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              records.append({'name': path.name, 'sha256': digest, 'size': path.stat().st_size})
+          pathlib.Path('SHA256SUMS.txt').write_text(
+              ''.join(f"{r['sha256']}  {r['name']}\n" for r in records), encoding='utf-8'
+          )
+          manifest = {
+              'schema': 'gp3sequencespy-release-manifest-v1',
+              'version': version,
+              'git_commit': os.environ['GITHUB_SHA'],
+              'git_tag': tag,
+              'artifacts': records,
+              'validation': {
+                  'pytest': 'pass',
+                  'statement_coverage_percent': 100.0,
+                  'branch_coverage_percent': 100.0,
+                  'mutation_smoke': '3/3 killed',
+                  'ruff': 'pass',
+                  'mypy': 'pass',
+                  'mkdocs_strict': 'pass',
+                  'fresh_wheel_smoke': 'pass',
+              },
+              'publication': 'GitHub Release assets are authoritative; PyPI Trusted Publishing consumes these exact files.',
+          }
+          pathlib.Path(f'release_manifest_{version}.json').write_text(
+              json.dumps(manifest, indent=2) + '\n', encoding='utf-8'
+          )
+          PY
+
+      - name: Create immutable annotated tag
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$GITHUB_SHA" -m "gp3sequencespy $VERSION"
+          git push origin "refs/tags/$TAG"
+
+      - name: Publish GitHub Release with exact artifacts
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" \
+            dist/*.whl \
+            dist/*.tar.gz \
+            SHA256SUMS.txt \
+            "release_manifest_${VERSION}.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "gp3sequencespy $VERSION" \
+            --notes-file release-notes.md
