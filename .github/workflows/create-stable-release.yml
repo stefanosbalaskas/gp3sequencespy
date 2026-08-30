@@ -15,7 +15,8 @@ permissions:
 
 jobs:
   release:
-    if: startsWith(github.event.head_commit.message, 'release: gp3sequencespy ')
+    if: >-
+      startsWith(github.event.head_commit.message, 'release: gp3sequencespy ')
     runs-on: ubuntu-latest
     steps:
       - name: Check out exact release commit
