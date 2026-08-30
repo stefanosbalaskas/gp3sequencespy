@@ -49,3 +49,33 @@ def test_parametric_table_without_per_term_indices():
     table = time_models._parametric_table(model)
     assert table.empty
     assert table.columns.tolist() == ["term", "coefficient"]
+
+
+def test_motif_counter_membership_defensive_branch(monkeypatch):
+    import gp3sequencespy as g
+    from gp3sequencespy import motifs
+
+    original_contains = pd.DataFrame.__contains__
+
+    def selective_contains(self, key):
+        if key == "n_states" and "n_candidate_occurrences" in self.columns:
+            return False
+        return original_contains(self, key)
+
+    monkeypatch.setattr(motifs.pd.DataFrame, "__contains__", selective_contains)
+    frame = pd.DataFrame(
+        {
+            "sequence_id": ["s1", "s1", "s1"],
+            "sequence_order": [1, 2, 3],
+            "state": ["A", "B", "A"],
+        }
+    )
+    result = g.extract_sequence_ngrams(
+        frame,
+        "sequence_id",
+        "sequence_order",
+        "state",
+        min_length=2,
+        max_length=2,
+    )
+    assert len(result.sequences) == 1
