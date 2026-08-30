@@ -88,16 +88,16 @@ def test_permute_paired_and_cluster_validation_paths():
         def random():
             return 0.1
 
-    valid_pair = pd.DataFrame(
+    valid_pairs = pd.DataFrame(
         {
-            "group": ["g1", "g2"],
-            "unit": ["u1", "u2"],
-            "pair": ["p1", "p1"],
-            "metric": [1.0, 2.0],
+            "group": ["g1", "g2", "g1", "g2"],
+            "unit": ["u1", "u2", "u3", "u4"],
+            "pair": ["p1", "p1", "p2", "p2"],
+            "metric": [1.0, 2.0, 3.0, 4.0],
         }
     )
-    swapped = inference._permute(valid_pair, paired, ["g1", "g2"], FlipRng())
-    assert swapped.tolist() == ["g2", "g1"]
+    swapped = inference._permute(valid_pairs, paired, ["g1", "g2"], FlipRng())
+    assert swapped.tolist() == ["g2", "g1", "g2", "g1"]
 
     clustered = inference.declare_sequence_comparison_design(
         "group", "unit", design="randomized", cluster_col="cluster"
