@@ -839,7 +839,15 @@ def prepare_sequence_data(
             & ~missing.shift(1, fill_value=True)
             & statetxt.eq(statetxt.shift(1))
         ).fillna(False)
-        group = (~same).cumsum()
+        # Use a NumPy-backed cumulative sum here rather than relying on the
+        # pandas extension-array implementation. With pandas 3 + PyArrow,
+        # ``same`` can be ``bool[pyarrow]`` and Arrow does not provide a
+        # cumulative-sum kernel for booleans.
+        group = pd.Series(
+            np.cumsum((~same).to_numpy(dtype=bool)),
+            index=working.index,
+            dtype="int64",
+        )
         if duration_col is not None:
             for _, idxs in working.groupby(group, sort=False).groups.items():
                 idxs = list(idxs)

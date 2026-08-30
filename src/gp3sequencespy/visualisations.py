@@ -54,7 +54,12 @@ def plot_consensus_sequence(
     data = consensus.copy()
     group_cols = list(consensus.attrs.get("group_cols", []))
     if group_cols:
-        keys = data[group_cols].astype(str).agg("\x1c".join, axis=1)
+        key_frame = data[group_cols].copy()
+        for col in group_cols:
+            key_frame[col] = key_frame[col].map(
+                lambda value: "<NA>" if pd.isna(value) else str(value)
+            )
+        keys = key_frame.agg("\x1c".join, axis=1)
         available = list(dict.fromkeys(keys.tolist()))
         if len(available) > 1 and group is None:
             raise ValidationError("Select one consensus group before plotting grouped results.")
@@ -157,8 +162,6 @@ def plot_sequence_group_comparison(
     )
     selected = totals.head(int(top_n))[key].astype(str).tolist()
     plotted = data.loc[data[key].astype(str).isin(selected)].copy()
-    if plotted.empty:
-        raise ValidationError("No comparison rows are available to plot.")
     groups = comparison.groups.group.astype(str).tolist()
     matrix = pd.DataFrame(0.0, index=selected, columns=groups)
     for _, r in plotted.iterrows():

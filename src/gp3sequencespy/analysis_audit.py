@@ -85,8 +85,6 @@ def _sequence_ids(x: Any) -> list[str]:
         value = getattr(x, attr, None)
         if isinstance(value, pd.DataFrame) and "sequence_id" in value:
             return list(dict.fromkeys(value["sequence_id"].astype(str).tolist()))
-    if isinstance(x, PrepareResult) and x.data is not None:
-        return list(dict.fromkeys(x.data["sequence_id"].astype(str).tolist()))
     return []
 
 

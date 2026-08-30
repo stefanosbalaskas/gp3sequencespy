@@ -1,0 +1,69 @@
+name: Coverage baseline
+
+on:
+  push:
+    branches: [quality/coverage-completion]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.13"
+          enable-cache: true
+      - name: Sync all extras
+        run: uv sync --all-extras
+      - name: Run statement and branch coverage
+        run: >-
+          uv run pytest -q
+          --cov=gp3sequencespy
+          --cov-branch
+          --cov-report=term-missing
+          --cov-report=json:coverage.json
+          --cov-report=xml:coverage.xml
+          --cov-report=html:htmlcov
+      - name: Summarize coverage deficit
+        if: always()
+        run: |
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("coverage.json")
+          if not path.exists():
+              raise SystemExit("coverage.json missing")
+          data = json.loads(path.read_text())
+          total = data["totals"]
+          print("COVERAGE_TOTAL", json.dumps(total, sort_keys=True))
+          rows = []
+          for name, record in data["files"].items():
+              summary = record["summary"]
+              rows.append((
+                  summary.get("percent_covered", 0.0),
+                  summary.get("missing_lines", 0),
+                  summary.get("missing_branches", 0),
+                  name,
+              ))
+          for pct, miss, branches, name in sorted(rows):
+              if miss or branches:
+                  print(
+                      f"COVERAGE_FILE {pct:7.3f}% "
+                      f"missing_lines={miss} missing_branches={branches} {name}"
+                  )
+          PY
+      - name: Upload coverage evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: coverage-baseline
+          path: |
+            coverage.json
+            coverage.xml
+            htmlcov/
+          if-no-files-found: error
