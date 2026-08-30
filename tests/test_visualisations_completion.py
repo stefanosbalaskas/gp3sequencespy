@@ -104,6 +104,13 @@ def test_palette_and_consensus_validation_group_selection_paths():
     with pytest.raises(ValidationError, match="No consensus positions"):
         visualisations.plot_consensus_sequence(_consensus(), group="missing")
 
+    single = _consensus().iloc[:2].copy()
+    single.attrs["gp3_class"] = "gp3_consensus_sequence"
+    single.attrs["group_cols"] = ["group"]
+    single.attrs["state_levels"] = ["A", "B"]
+    single_ax = visualisations.plot_consensus_sequence(single)
+    assert len(single_ax.gp3_data) == 2
+
     nullable = _consensus().iloc[:2].copy()
     nullable["group"] = [np.nan, "g1"]
     nullable.attrs["gp3_class"] = "gp3_consensus_sequence"
