@@ -54,7 +54,12 @@ def plot_consensus_sequence(
     data = consensus.copy()
     group_cols = list(consensus.attrs.get("group_cols", []))
     if group_cols:
-        keys = data[group_cols].astype(str).agg("\x1c".join, axis=1)
+        key_frame = data[group_cols].copy()
+        for col in group_cols:
+            key_frame[col] = key_frame[col].map(
+                lambda value: "<NA>" if pd.isna(value) else str(value)
+            )
+        keys = key_frame.agg("\x1c".join, axis=1)
         available = list(dict.fromkeys(keys.tolist()))
         if len(available) > 1 and group is None:
             raise ValidationError("Select one consensus group before plotting grouped results.")
@@ -157,8 +162,6 @@ def plot_sequence_group_comparison(
     )
     selected = totals.head(int(top_n))[key].astype(str).tolist()
     plotted = data.loc[data[key].astype(str).isin(selected)].copy()
-    if plotted.empty:
-        raise ValidationError("No comparison rows are available to plot.")
     groups = comparison.groups.group.astype(str).tolist()
     matrix = pd.DataFrame(0.0, index=selected, columns=groups)
     for _, r in plotted.iterrows():
@@ -377,44 +380,72 @@ def plot_transition_network(
     scalar_number(vertex_cex, "vertex_cex", lower=0)
     scalar_number(edge_scale, "edge_scale", lower=0)
     edges = network.loc[network[weight_col] >= minimum_weight].copy()
-    states = sorted(
-        set(edges.from_state.dropna().astype(str)).union(edges.to_state.dropna().astype(str))
-    )
-    if not states:
-        raise ValidationError("No edges satisfy the plotting threshold.")
-    theta = np.linspace(0, 2 * np.pi, len(states), endpoint=False)
-    pos = {s: (float(np.cos(t)), float(np.sin(t))) for s, t in zip(states, theta, strict=True)}
+    if edges.empty:
+        raise ValidationError("No edges satisfy `minimum_weight`.")
+    states = sorted(set(edges.from_state.astype(str)) | set(edges.to_state.astype(str)))
+    angle = np.linspace(0, 2 * np.pi, len(states), endpoint=False)
+    pos = {s: np.array([np.cos(a), np.sin(a)]) for s, a in zip(states, angle, strict=True)}
     ax = _axis(ax)
+    for s in states:
+        xy = pos[s]
+        ax.scatter(xy[0], xy[1], s=700 * vertex_cex)
+        ax.text(xy[0], xy[1], s, ha="center", va="center")
+    scale = max(float(edges[weight_col].max()), np.finfo(float).eps)
     for _, r in edges.iterrows():
-        a = np.array(pos[str(r.from_state)])
-        b = np.array(pos[str(r.to_state)])
-        width = max(0.5, float(r[weight_col]) * edge_scale)
-        if str(r.from_state) == str(r.to_state):
-            circle = plt.Circle((a[0], a[1] + 0.12), 0.12, fill=False, linewidth=width)
-            ax.add_patch(circle)
+        a, b = str(r.from_state), str(r.to_state)
+        lw = 0.5 + edge_scale * float(r[weight_col]) / scale
+        if a == b:
+            xy = pos[a]
+            ax.annotate(
+                "",
+                xy=(xy[0] + 0.03, xy[1] + 0.03),
+                xytext=(xy[0] + 0.2, xy[1] + 0.2),
+                arrowprops={"arrowstyle": "->", "lw": lw, "connectionstyle": "arc3,rad=0.6"},
+            )
         else:
-            ax.annotate("", xy=b, xytext=a, arrowprops={"arrowstyle": "->", "linewidth": width})
-    for s, (px, py) in pos.items():
-        ax.scatter([px], [py], s=500, facecolors="white", edgecolors="black")
-        ax.text(px, py, s, ha="center", va="center", fontsize=10 * vertex_cex)
-    ax.set_xlim(-1.35, 1.35)
-    ax.set_ylim(-1.35, 1.35)
+            ax.annotate(
+                "",
+                xy=pos[b],
+                xytext=pos[a],
+                arrowprops={"arrowstyle": "->", "lw": lw, **kwargs},
+            )
+    ax.set_axis_off()
     ax.set_aspect("equal")
-    ax.axis("off")
     ax.gp3_data = edges
     return ax
 
 
-def plot_sequence_cluster_silhouette(clustering: Any, distance: Any = None, *, ax=None, **kwargs):
-    validation = validate_sequence_clusters(clustering, distance)
-    current = validation["per_sequence"].copy()
-    current = current.sort_values(
-        ["cluster", "silhouette", "sequence_id"], ascending=[True, False, True], kind="stable"
-    ).reset_index(drop=True)
+def plot_sequence_cluster_silhouette(
+    clustering: SequenceClustering,
+    distance: Any,
+    *,
+    ax=None,
+    **kwargs,
+):
+    info = validate_sequence_clusters(clustering, distance)
+    if info["k"] < 2:
+        raise ValidationError("Silhouette plotting requires at least two clusters.")
+    arr, ids = validate_distance_matrix(distance)
+    assignments = clustering.assignments.reindex(ids).astype(int)
+    vals = []
+    for i, sid in enumerate(ids):
+        own = assignments.loc[sid]
+        own_idx = np.flatnonzero(assignments.to_numpy() == own)
+        a = 0.0 if len(own_idx) <= 1 else float(arr[i, own_idx[own_idx != i]].mean())
+        other = []
+        for c in sorted(set(assignments)):
+            if c != own:
+                idx = np.flatnonzero(assignments.to_numpy() == c)
+                other.append(float(arr[i, idx].mean()))
+        b = min(other)
+        s = (b - a) / max(a, b) if max(a, b) > 0 else 0.0
+        vals.append({"sequence_id": sid, "cluster": own, "silhouette": s})
+    table = pd.DataFrame(vals).sort_values(["cluster", "silhouette"], kind="stable")
     ax = _axis(ax)
-    ax.bar(current.sequence_id.astype(str), current.silhouette, **kwargs)
-    ax.axhline(0, linestyle="--")
-    ax.tick_params(axis="x", rotation=90)
-    ax.set_ylabel("Silhouette")
-    ax.gp3_data = current
+    colors = [f"C{int(c) % 10}" for c in table.cluster]
+    ax.barh(np.arange(len(table)), table.silhouette, color=colors, **kwargs)
+    ax.axvline(0, linestyle=":")
+    ax.set_xlabel("Silhouette width")
+    ax.set_ylabel("Sequence")
+    ax.gp3_data = table
     return ax
