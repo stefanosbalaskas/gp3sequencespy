@@ -153,8 +153,34 @@ def test_make_model_data_validation_and_transition_paths():
             None,
         )
 
+    transition_data = pd.concat(
+        [
+            data,
+            pd.DataFrame(
+                [
+                    {
+                        "sequence_id": "s1",
+                        "sequence_order": 5,
+                        "state": "A",
+                        "time": 5.0,
+                        "group": "g1",
+                        "participant": "p1",
+                    },
+                    {
+                        "sequence_id": "s2",
+                        "sequence_order": 5,
+                        "state": "B",
+                        "time": 5.0,
+                        "group": "g2",
+                        "participant": "p2",
+                    },
+                ]
+            ),
+        ],
+        ignore_index=True,
+    )
     md, groups, parts = time_models._make_model_data(
-        data,
+        transition_data,
         "group",
         "participant",
         "sequence_id",
@@ -166,7 +192,7 @@ def test_make_model_data_validation_and_transition_paths():
         "A",
         "B",
     )
-    assert len(md) == 6
+    assert len(md) == 8
     assert groups == ["g1", "g2"]
     assert parts == ["p1", "p2"]
 
@@ -296,7 +322,11 @@ def test_prediction_guards_failure_uncertainty_and_success():
     with pytest.raises(ValidationError, match="Unknown groups"):
         time_models.predict_time_varying_sequence_model(model, groups=["missing"])
 
-    broken = _model(SimpleNamespace(predict=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("boom"))))
+    broken = _model(
+        SimpleNamespace(
+            predict=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("boom"))
+        )
+    )
     with pytest.raises(ValidationError, match="Prediction construction failed"):
         time_models.predict_time_varying_sequence_model(broken, time=[1.0])
 
