@@ -325,9 +325,7 @@ def test_prediction_guards_failure_uncertainty_and_success():
         time_models.predict_time_varying_sequence_model(model, groups=["missing"])
 
     broken = _model(
-        SimpleNamespace(
-            predict=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("boom"))
-        )
+        SimpleNamespace(predict=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("boom")))
     )
     with pytest.raises(ValidationError, match="Prediction construction failed"):
         time_models.predict_time_varying_sequence_model(broken, time=[1.0])

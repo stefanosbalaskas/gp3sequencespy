@@ -110,9 +110,7 @@ def test_sequence_id_state_method_settings_and_seed_helpers(monkeypatch):
     assert analysis_audit._sequence_ids(ensemble) == ["e1", "e2"]
 
     hmm = HMM()
-    hmm.training_data = pd.DataFrame(
-        {"sequence_id": ["h1", "h1", "h2"], "state": ["A", "B", "A"]}
-    )
+    hmm.training_data = pd.DataFrame({"sequence_id": ["h1", "h1", "h2"], "state": ["A", "B", "A"]})
     assert analysis_audit._sequence_ids(hmm) == ["h1", "h2"]
     assert analysis_audit._state_levels(hmm) == ["A", "B"]
 
@@ -161,8 +159,7 @@ def test_distance_audit_validation_covers_all_failure_modes():
 
     non_square = SimpleNamespace(matrix=np.array([[0.0, 1.0, 2.0]]), labels=["s1"])
     assert (
-        analysis_audit._validate_distance(non_square, 1e-8)[0]["code"]
-        == "invalid_distance_matrix"
+        analysis_audit._validate_distance(non_square, 1e-8)[0]["code"] == "invalid_distance_matrix"
     )
 
     non_finite = SimpleNamespace(
@@ -172,9 +169,7 @@ def test_distance_audit_validation_covers_all_failure_modes():
         issue["code"] for issue in analysis_audit._validate_distance(non_finite, 1e-8)
     }
 
-    negative = SimpleNamespace(
-        matrix=np.array([[0.0, -1.0], [-1.0, 0.0]]), labels=["s1", "s2"]
-    )
+    negative = SimpleNamespace(matrix=np.array([[0.0, -1.0], [-1.0, 0.0]]), labels=["s1", "s2"])
     assert "negative_distance" in {
         issue["code"] for issue in analysis_audit._validate_distance(negative, 1e-8)
     }
@@ -186,23 +181,17 @@ def test_distance_audit_validation_covers_all_failure_modes():
         issue["code"] for issue in analysis_audit._validate_distance(nonzero_diagonal, 1e-8)
     }
 
-    asymmetric = SimpleNamespace(
-        matrix=np.array([[0.0, 1.0], [2.0, 0.0]]), labels=["s1", "s2"]
-    )
+    asymmetric = SimpleNamespace(matrix=np.array([[0.0, 1.0], [2.0, 0.0]]), labels=["s1", "s2"])
     assert "asymmetric_distance" in {
         issue["code"] for issue in analysis_audit._validate_distance(asymmetric, 1e-8)
     }
 
-    bad_ids = SimpleNamespace(
-        matrix=np.array([[0.0, 1.0], [1.0, 0.0]]), labels=["", ""]
-    )
+    bad_ids = SimpleNamespace(matrix=np.array([[0.0, 1.0], [1.0, 0.0]]), labels=["", ""])
     assert "distance_identifiers_invalid" in {
         issue["code"] for issue in analysis_audit._validate_distance(bad_ids, 1e-8)
     }
 
-    good = SimpleNamespace(
-        matrix=np.array([[0.0, 1.0], [1.0, 0.0]]), labels=["s1", "s2"]
-    )
+    good = SimpleNamespace(matrix=np.array([[0.0, 1.0], [1.0, 0.0]]), labels=["s1", "s2"])
     assert analysis_audit._validate_distance(good, 1e-8) == []
 
 
@@ -250,9 +239,7 @@ def test_family_specific_validation_paths():
     issues = analysis_audit._validate(invalid_status, "prepared_sequence_data", 1e-8)
     assert issues[0]["code"] == "invalid_status"
     assert (
-        analysis_audit._validate(
-            SimpleNamespace(status="review"), "sequence_validation", 1e-8
-        )
+        analysis_audit._validate(SimpleNamespace(status="review"), "sequence_validation", 1e-8)
         == []
     )
     assert analysis_audit._validate(object(), "generic", 1e-8) == []

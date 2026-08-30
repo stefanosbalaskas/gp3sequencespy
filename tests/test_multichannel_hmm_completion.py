@@ -62,9 +62,7 @@ def test_multichannel_input_wrapper_validation_and_symbol_level_paths():
     categorical["gaze"] = pd.Categorical(
         categorical["gaze"], categories=["right", "left"], ordered=True
     )
-    cat = multichannel_hmm._input(
-        categorical, "sequence_id", "sequence_order", ["gaze", "event"]
-    )
+    cat = multichannel_hmm._input(categorical, "sequence_id", "sequence_order", ["gaze", "event"])
     assert cat["symbols"]["gaze"] == ["right", "left"]
 
     with pytest.raises(ValidationError, match="Invalid symbol levels"):
@@ -99,13 +97,9 @@ def test_multichannel_fit_initialisation_and_probability_guards():
     with pytest.raises(ValidationError, match="initial_probs"):
         multichannel_hmm.fit_multichannel_sequence_hmm(**kwargs, initial_probs=[1.0])
     with pytest.raises(ValidationError, match="transition_probs"):
-        multichannel_hmm.fit_multichannel_sequence_hmm(
-            **kwargs, transition_probs=[[1.0, 0.0]]
-        )
+        multichannel_hmm.fit_multichannel_sequence_hmm(**kwargs, transition_probs=[[1.0, 0.0]])
     with pytest.raises(ValidationError, match="one matrix per channel"):
-        multichannel_hmm.fit_multichannel_sequence_hmm(
-            **kwargs, emission_probs=[np.ones((2, 2))]
-        )
+        multichannel_hmm.fit_multichannel_sequence_hmm(**kwargs, emission_probs=[np.ones((2, 2))])
     with pytest.raises(ValidationError, match="Invalid emission probabilities"):
         multichannel_hmm.fit_multichannel_sequence_hmm(
             **kwargs,

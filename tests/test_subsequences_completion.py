@@ -118,9 +118,7 @@ def test_subsequence_group_comparison_guard_paths():
         min_length=2,
         max_length=2,
     )
-    skipped = subsequences.compare_sequence_subsequences(
-        two, "group", min_sequence_count=99
-    )
+    skipped = subsequences.compare_sequence_subsequences(two, "group", min_sequence_count=99)
     assert skipped.empty
 
     fisher = subsequences.compare_sequence_subsequences(

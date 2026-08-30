@@ -78,9 +78,7 @@ def test_create_transition_network_validation_empty_skip_and_global_paths():
     with pytest.raises(ValidationError, match="normalise"):
         g.create_transition_network(_data(), normalise="bad")
 
-    short = pd.DataFrame(
-        {"sequence_id": ["s1"], "sequence_order": [1], "state": ["A"]}
-    )
+    short = pd.DataFrame({"sequence_id": ["s1"], "sequence_order": [1], "state": ["A"]})
     empty = g.create_transition_network(short, order=1)
     assert empty.empty
     assert empty.attrs["gp3_class"] == "gp3_transition_network"
@@ -125,9 +123,7 @@ def test_centrality_empty_dangling_and_pagerank_normal_exit_paths():
 
 def test_community_validation_empty_isolated_and_normal_exit_paths():
     with pytest.raises(ValidationError, match="community method"):
-        g.detect_transition_communities(
-            _manual_network([("A", "B", 1.0)]), method="bad"
-        )
+        g.detect_transition_communities(_manual_network([("A", "B", 1.0)]), method="bad")
     assert g.detect_transition_communities(_empty_network()).empty
 
     isolated = _manual_network([("A", "A", 1.0), ("B", "B", 0.0)])
@@ -147,9 +143,7 @@ def test_predict_model_guard_and_bootstrap_no_transition_guard():
     with pytest.raises(ValidationError, match="fit_higher_order_transition_model"):
         g.predict_next_state(object(), ["A"])
 
-    short = pd.DataFrame(
-        {"sequence_id": ["s1"], "sequence_order": [1], "state": ["A"]}
-    )
+    short = pd.DataFrame({"sequence_id": ["s1"], "sequence_order": [1], "state": ["A"]})
     with pytest.raises(ValidationError, match="No first-order transitions"):
         g.bootstrap_transition_network(short, n_boot=1)
 

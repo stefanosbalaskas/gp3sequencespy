@@ -35,9 +35,7 @@ def _data() -> pd.DataFrame:
 
 def test_design_pair_requirement_and_metric_specific_paths():
     with pytest.raises(ValidationError, match="pair_col"):
-        inference.declare_sequence_comparison_design(
-            "group", "unit", design="paired_randomized"
-        )
+        inference.declare_sequence_comparison_design("group", "unit", design="paired_randomized")
 
     design = inference.declare_sequence_comparison_design("group", "unit")
     transition = inference.test_sequence_group_difference(
@@ -123,31 +121,23 @@ def test_group_value_and_two_group_guards(monkeypatch):
     design = inference.declare_sequence_comparison_design("group", "unit")
     sequence_data = pd.DataFrame({"sequence_id": ["s1"]})
 
-    blank_unit = pd.DataFrame(
-        {"group": [""], "unit": ["u1"], "metric": [1.0], "n_sequences": [1]}
-    )
+    blank_unit = pd.DataFrame({"group": [""], "unit": ["u1"], "metric": [1.0], "n_sequences": [1]})
     monkeypatch.setattr(
         inference,
         "_metric_data",
         lambda *args, **kwargs: (sequence_data, blank_unit, ["A"]),
     )
     with pytest.raises(ValidationError, match="Group values"):
-        inference.test_sequence_group_difference(
-            sequence_data, design, n_permutations=1
-        )
+        inference.test_sequence_group_difference(sequence_data, design, n_permutations=1)
 
-    one_group = pd.DataFrame(
-        {"group": ["g1"], "unit": ["u1"], "metric": [1.0], "n_sequences": [1]}
-    )
+    one_group = pd.DataFrame({"group": ["g1"], "unit": ["u1"], "metric": [1.0], "n_sequences": [1]})
     monkeypatch.setattr(
         inference,
         "_metric_data",
         lambda *args, **kwargs: (sequence_data, one_group, ["A"]),
     )
     with pytest.raises(ValidationError, match="exactly two groups"):
-        inference.test_sequence_group_difference(
-            sequence_data, design, n_permutations=1
-        )
+        inference.test_sequence_group_difference(sequence_data, design, n_permutations=1)
 
 
 def test_bootstrap_summary_and_plot_guard_paths():
@@ -159,9 +149,7 @@ def test_bootstrap_summary_and_plot_guard_paths():
         inference.plot_sequence_group_inference(object())
 
     design = inference.declare_sequence_comparison_design("group", "unit")
-    result = inference.test_sequence_group_difference(
-        _data(), design, n_permutations=2, seed=4
-    )
+    result = inference.test_sequence_group_difference(_data(), design, n_permutations=2, seed=4)
     with pytest.raises(ValidationError, match="Invalid type"):
         inference.plot_sequence_group_inference(result, type="bad")
 

@@ -64,9 +64,7 @@ def _comparison(**overrides) -> GroupComparisonResult:
             }
         ),
         "transition_contrasts": None,
-        "length_summary": pd.DataFrame(
-            {"group": ["g1", "g2"], "mean_length": [2.0, 1.5]}
-        ),
+        "length_summary": pd.DataFrame({"group": ["g1", "g2"], "mean_length": [2.0, 1.5]}),
         "length_contrasts": None,
         "settings": {},
     }

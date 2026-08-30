@@ -74,9 +74,7 @@ def test_hmm_mixture_shape_component_and_normalisation_guards(monkeypatch):
         hmm.fit_sequence_hmm_mixture(_data(), 2, [2], max_iter=1, inner_initial_iter=1)
 
     with pytest.raises(ValidationError, match="More components than sequences"):
-        hmm.fit_sequence_hmm_mixture(
-            _data(2), 3, 2, max_iter=1, inner_initial_iter=1
-        )
+        hmm.fit_sequence_hmm_mixture(_data(2), 3, 2, max_iter=1, inner_initial_iter=1)
 
     monkeypatch.setattr(
         hmm,
@@ -84,9 +82,7 @@ def test_hmm_mixture_shape_component_and_normalisation_guards(monkeypatch):
         lambda encoded, params: np.full(len(encoded), np.nan),
     )
     with pytest.raises(ModelFitError, match="responsibilities"):
-        hmm.fit_sequence_hmm_mixture(
-            _data(), 2, 2, max_iter=1, inner_initial_iter=1, seed=3
-        )
+        hmm.fit_sequence_hmm_mixture(_data(), 2, 2, max_iter=1, inner_initial_iter=1, seed=3)
 
 
 def test_hmm_mixture_fit_decode_external_and_summary_paths():
@@ -104,9 +100,7 @@ def test_hmm_mixture_fit_decode_external_and_summary_paths():
     assert explicit.decoding_method.eq("posterior").all()
 
     external = _data().copy()
-    external["sequence_id"] = external["sequence_id"].map(
-        {f"s{i}": f"x{i}" for i in range(1, 5)}
-    )
+    external["sequence_id"] = external["sequence_id"].map({f"s{i}": f"x{i}" for i in range(1, 5)})
     assigned = hmm.decode_sequence_states(mixture, data=external, method="viterbi")
     assert set(assigned.sequence_id) == {"x1", "x2", "x3", "x4"}
     assert assigned.component.between(1, 2).all()

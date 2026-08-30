@@ -54,13 +54,9 @@ def test_position_summary_validation_and_reserved_group_guards():
     with pytest.raises(ValidationError, match="scale"):
         motif_visualisation.summarise_sequence_motif_positions(_extraction(), scale="bad")
     with pytest.raises(ValidationError, match="unique character vector"):
-        motif_visualisation.summarise_sequence_motif_positions(
-            _extraction(), by=["group", "group"]
-        )
+        motif_visualisation.summarise_sequence_motif_positions(_extraction(), by=["group", "group"])
     with pytest.raises(ValidationError, match="reserved motif columns"):
-        motif_visualisation.summarise_sequence_motif_positions(
-            _extraction(), by="motif_id"
-        )
+        motif_visualisation.summarise_sequence_motif_positions(_extraction(), by="motif_id")
 
 
 def test_position_format_validation_empty_and_ungrouped_rank_paths():
@@ -71,22 +67,14 @@ def test_position_format_validation_empty_and_ungrouped_rank_paths():
     with pytest.raises(ValidationError, match="include_rank"):
         motif_visualisation.format_sequence_motif_positions(positions, include_rank=1)
     with pytest.raises(ValidationError, match="position_units"):
-        motif_visualisation.format_sequence_motif_positions(
-            positions, position_units="index"
-        )
+        motif_visualisation.format_sequence_motif_positions(positions, position_units="index")
 
-    formatted = motif_visualisation.format_sequence_motif_positions(
-        positions, include_rank=True
-    )
+    formatted = motif_visualisation.format_sequence_motif_positions(positions, include_rank=True)
     assert formatted["table"]["rank"].min() == 1
     assert formatted["table"]["rank"].dtype.kind in "iu"
 
-    empty_positions = motif_visualisation.summarise_sequence_motif_positions(
-        _extraction(8, 8)
-    )
-    empty = motif_visualisation.format_sequence_motif_positions(
-        empty_positions, include_rank=True
-    )
+    empty_positions = motif_visualisation.summarise_sequence_motif_positions(_extraction(8, 8))
+    empty = motif_visualisation.format_sequence_motif_positions(empty_positions, include_rank=True)
     assert empty["table"].empty
     assert "rank" in empty["table"]
 
@@ -133,14 +121,12 @@ def test_position_plot_validation_empty_and_recomputed_centre_path():
         display="strip",
     )
     expected = (
-        centre_ax.gp3_data.start_index.astype(float)
-        + centre_ax.gp3_data.end_index.astype(float)
+        centre_ax.gp3_data.start_index.astype(float) + centre_ax.gp3_data.end_index.astype(float)
     ) / 2
     expected = np.where(
         centre_ax.gp3_data.n_states.to_numpy() <= 1,
         0,
-        (expected.to_numpy() - 1)
-        / (centre_ax.gp3_data.n_states.to_numpy() - 1),
+        (expected.to_numpy() - 1) / (centre_ax.gp3_data.n_states.to_numpy() - 1),
     )
     assert np.allclose(centre_ax.gp3_data.position_value, np.clip(expected, 0, 1))
 

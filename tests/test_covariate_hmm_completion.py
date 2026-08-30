@@ -76,9 +76,7 @@ def test_covariate_input_wrapper_symbol_and_sequence_guards():
     assert parsed["sequence_ids"] == ["s1", "s2", "s3"]
 
     with pytest.raises(ValidationError, match="data frame"):
-        covariate_hmm._input(
-            object(), "sequence_id", "sequence_order", "state", [], []
-        )
+        covariate_hmm._input(object(), "sequence_id", "sequence_order", "state", [], [])
     with pytest.raises(ValidationError, match="Missing covariate"):
         covariate_hmm._input(
             data,
@@ -169,9 +167,7 @@ def test_covariate_prediction_decode_external_and_summary_guards():
         model, pd.DataFrame({"transition_x": [0.0, 2.0]})
     )
     assert len(prediction) == 8
-    assert np.allclose(
-        prediction.groupby(["row", "from_state"]).probability.sum().to_numpy(), 1.0
-    )
+    assert np.allclose(prediction.groupby(["row", "from_state"]).probability.sum().to_numpy(), 1.0)
 
     with pytest.raises(ValidationError, match="fit_covariate_sequence_hmm"):
         g.decode_covariate_sequence_states(object())
@@ -179,12 +175,8 @@ def test_covariate_prediction_decode_external_and_summary_guards():
         g.decode_covariate_sequence_states(model, method="bad")
 
     external = _data().copy()
-    external["sequence_id"] = external["sequence_id"].map(
-        {"s1": "x1", "s2": "x2", "s3": "x3"}
-    )
-    decoded = g.decode_covariate_sequence_states(
-        model, data=external, method="posterior"
-    )
+    external["sequence_id"] = external["sequence_id"].map({"s1": "x1", "s2": "x2", "s3": "x3"})
+    decoded = g.decode_covariate_sequence_states(model, data=external, method="posterior")
     assert set(decoded.sequence_id) == {"x1", "x2", "x3"}
     assert decoded.decoding_method.eq("posterior").all()
 

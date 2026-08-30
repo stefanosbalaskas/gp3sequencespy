@@ -40,15 +40,11 @@ def test_distance_property_substitution_and_public_argument_guards():
     with pytest.raises(ValidationError, match="finite, non-negative"):
         distances._substitution_df(pd.DataFrame(), [])
 
-    negative = pd.DataFrame(
-        [[0.0, -1.0], [-1.0, 0.0]], index=["A", "B"], columns=["A", "B"]
-    )
+    negative = pd.DataFrame([[0.0, -1.0], [-1.0, 0.0]], index=["A", "B"], columns=["A", "B"])
     with pytest.raises(ValidationError, match="finite, non-negative"):
         distances._substitution_df(negative, ["A", "B"])
 
-    partial = pd.DataFrame(
-        [[0.0, 1.0], [1.0, 0.0]], index=["A", "B"], columns=["A", "B"]
-    )
+    partial = pd.DataFrame([[0.0, 1.0], [1.0, 0.0]], index=["A", "B"], columns=["A", "B"])
     with pytest.raises(ValidationError, match="does not cover"):
         distances._substitution_df(partial, ["A", "B", "C"])
 
@@ -89,9 +85,7 @@ def test_lance_williams_all_update_rules_with_members():
         "centroid",
         "ward.D",
     ]:
-        z = distances._r_lance_williams_members(
-            matrix, linkage, [1.0, 2.0, 1.0, 3.0]
-        )
+        z = distances._r_lance_williams_members(matrix, linkage, [1.0, 2.0, 1.0, 3.0])
         assert z.shape == (3, 4)
         assert np.isfinite(z).all()
 
@@ -109,9 +103,7 @@ def test_cluster_sequence_validation_paths_and_clara_kwargs():
     with pytest.raises(ValidationError, match="Unsupported hierarchical"):
         g.cluster_sequences(distance, 2, method="hierarchical", foo=1)
     with pytest.raises(ValidationError, match="Unsupported CLARA"):
-        g.cluster_sequences(
-            distance, 2, method="clara", samples=1, sampsize=4, foo=1
-        )
+        g.cluster_sequences(distance, 2, method="clara", samples=1, sampsize=4, foo=1)
 
 
 def test_assignment_validation_paths():
@@ -120,9 +112,7 @@ def test_assignment_validation_paths():
     with pytest.raises(ValidationError, match="named pandas Series"):
         distances._assignments_and_distance([1, 1, 2, 2], distance)
 
-    duplicate = pd.Series(
-        [1, 1, 2, 2], index=[ids[0], ids[0], ids[2], ids[3]]
-    )
+    duplicate = pd.Series([1, 1, 2, 2], index=[ids[0], ids[0], ids[2], ids[3]])
     with pytest.raises(ValidationError, match="unique sequence-ID"):
         distances._assignments_and_distance(duplicate, distance)
 
@@ -162,9 +152,7 @@ def test_bootstrap_and_stability_validation_low_pair_paths():
 
 def test_cluster_ensemble_validation_paths():
     with pytest.raises(ValidationError, match="at least two"):
-        g.create_sequence_cluster_ensemble(
-            pd.Series([1, 2], index=["a", "b"]), k=2
-        )
+        g.create_sequence_cluster_ensemble(pd.Series([1, 2], index=["a", "b"]), k=2)
 
     valid = pd.Series([1, 1, 2], index=["a", "b", "c"])
     with pytest.raises(ValidationError, match="Every solution"):
