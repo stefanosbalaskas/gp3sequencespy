@@ -16,7 +16,11 @@ MUTATIONS = [
         "_advanced.py",
         "x = np.asarray(x, float) + pseudocount",
         "x = np.asarray(x, float) + 0.0",
-        ["tests/test_property_invariants.py"],
+        [
+            "tests/test_quality_edge_contracts.py",
+            "-k",
+            "vector_normalise_pseudocount_contract",
+        ],
     ),
     (
         "subsequence-empty-pattern-becomes-present",
