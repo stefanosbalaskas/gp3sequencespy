@@ -152,3 +152,49 @@ def test_predict_model_guard_and_bootstrap_no_transition_guard():
     )
     with pytest.raises(ValidationError, match="No first-order transitions"):
         g.bootstrap_transition_network(short, n_boot=1)
+
+
+def test_dijkstra_defensive_empty_available_guard(monkeypatch):
+    original = networks.np.flatnonzero
+    calls = {"n": 0}
+
+    def empty_once(values):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return np.array([], dtype=int)
+        return original(values)
+
+    monkeypatch.setattr(networks.np, "flatnonzero", empty_once)
+    result = networks._dijkstra(np.array([[0.0]]), 0)
+    assert result.tolist() == [0.0]
+
+
+def test_betweenness_defensive_zero_sigma_predecessor_guard(monkeypatch):
+    original_zeros = networks.np.zeros
+    calls = {"n": 0}
+
+    class FrozenAfterFirstWrite(np.ndarray):
+        def __new__(cls, n):
+            obj = original_zeros(n).view(cls)
+            obj._writes = 0
+            return obj
+
+        def __array_finalize__(self, obj):
+            if obj is not None:
+                self._writes = getattr(obj, "_writes", 0)
+
+        def __setitem__(self, key, value):
+            self._writes += 1
+            if self._writes == 1:
+                return super().__setitem__(key, value)
+            return None
+
+    def selective_zeros(shape, *args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] in {2, 4} and isinstance(shape, int):
+            return FrozenAfterFirstWrite(shape)
+        return original_zeros(shape, *args, **kwargs)
+
+    monkeypatch.setattr(networks.np, "zeros", selective_zeros)
+    score = networks._betweenness(np.array([[False, True], [False, False]]))
+    assert score.shape == (2,)
