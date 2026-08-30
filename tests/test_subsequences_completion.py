@@ -66,6 +66,10 @@ def test_subsequence_summary_and_filter_validation_and_ties_include():
             "mean_max_gap": [0.0, 0.0, 0.0],
         }
     )
+    unbounded = subsequences.filter_sequence_subsequences(summary)
+    assert len(unbounded) == 3
+    roomy = subsequences.filter_sequence_subsequences(summary, top_n=10)
+    assert len(roomy) == 3
     selected = subsequences.filter_sequence_subsequences(summary, top_n=1, ties="include")
     assert selected.subsequence.tolist() == ["A > B", "A > C"]
 
@@ -124,8 +128,12 @@ def test_subsequence_group_comparison_guard_paths():
     assert fisher.test.eq("fisher").all()
     np.testing.assert_allclose(fisher.p_adjusted, fisher.p_value)
 
+    chisq = subsequences.compare_sequence_subsequences(two, "group", test="chisq")
+    assert not chisq.empty
+    assert chisq.test.eq("chisq").all()
 
-def test_fisher_rejects_more_than_two_groups_and_plot_guard():
+
+def test_fisher_rejects_more_than_two_groups_and_chisq_accepts_them():
     paths = {
         "s1": ["A", "B"],
         "s2": ["A", "C"],
@@ -150,6 +158,10 @@ def test_fisher_rejects_more_than_two_groups_and_plot_guard():
     )
     with pytest.raises(ValidationError, match="limited to two groups"):
         subsequences.compare_sequence_subsequences(occurrences, "group", test="fisher")
+
+    chisq = subsequences.compare_sequence_subsequences(occurrences, "group", test="chisq")
+    assert not chisq.empty
+    assert "prevalence_difference" not in chisq.columns
 
     with pytest.raises(ValidationError, match="requested numeric metric"):
         subsequences.plot_sequence_subsequences(pd.DataFrame({"subsequence": ["A > B"]}))
