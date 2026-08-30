@@ -7,6 +7,39 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 No changes yet.
 
+## [0.1.2] - 2026-08-31
+
+### Added
+
+- Complete quality-completion test tranche covering every reachable statement and branch.
+- Mutation-smoke companion oracles for pseudocount normalization, empty subsequences, and distance-diagonal validation.
+- Dedicated coverage ledger and quality-snapshot workflows, plus expanded user-facing documentation, examples, method maps, plot guidance, reporting guidance, and reproducibility material.
+- Guarded release orchestration and post-PyPI verification workflows for exact-artifact stable releases.
+
+### Changed
+
+- Hardened sequence preparation for PyArrow/pandas-backed cumulative operations.
+- Made grouped plotting paths robust to missing grouping values while preserving the frozen plotting contracts.
+- Removed unreachable defensive branches identified during full branch-coverage review.
+- Canonically formatted the quality-completion test suite with Ruff.
+
+### Validation
+
+- **292 / 292** Python tests pass.
+- **4,564 / 4,564** executable statements covered (**100.00%**).
+- **1,702 / 1,702** branches covered (**100.00%**).
+- Mutation smoke: **3 / 3** mutants killed (**100%**).
+- Linux, macOS, and Windows CI passes across Python 3.11–3.14.
+- Ruff lint/format, mypy, frozen API, frozen R-block ledger, frozen signature parity, strict MkDocs, wheel build, and fresh-wheel smoke all pass.
+
+### Scientific/API status
+
+- No breaking public scientific API or signature changes.
+- Frozen R 0.3.0 reference remains unchanged.
+- Frozen API remains **81 / 81**.
+- Frozen R test-block ledger remains **130 / 130**.
+- Frozen public signatures remain **81 / 81** with **0 unexplained drift**.
+
 ## [0.1.1] - 2026-08-30
 
 ### Added

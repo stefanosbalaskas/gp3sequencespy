@@ -1,6 +1,6 @@
 <div class="gp3-hero">
   <div class="gp3-hero-copy">
-    <span class="gp3-eyebrow">gp3sequencespy 0.1.1 · stable PyPI release</span>
+    <span class="gp3-eyebrow">gp3sequencespy 0.1.2 · stable PyPI release</span>
     <h1>Ordered categorical sequence analysis, built for transparent research.</h1>
     <p class="gp3-lead">
       Validate sequence data, describe paths and motifs, compare whole-sequence
@@ -27,18 +27,18 @@
 <div class="gp3-stats">
   <div><strong>81 / 81</strong><span>frozen R function counterparts</span></div>
   <div><strong>130 / 130</strong><span>translated frozen R test blocks</span></div>
-  <div><strong>182</strong><span>Python validation tests</span></div>
+  <div><strong>292</strong><span>Python validation tests</span></div>
   <div><strong>15</strong><span>Python-native methodology articles</span></div>
 </div>
 
 `gp3sequencespy` is the Python implementation of the frozen **gp3sequences 0.3.0**
-public contract. Version **0.1.1** is available from PyPI and preserves the
-validated 0.1.0 scientific implementation while adding release and citation
-metadata. The package is designed around explicit assumptions, auditable
+public contract. Version **0.1.2** is available from PyPI and preserves the
+frozen scientific/API contracts while adding complete statement/branch coverage,
+mutation-smoke protection, robustness repairs, and expanded documentation. The package is designed around explicit assumptions, auditable
 transformations, reproducible parameter choices, and bounded interpretation.
 
 ```bash
-pip install gp3sequencespy==0.1.1
+pip install gp3sequencespy==0.1.2
 ```
 
 ## Start with your research question
@@ -183,10 +183,10 @@ notes.
 
 ## Release and reproducibility status
 
-Version **0.1.1** is published through GitHub Releases and PyPI. The scientific
-implementation remains the frozen 0.1.0 implementation: **81 / 81** public R
-counterparts, **81 / 81** audited signatures, **130 / 130** translated frozen R
-test blocks, and **182** Python tests. Cross-language boundaries that cannot be
+Version **0.1.2** is published through GitHub Releases and PyPI. The frozen
+scientific/API contracts remain **81 / 81** public R counterparts, **81 / 81**
+audited signatures, and **130 / 130** translated frozen R test blocks; the Python
+quality suite now contains **292** tests with 100% statement and branch coverage. Cross-language boundaries that cannot be
 made bit-identical are listed in [Parity & validation](parity.md).
 
 - [Reproducibility guide](reproducibility.md)

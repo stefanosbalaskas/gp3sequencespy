@@ -52,8 +52,20 @@ This checklist separates **release readiness** from **R numerical parity**. A gr
 - [x] Record the Zenodo archival DOI in citation/project metadata.
 - [x] Keep the original `v0.1.0` tag and PyPI 0.1.0 artifacts immutable.
 - [x] Configure GitHub `pypi` environment and PyPI Trusted Publisher.
-- [ ] Publish `v0.1.1` only after exact source, artifact, CI, Docs, and Release-check gates pass.
-- [ ] Confirm the first Trusted Publishing/OIDC upload succeeds with exact GitHub Release artifacts.
+- [x] Publish `v0.1.1` only after exact source, artifact, CI, Docs, and Release-check gates pass.
+- [x] Confirm the first Trusted Publishing/OIDC upload succeeds with exact GitHub Release artifacts.
+
+### 0.1.2 quality-completion release
+
+- [x] Preserve frozen R 0.3.0 behavioral reference and 81 / 81 frozen public API counterparts.
+- [x] Reach 100% executable statement coverage and 100% branch coverage.
+- [x] Kill all 3 mutation-smoke mutants.
+- [x] Pass 292 tests locally and in the quality branch.
+- [x] Pass Linux/macOS/Windows CI across Python 3.11–3.14.
+- [x] Pass Ruff lint/format, mypy, frozen API/signature/R-block gates, strict docs, wheel build, and fresh-wheel smoke.
+- [ ] Create and publish exact `v0.1.2` GitHub Release artifacts only after the release PR is green.
+- [ ] Publish those exact GitHub Release artifacts to PyPI through Trusted Publishing.
+- [ ] Verify PyPI hashes and a fresh `pip install gp3sequencespy==0.1.2`.
 
 ### Future releases
 
