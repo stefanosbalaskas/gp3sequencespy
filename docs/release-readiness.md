@@ -1,33 +1,56 @@
-# Release readiness
+# Release status
 
-`gp3sequencespy` **0.1.1** is a metadata/release-infrastructure maintenance release over the completed 0.1.0 scientific freeze. The 81-function API, frozen R 0.3.0 contracts, and deliberate parity boundaries are unchanged.
+## gp3sequencespy 0.1.1
 
-## Current verified contracts
+Version **0.1.1** is the current stable PyPI release and a
+metadata / release-infrastructure maintenance release over the frozen 0.1.0
+scientific implementation.
 
-- 81 / 81 frozen R 0.3.0 public API counterparts.
-- 130 / 130 frozen R test blocks mapped to dedicated Python translations.
-- 81 / 81 frozen R public signatures audited with zero unexplained drift.
-- 15 / 15 frozen R vignette counterparts.
-- Ruff, mypy, multi-platform tests, strict documentation builds, and fresh-wheel
-  smoke tests in CI.
+<div class="gp3-release-panel">
+<span class="gp3-status gp3-status--good">PyPI published</span>
+<span class="gp3-status gp3-status--good">GitHub Release published</span>
+<span class="gp3-status gp3-status--good">Trusted Publishing verified</span>
+<span class="gp3-status gp3-status--good">Docs live</span>
+</div>
 
-## Stable-release gate
+## Scientific contract
 
-The authoritative R 0.3.0 reference has been exercised by deterministic core, hierarchical/PAM, and time-model oracle tranches. Every remaining parity exception has been explicitly reviewed. The exact 0.1.0 wheel/sdist passed committed-source, GitHub release, and PyPI identity checks.
+No scientific algorithm, public scientific API, plotting semantics, or frozen R
+0.3.0 parity contract changed between 0.1.0 and 0.1.1.
 
-The full operational checklist is maintained in
-[`RELEASE_CHECKLIST.md`](https://github.com/stefanosbalaskas/gp3sequencespy/blob/main/RELEASE_CHECKLIST.md).
-Frozen-reference details are in
-[`REPRODUCIBILITY.md`](https://github.com/stefanosbalaskas/gp3sequencespy/blob/main/REPRODUCIBILITY.md).
+- frozen API: **81 / 81**
+- frozen signatures: **81 / 81**
+- translated R test blocks: **130 / 130**
+- unexplained signature drift: **0**
+- Python tests: **182**
+- deterministic R-oracle tranches: **PASS**
+- strict MkDocs build: **PASS**
+- fresh production PyPI install: **PASS**
 
-## Publication workflow
+## Distribution identity
 
-The repository's `Release checks` workflow remains validation-only: it validates
-metadata, static quality, tests, documentation, distributions, wheel contents,
-and a clean wheel install.
+Version 0.1.1 was built from release commit:
 
-The registered `.github/workflows/publish-pypi.yml` Trusted Publisher verifies
-the exact distributions attached to the published GitHub Release, then gives
-OIDC `id-token: write` only to the dedicated publishing job. Version 0.1.1 is
-the first release intended to exercise this token-free path end-to-end. See
-`PYPI_PUBLISHING.md`.
+`b19cfb6931ce7785f32d2f3eacf2b880f050400d`
+
+and published through GitHub Actions Trusted Publishing / OIDC.
+
+## Documentation
+
+The site is built with MkDocs Material and deployed from the generated
+`gh-pages` branch. GitHub Pages serves that branch from its root.
+
+## Archive
+
+Zenodo DOI: [10.5281/zenodo.22166449](https://doi.org/10.5281/zenodo.22166449)
+
+## What to cite
+
+Use the exact software version in methods / reproducibility statements and use
+the repository `CITATION.cff` or Zenodo archive metadata for formal citation.
+
+## Historical release
+
+The original **0.1.0** scientific release remains immutable. Version 0.1.1 was
+created specifically to correct public metadata, record the DOI, and exercise
+the token-free PyPI publishing path.

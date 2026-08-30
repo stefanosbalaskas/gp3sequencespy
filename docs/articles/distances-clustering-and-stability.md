@@ -2,7 +2,7 @@
 
 ```python
 import pandas as pd
-import gp3sequencespypy as g
+import gp3sequencespy as g
 ```
 
 ## Synthetic paths
