@@ -53,6 +53,10 @@ def test_position_summary_validation_and_reserved_group_guards():
         motif_visualisation.summarise_sequence_motif_positions(_extraction(), position="bad")
     with pytest.raises(ValidationError, match="scale"):
         motif_visualisation.summarise_sequence_motif_positions(_extraction(), scale="bad")
+    with pytest.raises(ValidationError, match="unique character vector"):
+        motif_visualisation.summarise_sequence_motif_positions(
+            _extraction(), by=["group", "group"]
+        )
     with pytest.raises(ValidationError, match="reserved motif columns"):
         motif_visualisation.summarise_sequence_motif_positions(
             _extraction(), by="motif_id"
@@ -74,8 +78,8 @@ def test_position_format_validation_empty_and_ungrouped_rank_paths():
     formatted = motif_visualisation.format_sequence_motif_positions(
         positions, include_rank=True
     )
-    assert formatted["table"].rank.min() == 1
-    assert formatted["table"].rank.dtype.kind in "iu"
+    assert formatted["table"]["rank"].min() == 1
+    assert formatted["table"]["rank"].dtype.kind in "iu"
 
     empty_positions = motif_visualisation.summarise_sequence_motif_positions(
         _extraction(8, 8)
@@ -144,24 +148,43 @@ def test_position_plot_validation_empty_and_recomputed_centre_path():
 def test_position_distribution_matplotlib_compatibility_branches(monkeypatch):
     extracted = _extraction()
 
+    class FakeAxis:
+        def __init__(self):
+            self.calls = []
+            self.gp3_data = None
+            self.gp3_motif_table = None
+
+        def boxplot(self, values, **kwargs):
+            self.calls.append(kwargs)
+
+        def set_xlim(self, *args):
+            return None
+
+        def set_title(self, *args):
+            return None
+
     monkeypatch.setattr(importlib.metadata, "version", lambda name: "3.9.9")
-    ax39 = motif_visualisation.plot_sequence_motif_positions(
+    ax39 = FakeAxis()
+    result39 = motif_visualisation.plot_sequence_motif_positions(
         extracted,
         position="start",
         scale="absolute",
         top_n=2,
         display="distribution",
+        ax=ax39,
     )
-    assert not ax39.gp3_data.empty
+    assert result39.calls[0]["tick_labels"]
+    assert result39.calls[0]["vert"] is False
 
-    plt.close("all")
     monkeypatch.setattr(importlib.metadata, "version", lambda name: "3.8.4")
-    with pytest.warns((DeprecationWarning, PendingDeprecationWarning)):
-        ax38 = motif_visualisation.plot_sequence_motif_positions(
-            extracted,
-            position="start",
-            scale="absolute",
-            top_n=2,
-            display="distribution",
-        )
-    assert not ax38.gp3_data.empty
+    ax38 = FakeAxis()
+    result38 = motif_visualisation.plot_sequence_motif_positions(
+        extracted,
+        position="start",
+        scale="absolute",
+        top_n=2,
+        display="distribution",
+        ax=ax38,
+    )
+    assert result38.calls[0]["labels"]
+    assert result38.calls[0]["vert"] is False
