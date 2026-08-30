@@ -6,10 +6,18 @@ import pandas as pd
 import pytest
 
 matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 from gp3sequencespy import visualisations
 from gp3sequencespy._exceptions import ValidationError
 from gp3sequencespy._types import GroupComparisonResult
+
+
+@pytest.fixture(autouse=True)
+def _close_figures_between_tests():
+    plt.close("all")
+    yield
+    plt.close("all")
 
 
 def _long_sequences() -> pd.DataFrame:
