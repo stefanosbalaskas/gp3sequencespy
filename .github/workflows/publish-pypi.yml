@@ -9,11 +9,6 @@ on:
         description: Existing stable GitHub Release tag to publish, for example v0.1.2
         required: true
         type: string
-  push:
-    branches:
-      - main
-    paths:
-      - .github/pypi-publish-request.txt
 
 permissions:
   contents: read
@@ -23,8 +18,7 @@ jobs:
     name: Verify release distributions
     if: >-
       (github.event_name == 'release' && github.event.release.draft == false && github.event.release.prerelease == false) ||
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'publish: gp3sequencespy '))
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.target.outputs.tag }}
@@ -42,12 +36,6 @@ jobs:
               ;;
             workflow_dispatch)
               TAG="$DISPATCH_TAG"
-              ;;
-            push)
-              MESSAGE="$(jq -r '.head_commit.message' "$GITHUB_EVENT_PATH")"
-              VERSION="${MESSAGE#publish: gp3sequencespy }"
-              VERSION="${VERSION%%$'\n'*}"
-              TAG="v$VERSION"
               ;;
             *)
               echo "unsupported event: $GITHUB_EVENT_NAME" >&2
