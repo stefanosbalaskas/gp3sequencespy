@@ -1,0 +1,67 @@
+{
+  "schema": "gp3sequencespy-release-publication-v1",
+  "version": "0.1.2",
+  "release_date": "2026-08-31",
+  "release_commit": "564dfb3f97dde9e9228819bf4792821584b02934",
+  "git_tag": "v0.1.2",
+  "annotated_tag_object": "c2ee786031c0badb9127529601e08893e90af70d",
+  "github_release": {
+    "id": 379432726,
+    "name": "gp3sequencespy 0.1.2",
+    "draft": false,
+    "prerelease": false
+  },
+  "artifacts": {
+    "wheel": {
+      "name": "gp3sequencespy-0.1.2-py3-none-any.whl",
+      "size_bytes": 92825,
+      "sha256": "3fd063414f0c8c37fb5ae9a6aacf103a89afd0e6e2135ab3b81248b38b9ba847"
+    },
+    "sdist": {
+      "name": "gp3sequencespy-0.1.2.tar.gz",
+      "size_bytes": 1335954,
+      "sha256": "58b5e81149accf95d1b1a7e205f8cdf7a21846f0138b8aae00cfddd5db4289d9"
+    },
+    "release_manifest": {
+      "name": "release_manifest_0.1.2.json",
+      "sha256": "5b4c4964bdbc7af46d615b015bf754c0d3897421e0c47cdbc118800eb836e6e8"
+    },
+    "checksum_manifest": {
+      "name": "SHA256SUMS.txt",
+      "sha256": "0c8f92207161de72eb0fe852f43fd9659cfa03d2d6f8c65850784f385d3aa755"
+    }
+  },
+  "workflow_evidence": {
+    "stable_release_run": {
+      "id": 33342028606,
+      "conclusion": "success"
+    },
+    "trusted_pypi_publish_run": {
+      "id": 33342198803,
+      "conclusion": "success"
+    },
+    "post_pypi_verification_run": {
+      "id": 33342235019,
+      "conclusion": "success",
+      "artifact_id": 9740897782,
+      "artifact_digest": "sha256:aa4e011c858415eb970d1fba9a92461812dfa3ff5ecb44d3f43b6d893dbdd0fe"
+    }
+  },
+  "publication_verification": {
+    "github_release_and_pypi_hashes_match": true,
+    "fresh_pypi_install": true,
+    "pypi_version": "0.1.2",
+    "publication_method": "PyPI Trusted Publishing (OIDC) using exact prebuilt GitHub Release wheel and sdist"
+  },
+  "quality": {
+    "python_tests": 292,
+    "statement_coverage_percent": 100.0,
+    "branch_coverage_percent": 100.0,
+    "mutation_smoke": "3/3 killed",
+    "frozen_api": "81/81",
+    "frozen_r_test_blocks": "130/130",
+    "frozen_signatures": "81/81",
+    "unexplained_signature_drift": 0
+  },
+  "historical_release_policy": "v0.1.0 and v0.1.1 tags and published artifacts remain unchanged."
+}
