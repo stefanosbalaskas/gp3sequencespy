@@ -3,15 +3,41 @@ site_description: Transparent, reproducible, and auditable ordered categorical s
 site_url: https://stefanosbalaskas.github.io/gp3sequencespy/
 repo_url: https://github.com/stefanosbalaskas/gp3sequencespy
 repo_name: stefanosbalaskas/gp3sequencespy
+edit_uri: edit/main/docs/
 
 theme:
   name: material
+  language: en
+  logo: assets/brand/gp3sequencespy-mark.svg
+  favicon: assets/brand/gp3sequencespy-mark.svg
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.expand
     - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
     - content.tooltips
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
 plugins:
   - search
@@ -24,42 +50,71 @@ plugins:
             show_signature_annotations: true
             separate_signature: true
             members_order: source
+            show_source: false
 
 markdown_extensions:
   - admonition
   - attr_list
+  - md_in_html
+  - tables
+  - footnotes
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
 
 extra_css:
   - stylesheets/extra.css
 
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/stefanosbalaskas/gp3sequencespy
+      name: gp3sequencespy on GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/gp3sequencespy/
+      name: gp3sequencespy on PyPI
+
+copyright: >
+  gp3sequencespy · MIT License ·
+  <a href="https://doi.org/10.5281/zenodo.22166449">Zenodo DOI 10.5281/zenodo.22166449</a>
+
 nav:
   - Home: index.md
+  - Start Here:
+      - Quickstart: quickstart.md
+      - Choose a method: method-map.md
+      - Examples: examples.md
+      - Plot gallery: plots.md
+      - FAQ & troubleshooting: faq.md
   - Articles:
       - Overview: articles/index.md
-      - "Choosing a Sequence-Analysis Method": articles/choosing-a-sequence-analysis-method.md
-      - "Consensus Sequences and Descriptive Group Comparisons": articles/consensus-and-group-comparisons.md
-      - "Contiguous Motif Workflow": articles/contiguous-motif-workflow.md
-      - "Sequence Distances, Clustering, and Stability": articles/distances-clustering-and-stability.md
-      - "Extended Sequence Visualisations": articles/extended-sequence-visualisations.md
       - "Getting Started with gp3sequencespy": articles/getting-started-with-gp3sequences.md
-      - "Latent Sequence Models and Optional Adapters": articles/latent-models-and-optional-adapters.md
-      - "Longitudinal and Panel Sequence Workflows": articles/longitudinal-panel-sequences.md
-      - "Multichannel and Covariate-Dependent HMMs": articles/multichannel-and-covariate-hmms.md
-      - "Bounded Non-Contiguous Subsequence Mining": articles/noncontiguous-subsequence-mining.md
-      - "Reproducible Sequence Analysis: A Synthetic Case Study": articles/reproducible-sequence-analysis-case-study.md
+      - "Choosing a Sequence-Analysis Method": articles/choosing-a-sequence-analysis-method.md
       - "Sequence Data Validation and Preparation": articles/sequence-data-validation-and-preparation.md
-      - "Design-Aware Sequence Group Inference": articles/sequence-inference-and-randomization.md
-      - "Time-Varying Condition Comparisons": articles/time-varying-condition-models.md
+      - "Contiguous Motif Workflow": articles/contiguous-motif-workflow.md
+      - "Bounded Non-Contiguous Subsequence Mining": articles/noncontiguous-subsequence-mining.md
+      - "Consensus Sequences and Descriptive Group Comparisons": articles/consensus-and-group-comparisons.md
+      - "Sequence Distances, Clustering, and Stability": articles/distances-clustering-and-stability.md
       - "Transition Networks and Higher-Order Models": articles/transition-networks-and-higher-order-models.md
+      - "Latent Sequence Models and Optional Adapters": articles/latent-models-and-optional-adapters.md
+      - "Multichannel and Covariate-Dependent HMMs": articles/multichannel-and-covariate-hmms.md
+      - "Design-Aware Sequence Group Inference": articles/sequence-inference-and-randomization.md
+      - "Longitudinal and Panel Sequence Workflows": articles/longitudinal-panel-sequences.md
+      - "Time-Varying Condition Comparisons": articles/time-varying-condition-models.md
+      - "Extended Sequence Visualisations": articles/extended-sequence-visualisations.md
+      - "Reproducible Sequence Analysis: A Synthetic Case Study": articles/reproducible-sequence-analysis-case-study.md
   - Reference:
       - Overview: reference/index.md
       - Frozen public API: reference/api.md
-  - Parity: parity.md
-  - Release readiness: release-readiness.md
+  - R → Python: r-to-python.md
+  - Reproducibility:
+      - Parity & validation: parity.md
+      - Reproducibility guide: reproducibility.md
+      - Reporting guide: reporting.md
+      - Release status: release-readiness.md

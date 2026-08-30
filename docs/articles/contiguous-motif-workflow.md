@@ -2,13 +2,13 @@
 
 ```python
 import pandas as pd
-import gp3sequencespypy as g
+import gp3sequencespy as g
 ```
 
 ## Scope
 
 This article demonstrates the restricted contiguous-motif workflow in
-`gp3sequencespypy`. The workflow accepts ordinary long-format data frames and does
+`gp3sequencespy`. The workflow accepts ordinary long-format data frames and does
 not require Gazepoint software, hardware, exports, or `gp3tools`.
 
 The functions describe recurring state windows and their locations. They do not
