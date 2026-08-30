@@ -1,0 +1,33 @@
+name: Quality snapshot
+
+on:
+  push:
+    branches: [quality/coverage-completion]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Upload exact quality snapshot
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: quality-snapshot
+          path: |
+            src/
+            tests/
+            parity/
+            reference/
+            docs/
+            .github/workflows/
+            pyproject.toml
+            mkdocs.yml
+            README.md
+            REPRODUCIBILITY.md
+            PARITY_EXCEPTIONS.md
+            uv.lock
+          if-no-files-found: error
