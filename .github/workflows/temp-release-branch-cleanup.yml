@@ -1,0 +1,38 @@
+name: Temporary 0.1.2 branch cleanup
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/temp-release-branch-cleanup.yml
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.event.head_commit.message == 'ci: clean 0.1.2 release branches'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Delete ephemeral release branches
+        shell: bash
+        run: |
+          for branch in \
+            release/0.1.2 \
+            release/0.1.2-prep \
+            release/0.1.2-prepared \
+            release/0.1.2-work \
+            release/0.1.2-finalprep
+          do
+            if git ls-remote --exit-code --heads origin "refs/heads/$branch" >/dev/null 2>&1; then
+              git push origin --delete "$branch"
+            else
+              echo "already absent: $branch"
+            fi
+          done
