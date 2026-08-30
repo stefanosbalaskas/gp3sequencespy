@@ -90,7 +90,14 @@ def test_motif_summary_dispatch_invalid_inputs_and_first_tie_ranking():
             "state": ["A", "B", "A", "A", "B", "C"],
         }
     )
-    extraction = g.extract_sequence_ngrams(data, min_length=2, max_length=2)
+    extraction = g.extract_sequence_ngrams(
+        data,
+        "sequence_id",
+        "sequence_order",
+        "state",
+        min_length=2,
+        max_length=2,
+    )
     summary = motifs._as_summary(extraction)
     assert len(summary.overall) > 0
 
