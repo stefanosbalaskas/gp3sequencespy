@@ -144,8 +144,9 @@ def test_bootstrap_and_stability_validation_low_pair_paths():
 
     original = g.cluster_sequences(distance, 2)
     ids = original.assignments.index.tolist()
-    stability = pd.DataFrame(0.25, index=ids, columns=ids)
-    np.fill_diagonal(stability.values, 1.0)
+    stability_values = np.full((len(ids), len(ids)), 0.25, dtype=float)
+    np.fill_diagonal(stability_values, 1.0)
+    stability = pd.DataFrame(stability_values, index=ids, columns=ids)
     boot = distances.SequenceClusterBootstrap(
         original=original,
         pairwise_stability=stability,
