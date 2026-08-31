@@ -10,17 +10,25 @@ theme:
   language: en
   logo: assets/brand/gp3sequencespy-mark.svg
   favicon: assets/brand/gp3sequencespy-mark.svg
+  icon:
+    repo: fontawesome/brands/github
   features:
+    - navigation.instant
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
+    - navigation.indexes
+    - navigation.footer
     - navigation.top
     - navigation.tracking
     - toc.follow
     - search.suggest
     - search.highlight
     - search.share
+    - content.action.edit
+    - content.action.view
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
@@ -70,6 +78,7 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/home.css
 
 extra:
   social:
