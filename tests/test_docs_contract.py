@@ -46,3 +46,12 @@ def test_mkdocs_nav_lists_all_articles():
         if article.name == "index.md":
             continue
         assert f"articles/{article.name}" in config
+
+
+def test_homepage_outer_wrapper_stays_raw_html():
+    """Prevent md_in_html from escaping indented homepage layout fragments."""
+    text = (DOCS / "index.md").read_text(encoding="utf-8")
+    assert '<div class="gp3-home">' in text
+    assert '<div class="gp3-home" markdown=' not in text
+    assert 'markdown="1"' not in text
+    assert '<div class="gp3-trust-row"' in text
