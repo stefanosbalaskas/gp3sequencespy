@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/brand/gp3sequencespy-mark.svg" width="116" alt="gp3sequencespy logo">
+  <img src="https://raw.githubusercontent.com/stefanosbalaskas/gp3sequencespy/main/docs/assets/python-suite-logo.png" width="260" alt="Python Suite research packages logo">
 </p>
 
 <h1 align="center">gp3sequencespy</h1>
