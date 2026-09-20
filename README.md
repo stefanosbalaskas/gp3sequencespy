@@ -26,7 +26,7 @@
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/method-map/">Method map</a>
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/plots/">Plot gallery</a>
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/reference/">API reference</a>
-  · <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.2">v0.1.2</a>
+  · <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.3">v0.1.2</a>
 </p>
 
 ---
@@ -38,13 +38,13 @@ The package is designed for research workflows where **data preparation, method 
 ## Install
 
 ```bash
-pip install gp3sequencespy==0.1.2
+pip install gp3sequencespy==0.1.3
 ```
 
 With `uv`:
 
 ```bash
-uv add gp3sequencespy==0.1.2
+uv add gp3sequencespy==0.1.3
 ```
 
 Python **3.11–3.14** is supported. Optional extras are available for HMM backends, Arrow/Polars data interoperability, performance helpers, time-varying models, documentation, and development.
@@ -120,14 +120,14 @@ Not sure which family fits your question? Use the **[method map](https://stefano
 
 ## Parity and validation
 
-Version **0.1.2** is the current stable quality-completion release.
+Version **0.1.3** is a maintenance release preserving the 0.1.2 scientific contracts while strengthening release automation and public documentation.
 
 | Validation contract | Status |
 | --- | ---: |
 | Frozen R public counterparts | **81 / 81** |
 | Frozen R public signatures audited | **81 / 81** |
 | Frozen R `test_that()` blocks translated | **130 / 130** |
-| Python tests | **292** |
+| Python tests | **293** |
 | Statement coverage | **100%** |
 | Branch coverage | **100%** |
 | Mutation smoke | **3 / 3 killed** |
@@ -162,7 +162,7 @@ The package treats release and parity evidence as part of the scientific softwar
 - [`PYPI_PUBLISHING.md`](PYPI_PUBLISHING.md) — Trusted Publishing and artifact verification
 - [`CHANGELOG.md`](CHANGELOG.md) — release history
 
-Stable releases publish the exact validated GitHub Release wheel and source distribution to PyPI through GitHub OIDC Trusted Publishing. Release **0.1.2** was independently checked after publication against the GitHub Release SHA-256 hashes and a clean PyPI installation.
+Stable releases publish the exact validated GitHub Release wheel and source distribution to PyPI through GitHub OIDC Trusted Publishing. Each publication is subsequently checked against the GitHub Release SHA-256 hashes and with a clean PyPI installation.
 
 ## Development
 

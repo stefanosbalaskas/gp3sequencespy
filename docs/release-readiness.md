@@ -1,11 +1,11 @@
 # Release status
 
-## gp3sequencespy 0.1.2
+## gp3sequencespy 0.1.3 release candidate
 
-Version **0.1.2** is the current stable PyPI release and a quality-completion / robustness maintenance release over the frozen scientific contracts.
+Version **0.1.3** is the next stable maintenance candidate. The scientific implementation is unchanged from `v0.1.2` apart from the required version string; the release focuses on publishing governance, public documentation, and release evidence.
 
 <div class="gp3-release-panel">
-<span class="gp3-status gp3-status--good">292 tests</span>
+<span class="gp3-status gp3-status--good">293 tests</span>
 <span class="gp3-status gp3-status--good">100% statements</span>
 <span class="gp3-status gp3-status--good">100% branches</span>
 <span class="gp3-status gp3-status--good">3/3 mutation smoke</span>
@@ -19,7 +19,7 @@ The release preserves the frozen R 0.3.0 behavioral reference and does not intro
 - frozen signatures: **81 / 81**
 - translated R test blocks: **130 / 130**
 - unexplained signature drift: **0**
-- Python tests: **292**
+- Python tests: **293**
 - statement coverage: **100.00%**
 - branch coverage: **100.00%**
 - mutation smoke: **3 / 3 killed**
@@ -27,11 +27,11 @@ The release preserves the frozen R 0.3.0 behavioral reference and does not intro
 - strict MkDocs build: **PASS**
 - fresh-wheel smoke: **PASS**
 
-## Quality-completion changes
+## 0.1.3 maintenance scope
 
-Version 0.1.2 adds complete behavioral coverage, mutation-smoke companion oracles, PyArrow/pandas robustness for cumulative preparation operations, NA-safe grouped plotting behavior, dead-branch cleanup, and expanded documentation.
+Version 0.1.3 preserves the complete behavioral coverage and scientific contracts established in 0.1.2 while hardening exact-artifact Trusted Publishing, release governance, documentation rendering contracts, and the public website.
 
-## Publication identity
+## Current published 0.1.2 identity
 
 The stable release was created from Git commit `564dfb3f97dde9e9228819bf4792821584b02934` and annotated tag `v0.1.2` (tag object `c2ee786031c0badb9127529601e08893e90af70d`). The exact GitHub Release distributions were published to PyPI through the registered Trusted Publisher without rebuilding.
 

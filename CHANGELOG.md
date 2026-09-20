@@ -7,6 +7,43 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 No changes yet.
 
+## [0.1.3] - 2026-09-21
+
+### Changed
+
+- Hardened exact-artifact GitHub Release to PyPI Trusted Publishing,
+  including guarded stable-release verification, filename checks,
+  checksum verification, and explicit manual-dispatch support.
+- Refined stable-release orchestration so GitHub Release distributions
+  remain the authoritative artifacts consumed by PyPI without rebuilding.
+- Redesigned and refined the public MkDocs homepage, navigation, visual
+  system, repository front page, and shared Python Suite branding.
+- Added the September 2026 ecosystem methods update and strengthened the
+  documentation rendering contract.
+
+### Validation
+
+- **293 / 293** Python tests pass on the certified pre-release tree.
+- **4,564 / 4,564** executable statements are covered (**100.00%**).
+- **1,702 / 1,702** branches are covered (**100.00%**).
+- Mutation smoke remains **3 / 3 killed**.
+- Frozen API remains **81 / 81**.
+- Frozen R test-block ledger remains **130 / 130**.
+- Frozen public signatures remain **81 / 81** with **0 unexplained drift**.
+- Local Ruff, mypy, strict MkDocs, wheel/sdist build, Twine validation,
+  clean wheel installation, and clean sdist installation pass.
+
+### Scientific/API status
+
+- No scientific implementation files under `src/gp3sequencespy` changed
+  between `v0.1.2` and the 0.1.3 release preparation tree except the
+  required package version string.
+- No breaking scientific API or public-signature change is introduced.
+- The frozen `gp3sequences` 0.3.0 behavioral reference remains unchanged.
+- The twelve additional names in Python `__all__` remain deliberate
+  Python public classes, exceptions, adapters, and audit objects outside
+  the frozen 81-function R parity manifest.
+
 ## [0.1.2] - 2026-08-31
 
 ### Added
