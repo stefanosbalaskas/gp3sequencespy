@@ -33,7 +33,10 @@ def test_release_governance_files_exist():
 
 def test_distribution_metadata_is_publication_ready_for_current_release():
     project = _project()
-    assert project["version"] == g.__version__ == "0.1.2"
+    version = project["version"]
+
+    assert version == g.__version__
+    assert re.fullmatch(r"\d+\.\d+\.\d+", version)
     assert project["license"] == "MIT"
     assert project["license-files"] == ["LICENSE"]
     assert "Development Status :: 4 - Beta" in project["classifiers"]
@@ -52,11 +55,40 @@ def test_distribution_metadata_is_publication_ready_for_current_release():
 
 
 def test_citation_and_changelog_match_package_version():
+    project = _project()
+    version = project["version"]
+
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert "version: 0.1.2" in citation
+
+    citation_version = re.search(
+        r"^version:\s*([^\s]+)\s*$",
+        citation,
+        flags=re.MULTILINE,
+    )
+
+    citation_date = re.search(
+        r"^date-released:\s*(\d{4}-\d{2}-\d{2})\s*$",
+        citation,
+        flags=re.MULTILINE,
+    )
+
+    changelog_release = re.search(
+        rf"^## \[{re.escape(version)}\] - "
+        r"(\d{4}-\d{2}-\d{2})\s*$",
+        changelog,
+        flags=re.MULTILINE,
+    )
+
+    assert citation_version is not None
+    assert citation_version.group(1) == version
+
+    assert citation_date is not None
+
+    assert changelog_release is not None
+    assert changelog_release.group(1) == citation_date.group(1)
+
     assert "10.5281/zenodo.22166449" in citation
-    assert "## [0.1.2] - 2026-08-31" in changelog
 
 
 def test_reproducibility_document_freezes_authoritative_r_reference():
