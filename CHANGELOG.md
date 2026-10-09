@@ -7,6 +7,14 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 No changes yet.
 
+## [0.1.4] - 2026-10-09 (documentation-only maintenance candidate)
+
+### Documentation
+
+- Integrate the reviewed methods-briefing guide on estimation-visualization boundaries for participant-level scalar sequence summaries versus transition, HMM and other structured estimands.
+- Keep all underlying scientific implementation and the frozen 81-API/R parity surface unchanged; do not advertise new experimental methods.
+- Require existing frozen parity, exact coverage, mutation smoke, strict documentation, fresh wheel, immutable release-asset checks, and trusted PyPI publication gates to pass before publishing.
+
 ## [0.1.3] - 2026-09-21
 
 ### Changed
