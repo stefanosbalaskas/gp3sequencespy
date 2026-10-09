@@ -104,7 +104,7 @@ nav:
       - FAQ & troubleshooting: faq.md
   - Articles:
       - Overview: articles/index.md
-      - Sequence validation scope (methods briefing): articles/validation-scope-methods-briefing.md
+      - Sequence validation scope (methods briefing): validation-scope-methods-briefing.md
       - "Getting Started with gp3sequencespy": articles/getting-started-with-gp3sequences.md
       - "Choosing a Sequence-Analysis Method": articles/choosing-a-sequence-analysis-method.md
       - "Sequence Data Validation and Preparation": articles/sequence-data-validation-and-preparation.md
