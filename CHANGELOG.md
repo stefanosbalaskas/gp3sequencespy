@@ -7,7 +7,9 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 No changes yet.
 
-## [0.1.4] - 2026-10-09 (documentation-only maintenance candidate)
+## [0.1.4] - 2026-10-09
+
+*Documentation-only maintenance candidate.*
 
 ### Documentation
 
