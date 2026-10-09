@@ -26,7 +26,7 @@
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/method-map/">Method map</a>
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/plots/">Plot gallery</a>
   · <a href="https://stefanosbalaskas.github.io/gp3sequencespy/reference/">API reference</a>
-  · <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.3">v0.1.2</a>
+  · <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.4">v0.1.4</a>
 </p>
 
 ---
@@ -38,13 +38,13 @@ The package is designed for research workflows where **data preparation, method 
 ## Install
 
 ```bash
-pip install gp3sequencespy==0.1.3
+pip install gp3sequencespy==0.1.4
 ```
 
 With `uv`:
 
 ```bash
-uv add gp3sequencespy==0.1.3
+uv add gp3sequencespy==0.1.4
 ```
 
 Python **3.11–3.14** is supported. Optional extras are available for HMM backends, Arrow/Polars data interoperability, performance helpers, time-varying models, documentation, and development.
@@ -120,7 +120,7 @@ Not sure which family fits your question? Use the **[method map](https://stefano
 
 ## Parity and validation
 
-Version **0.1.3** is a maintenance release preserving the 0.1.2 scientific contracts while strengthening release automation and public documentation.
+Version **0.1.4** is a maintenance release preserving the 0.1.2 scientific contracts while strengthening release automation and public documentation.
 
 | Validation contract | Status |
 | --- | ---: |
