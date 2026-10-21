@@ -46,3 +46,10 @@ def test_duplicate_step_is_rejected():
     d = pd.concat([d, d.iloc[[0]]], ignore_index=True)
     with pytest.raises(ValueError, match="duplicate"):
         sequence_transfer_audit(d)
+
+
+def test_cross_dataset_participant_overlap_is_not_external():
+    d = _demo()
+    d.loc[d.participant_id == "search-0", "participant_id"] = "reading-0"
+    with pytest.raises(ValueError, match="participant identity overlap"):
+        sequence_transfer_audit(d)
