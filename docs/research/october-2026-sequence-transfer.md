@@ -28,7 +28,7 @@ print(audit["domain_comparisons"])
 print(audit["heldout_prediction"])
 ~~~
 
-The same vocabulary can have different conditional transitions. Naively pooled source models can obscure this difference; a future extension should compare source-equal weighting, dataset-size weighting, and target-specific models across real domains.
+The same vocabulary can have different conditional transitions. Naively pooled source models can obscure this difference. The current diagnostic compares source-equal weighting, dataset-size-weighted pooling, individually trained sources, and a target-specific comparator. These comparisons require external real-domain replication before generalization.
 
 ### Plot of the two divergence measures
 
