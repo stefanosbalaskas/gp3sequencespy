@@ -67,3 +67,9 @@ print(audit["brief_event_raw_retention"],audit["brief_event_smoothed_retention"]
 ~~~
 
 Whole-event preservation is deliberately strict: it requires every sample of the reference interval to retain its label. This is not a substitute for duration-tolerant event matching. The example is synthetic and does not validate a specific HMM or scanpath detector.
+
+## Publication and qualification status (21 October 2026)
+
+This page and its original synthetic figures are merged into the GitHub documentation source. The worked research modules are under `research/october_2026/` and **are not automatically included in installed PyPI wheels or exported as stable package APIs**. Their empirical accuracy, device transfer and inferential calibration are not implied by a green CI test or a successful website build.
+
+The explicit outstanding scientific acceptance criteria and eligible real-data benchmarks are tracked in [research-to-release issue #12](https://github.com/stefanosbalaskas/gp3sequencespy/issues/12). This source-only research contribution is separate from the existing stable package version, and a new maintenance release must not claim these experiments as installed features.

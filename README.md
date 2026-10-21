@@ -203,3 +203,9 @@ If `gp3sequencespy` contributes to your research, use the repository citation me
   · <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases">Releases</a>
   · <a href="https://doi.org/10.5281/zenodo.22166449">Zenodo</a>
 </p>
+
+## October 2026 research article and figure
+
+[**Scanpath transfer and brief-event preservation**](docs/research/october-2026-sequence-transfer.md) documents experimental, source-only validation methods and reproducible synthetic examples. It is available in the website navigation, while independently qualified external empirical claims and stable PyPI APIs remain separate ([scientific acceptance criteria](https://github.com/stefanosbalaskas/gp3sequencespy/issues/12)).
+
+![Original synthetic research figure](docs/assets/october-2026-sequence-transfer.svg)
