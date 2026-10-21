@@ -7,6 +7,17 @@ All notable changes to `gp3sequencespy` are documented here. The project follows
 
 No changes yet.
 
+## [0.1.5] - 2026-10-21
+
+*Documentation-only scientific methods maintenance.*
+
+### Documentation and audit transparency
+
+- Link and illustrate the October scanpath cross-domain transfer and temporal smoothing article, with original synthetic plots.
+- Preserve the validated 81-function public API and frozen R 0.3.0 behavioral parity. Research utilities in `research/october_2026/` are **source only**, not stable PyPI imports or proven external benchmarks.
+- Document outstanding participant/domain-independent empirical checks in issue #12.
+- Re-run the complete release gates, wheel/sdist checks, and PyPI Trusted Publishing provenance before publishing.
+
 ## [0.1.4] - 2026-10-09
 
 *Documentation-only maintenance candidate.*
