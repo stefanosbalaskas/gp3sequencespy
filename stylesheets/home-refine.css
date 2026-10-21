@@ -1,0 +1,169 @@
+/* Homepage visual refinement
+   ---------------------------------------------------------------
+   Second-pass landing-page adjustments based on the deployed desktop render.
+   This layer intentionally overrides only homepage presentation and leaves
+   technical documentation pages unchanged. */
+
+/* Desktop landing-page mode: keep the global top navigation, but remove the
+   redundant documentation sidebars so the homepage can use the canvas. */
+@media screen and (min-width: 76.25em) {
+  @supports selector(body:has(.gp3-home)) {
+    body:has(.gp3-home) .md-sidebar--primary,
+    body:has(.gp3-home) .md-sidebar--secondary {
+      display: none;
+    }
+
+    body:has(.gp3-home) .md-main__inner {
+      max-width: 78rem;
+      margin-inline: auto;
+    }
+
+    body:has(.gp3-home) .md-content {
+      max-width: none;
+      margin-inline: 0;
+    }
+
+    body:has(.gp3-home) .md-content__inner {
+      margin-inline: 1.2rem;
+    }
+  }
+}
+
+/* The floating return control is useful deep in documentation, but visually
+   competes with the landing-page hero. */
+@supports selector(body:has(.gp3-home)) {
+  body:has(.gp3-home) .md-top {
+    display: none !important;
+  }
+}
+
+/* A tighter hero keeps the full value proposition visible in the first
+   desktop viewport instead of behaving like a full-screen poster. */
+.gp3-hero-v2 {
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, .72fr);
+  gap: clamp(1.6rem, 3vw, 3rem);
+  min-height: 25rem;
+  padding: clamp(1.8rem, 3.2vw, 3rem);
+  border-radius: 1.55rem;
+}
+
+.gp3-hero-v2 h1 {
+  max-width: 700px;
+  margin: .82rem 0 .72rem;
+  font-size: clamp(2.35rem, 4.35vw, 3.65rem);
+  line-height: .98;
+  letter-spacing: -.05em;
+}
+
+.gp3-hero-v2__lead {
+  max-width: 650px;
+  font-size: clamp(.82rem, 1.25vw, .96rem);
+  line-height: 1.58;
+}
+
+.gp3-hero-v2__actions {
+  margin-top: 1.15rem;
+}
+
+.gp3-trust-row {
+  gap: .42rem .8rem;
+  margin-top: 1rem;
+  font-size: .57rem;
+}
+
+.gp3-hero-v2__visual {
+  width: 100%;
+  max-width: 355px;
+  justify-self: end;
+}
+
+.gp3-visual-window {
+  padding: .9rem;
+  border-radius: 1.05rem;
+  box-shadow: 0 18px 42px rgba(46, 51, 83, .13);
+}
+
+.gp3-visual-window__bar {
+  padding-bottom: .68rem;
+}
+
+.gp3-lanes {
+  gap: .42rem;
+  margin: .78rem 0 .7rem;
+}
+
+.gp3-lane {
+  grid-template-columns: 1.8rem repeat(6, 1fr);
+  gap: .2rem;
+}
+
+.gp3-lane span {
+  min-height: 1.12rem;
+}
+
+.gp3-visual-results {
+  gap: .38rem;
+  margin-top: .65rem;
+}
+
+.gp3-visual-results div {
+  padding: .52rem .58rem;
+}
+
+.gp3-visual-caption {
+  margin-top: .58rem;
+}
+
+.gp3-install-strip {
+  margin: .9rem 0 3.2rem;
+}
+
+/* Give the next section a hint of presence in the first viewport on common
+   desktop heights, making the page feel scrollable rather than poster-like. */
+.gp3-section-intro {
+  margin-top: 3.2rem;
+}
+
+/* Mid-size desktop and tablet refinement. */
+@media screen and (max-width: 1100px) {
+  .gp3-hero-v2 {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .68fr);
+    gap: 1.6rem;
+    min-height: 23rem;
+    padding: 1.8rem;
+  }
+
+  .gp3-hero-v2 h1 {
+    font-size: clamp(2.2rem, 5.3vw, 3.25rem);
+  }
+
+  .gp3-hero-v2__visual {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .gp3-hero-v2 {
+    grid-template-columns: 1fr;
+    padding: 1.55rem;
+  }
+
+  .gp3-hero-v2__visual {
+    justify-self: start;
+    max-width: 520px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .gp3-hero-v2 {
+    padding: 1.2rem;
+  }
+
+  .gp3-hero-v2 h1 {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+  }
+
+  .gp3-hero-v2__lead {
+    font-size: .78rem;
+  }
+}
