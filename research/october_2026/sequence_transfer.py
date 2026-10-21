@@ -41,6 +41,42 @@ def _predictive_nll(train, test, vocabulary, alpha=1.0):
     return float(np.mean(losses)) if losses else np.nan
 
 
+
+def _balanced_source_nll(sources, test, vocabulary, alpha=1.0):
+    """Log loss of an equal-source-weight mixture of transition probabilities."""
+    v = len(vocabulary)
+    source_models = []
+    for sequences in sources:
+        _, bigrams = _transitions(sequences)
+        outgoing = Counter()
+        for (a, _), n in bigrams.items():
+            outgoing[a] += n
+        source_models.append((bigrams, outgoing))
+    losses = []
+    for sequence in test:
+        for a, b in zip(sequence[:-1], sequence[1:]):
+            prob = np.mean([
+                (pairs[(a, b)] + alpha) / (outgoing[a] + alpha * v)
+                for pairs, outgoing in source_models
+            ])
+            losses.append(-log(float(prob)))
+    return float(np.mean(losses)) if losses else np.nan
+
+
+def _transition_conditional_entropy(sequences):
+    _, bigrams = _transitions(sequences)
+    n = sum(bigrams.values())
+    if n == 0:
+        return np.nan
+    outgoing = Counter()
+    for (a, _), count in bigrams.items():
+        outgoing[a] += count
+    return float(-sum(
+        (count / n) * np.log2(count / outgoing[a])
+        for (a, _), count in bigrams.items()
+    ))
+
+
 def sequence_transfer_audit(
     data: pd.DataFrame,
     *,
@@ -103,6 +139,7 @@ def sequence_transfer_audit(
                 "transition_js_bits": _js(trans_p, trans_q),
             })
     prediction = []
+    per_source_prediction = []
     for target in datasets:
         target_map = prepared[target][1]
         participants = sorted(target_map)
@@ -114,10 +151,19 @@ def sequence_transfer_audit(
         target_test = [seq for p in test_names for seq in target_map[p]]
         external = [seq for name in datasets if name != target
                     for seq in prepared[name][0]]
+        source_datasets = [name for name in datasets if name != target]
+        for name in source_datasets:
+            per_source_prediction.append({
+                "source": name, "target": target,
+                "target_holdout_nll": _predictive_nll(prepared[name][0], target_test, vocabulary),
+            })
         prediction.append({
             "target": target,
             "target_trained_holdout_nll": _predictive_nll(target_train, target_test, vocabulary),
             "out_of_domain_nll": _predictive_nll(external, target_test, vocabulary),
+            "equal_source_mixture_nll": _balanced_source_nll(
+                [prepared[name][0] for name in source_datasets], target_test, vocabulary),
+            "target_transition_entropy_bits": _transition_conditional_entropy(prepared[target][0]),
             "target_train_participants": len(train_names),
             "target_holdout_participants": len(test_names),
             "target_holdout_sequences": len(target_test),
@@ -125,5 +171,6 @@ def sequence_transfer_audit(
     return {
         "domain_comparisons": pd.DataFrame(comparisons),
         "heldout_prediction": pd.DataFrame(prediction),
+        "source_specific_prediction": pd.DataFrame(per_source_prediction),
         "claim_boundary": "Descriptive tokens and matched-target evaluation; no cross-domain universal representation.",
     }
