@@ -1,5 +1,7 @@
 # Similar gaze tokens can hide different transition systems
 
+![Rendered synthetic plot](../assets/october-2026-plot.svg)
+
 **Methods briefing research implementation, 21 October 2026.**
 
 ![Original illustration of shared state vocabulary with distinct transitions](../assets/october-2026-sequence-transfer.svg)
