@@ -3,7 +3,7 @@
 <section class="gp3-hero-v2">
   <div class="gp3-hero-v2__copy">
     <div class="gp3-kicker-row">
-      <span class="gp3-kicker">gp3sequencespy 0.1.2</span>
+      <span class="gp3-kicker">gp3sequencespy 0.1.5</span>
       <span class="gp3-live-dot">Stable · PyPI</span>
     </div>
     <h1>See sequence structure.<br><span>Model what changes.</span></h1>
@@ -51,11 +51,11 @@
 <div class="gp3-install-strip">
   <div>
     <span class="gp3-install-label">Install stable</span>
-    <code>pip install gp3sequencespy==0.1.2</code>
+    <code>pip install gp3sequencespy==0.1.5</code>
   </div>
   <div class="gp3-install-links">
     <a href="https://pypi.org/project/gp3sequencespy/">PyPI</a>
-    <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.2">Release</a>
+    <a href="https://github.com/stefanosbalaskas/gp3sequencespy/releases/tag/v0.1.5">Release</a>
     <a href="https://doi.org/10.5281/zenodo.22166449">Zenodo</a>
   </div>
 </div>
@@ -185,7 +185,7 @@ network = g.create_transition_network(
 </section>
 
 <section class="gp3-final-cta">
-  <div><span class="gp3-overline">Ready to analyse a sequence?</span><h2>Start small. Keep every decision visible.</h2><p>Install 0.1.2, validate a three-column sequence table, and expand only when the research question requires it.</p></div>
+  <div><span class="gp3-overline">Ready to analyse a sequence?</span><h2>Start small. Keep every decision visible.</h2><p>Install 0.1.5, validate a three-column sequence table, and expand only when the research question requires it.</p></div>
   <div class="gp3-final-cta__actions"><a class="md-button md-button--primary" href="quickstart/">Open quickstart</a><a class="md-button" href="examples/">See worked examples</a></div>
 </section>
 
