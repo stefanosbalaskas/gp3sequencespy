@@ -13,7 +13,7 @@ def _transitions(sequences):
     bigrams = Counter()
     for seq in sequences:
         counts.update(seq)
-        bigrams.update(zip(seq[:-1], seq[1:]))
+        bigrams.update(zip(seq[:-1], seq[1:], strict=True))
     return counts, bigrams
 
 
@@ -35,7 +35,7 @@ def _predictive_nll(train, test, vocabulary, alpha=1.0):
         outgoing[a] += count
     losses = []
     for sequence in test:
-        for a, b in zip(sequence[:-1], sequence[1:]):
+        for a, b in zip(sequence[:-1], sequence[1:], strict=True):
             prob = (bigrams[(a, b)] + alpha) / (outgoing[a] + alpha * n_states)
             losses.append(-log(prob))
     return float(np.mean(losses)) if losses else np.nan
@@ -54,7 +54,7 @@ def _balanced_source_nll(sources, test, vocabulary, alpha=1.0):
         source_models.append((bigrams, outgoing))
     losses = []
     for sequence in test:
-        for a, b in zip(sequence[:-1], sequence[1:]):
+        for a, b in zip(sequence[:-1], sequence[1:], strict=True):
             prob = np.mean([
                 (pairs[(a, b)] + alpha) / (outgoing[a] + alpha * v)
                 for pairs, outgoing in source_models
@@ -172,5 +172,6 @@ def sequence_transfer_audit(
         "domain_comparisons": pd.DataFrame(comparisons),
         "heldout_prediction": pd.DataFrame(prediction),
         "source_specific_prediction": pd.DataFrame(per_source_prediction),
-        "claim_boundary": "Descriptive tokens and matched-target evaluation; no cross-domain universal representation.",
+        "claim_boundary": ("Descriptive tokens and matched-target evaluation; "
+                           "no cross-domain universal representation."),
     }
