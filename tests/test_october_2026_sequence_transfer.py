@@ -18,8 +18,9 @@ def _demo():
         for participant, pattern in enumerate(patterns):
             for step, state in enumerate(pattern):
                 rows.append((dataset, f"{dataset}-{participant}", "trial", step, state))
-    return pd.DataFrame(rows, columns=[
-        "dataset_id", "participant_id", "sequence_id", "step", "state"])
+    return pd.DataFrame(
+        rows, columns=["dataset_id", "participant_id", "sequence_id", "step", "state"]
+    )
 
 
 def test_transfer_reveals_transition_structure():
