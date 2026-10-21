@@ -95,6 +95,7 @@ copyright: >
   <a href="https://doi.org/10.5281/zenodo.22166449">Zenodo DOI 10.5281/zenodo.22166449</a>
 
 nav:
+  - October 2026 research validation: research/october-2026-sequence-transfer.md
   - Home: index.md
   - Start Here:
       - Quickstart: quickstart.md
