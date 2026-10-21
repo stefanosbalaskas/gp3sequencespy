@@ -44,3 +44,26 @@ fig.tight_layout()
 ~~~
 
 **Limitations:** A source/target split by dataset label does not by itself verify human identity independence across corpora. Sequence splitting can overstate participant generalization. The held-out target comparator in this research diagnostic is deliberately participant-disjoint, but this is not yet a validated external scanpath benchmark. Additional controls for device, task and sequence length are needed.
+
+
+## Temporal smoothing and brief event loss
+
+`smoothing_preservation.py` audits participant/trial-matched reference sequences before and after smoothing. It distinguishes sample-level error from whole-event preservation, avoiding the inference that fewer transitions necessarily mean cleaner behavior.
+
+![Brief event removed after smoothing](../assets/october-2026-smoothing.svg)
+
+~~~python
+import pandas as pd
+from research.october_2026.smoothing_preservation import audit_smoothing_event_preservation
+seq = pd.DataFrame({
+    "participant_id":["P"]*7, "trial_id":["T"]*7,
+    "sample_index":list(range(7)),
+    "reference_label":["A","A","A","B","A","A","A"],
+    "raw_label":["A","A","A","B","A","A","A"],
+    "smoothed_label":["A"]*7,
+})
+audit = audit_smoothing_event_preservation(seq, brief_event_max_samples=1)
+print(audit["brief_event_raw_retention"],audit["brief_event_smoothed_retention"])
+~~~
+
+Whole-event preservation is deliberately strict: it requires every sample of the reference interval to retain its label. This is not a substitute for duration-tolerant event matching. The example is synthetic and does not validate a specific HMM or scanpath detector.
