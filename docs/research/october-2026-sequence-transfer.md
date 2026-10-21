@@ -6,7 +6,7 @@
 
 ![Original illustration of shared state vocabulary with distinct transitions](../assets/october-2026-sequence-transfer.svg)
 
-The experimental `sequence_transfer_audit()` works on ordered categorical sequences. It compares token-frequency Jensen–Shannon divergence against transition-frequency Jensen–Shannon divergence, then evaluates a source-trained additive-smoothed first-order transition model on held-out target participants.
+The experimental `sequence_transfer_audit()` works on ordered categorical sequences. It compares token-frequency Jensen–Shannon divergence against transition-frequency Jensen–Shannon divergence, then evaluates a source-trained additive-smoothed first-order transition model on held-out target participants. Reports include separately trained sources, a dataset-equal probability mixture, a naive sample-frequency pooled comparator, and target-domain conditional transition entropy.
 
 ### Reproducible worked example
 
