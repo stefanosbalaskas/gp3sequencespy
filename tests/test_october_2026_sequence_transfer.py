@@ -24,6 +24,9 @@ def test_transfer_reveals_transition_structure():
     assert comparison.transition_js_bits > 0
     assert (result["heldout_prediction"].target_holdout_participants == 1).all()
     assert result["heldout_prediction"].out_of_domain_nll.notna().all()
+    assert result["heldout_prediction"].equal_source_mixture_nll.notna().all()
+    assert result["heldout_prediction"].target_transition_entropy_bits.notna().all()
+    assert len(result["source_specific_prediction"]) == 2
 
 
 def test_refuses_insufficient_independent_units():
