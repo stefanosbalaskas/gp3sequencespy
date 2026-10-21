@@ -121,6 +121,14 @@ def sequence_transfer_audit(
         if len(mapping) < 2:
             raise ValueError("each domain requires at least two participants")
         prepared[dataset] = (sequences, mapping)
+    participant_id_sets = [set(mapping) for _, mapping in prepared.values()]
+    for i in range(len(participant_id_sets)):
+        for j in range(i + 1, len(participant_id_sets)):
+            if participant_id_sets[i] & participant_id_sets[j]:
+                raise ValueError(
+                    "participant identity overlap across datasets; "
+                    "external transfer claim is ineligible"
+                )
     vocabulary = sorted({state for sequences, _ in prepared.values()
                          for seq in sequences for state in seq})
     tokens = {name: _transitions(prepared[name][0])[0] for name in datasets}
